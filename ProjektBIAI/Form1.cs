@@ -18,7 +18,7 @@ namespace ProjektBIAI
             InitializeComponent();
         }
 
-        private void butAcceptChar1_Click(object sender, EventArgs e)
+        private void refreshCharacter1()
         {
             byte[] st = new byte[9];
             st[0] = (byte)nudMaxHp1.Value;
@@ -41,10 +41,10 @@ namespace ProjektBIAI
             labDodgeRate1Computed.Text = result[6].ToString();
             labBlockRate1Computed.Text = result[7].ToString();
             labBlockPower1Computed.Text = result[8].ToString();
-            textBoxInformations.Text += "Created character 1" + Environment.NewLine;
+            textBoxInformations.Text += "Changed character 1" + Environment.NewLine;
         }
 
-        private void butAcceptChar2_Click(object sender, EventArgs e)
+        private void refreshCharacter2()
         {
             byte[] st = new byte[9];
             st[0] = (byte)nudMaxHp2.Value;
@@ -67,7 +67,114 @@ namespace ProjektBIAI
             labDodgeRate2Computed.Text = result[6].ToString();
             labBlockRate2Computed.Text = result[7].ToString();
             labBlockPower2Computed.Text = result[8].ToString();
-            textBoxInformations.Text += "Created character 2" + Environment.NewLine;
+            textBoxInformations.Text += "Changed character 2" + Environment.NewLine;
+        }
+
+
+        private void butStartFight_Click(object sender, EventArgs e)
+        {
+            Arena arena = new ProjektBIAI.Arena(char1, char2);
+            textBoxResults.Text = arena.playBattleReport();
+        }
+
+        private void nudMaxHp1_ValueChanged(object sender, EventArgs e)
+        {
+            refreshCharacter1();
+        }
+
+        private void nudHpRegen1_ValueChanged(object sender, EventArgs e)
+        {
+            refreshCharacter1();
+        }
+
+        private void nudBaseDmg1_ValueChanged(object sender, EventArgs e)
+        {
+            refreshCharacter1();
+        }
+
+        private void nudCritRate1_ValueChanged(object sender, EventArgs e)
+        {
+            refreshCharacter1();
+        }
+
+        private void nudCritDmg1_ValueChanged(object sender, EventArgs e)
+        {
+            refreshCharacter1();
+        }
+
+        private void nudHitRate1_ValueChanged(object sender, EventArgs e)
+        {
+            refreshCharacter1();
+        }
+
+        private void nudDodgeRate1_ValueChanged(object sender, EventArgs e)
+        {
+            refreshCharacter1();
+        }
+
+        private void nudBlockRate1_ValueChanged(object sender, EventArgs e)
+        {
+            refreshCharacter1();
+        }
+
+        private void nudBlockPower1_ValueChanged(object sender, EventArgs e)
+        {
+            refreshCharacter1();
+        }
+
+        private void nudPts1_ValueChanged(object sender, EventArgs e)
+        {
+            refreshCharacter1();
+        }
+
+        private void nudMaxHp2_ValueChanged(object sender, EventArgs e)
+        {
+            refreshCharacter2();
+        }
+
+        private void nudHpRegen2_ValueChanged(object sender, EventArgs e)
+        {
+            refreshCharacter2();
+        }
+
+        private void nudBaseDmg2_ValueChanged(object sender, EventArgs e)
+        {
+            refreshCharacter2();
+        }
+
+        private void nudCritRate2_ValueChanged(object sender, EventArgs e)
+        {
+            refreshCharacter2();
+        }
+
+        private void nudCritDmg2_ValueChanged(object sender, EventArgs e)
+        {
+            refreshCharacter2();
+        }
+
+        private void nudHitRate2_ValueChanged(object sender, EventArgs e)
+        {
+            refreshCharacter2();
+        }
+
+        private void nudDodgeRate2_ValueChanged(object sender, EventArgs e)
+        {
+            refreshCharacter2();
+        }
+
+        private void nudBlockRate2_ValueChanged(object sender, EventArgs e)
+        {
+            refreshCharacter2();
+        }
+
+        private void nudBlockPower2_ValueChanged(object sender, EventArgs e)
+        {
+            refreshCharacter2();
+        }
+
+        private void nudPts2_ValueChanged(object sender, EventArgs e)
+        {
+            refreshCharacter2();
         }
 
         private void Form1_Load(object sender, EventArgs e)

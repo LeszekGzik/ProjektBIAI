@@ -30,10 +30,10 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.butStartFight = new System.Windows.Forms.Button();
             this.textBoxInformations = new System.Windows.Forms.RichTextBox();
             this.textBoxResults = new System.Windows.Forms.RichTextBox();
             this.groupBoxCharacter2 = new System.Windows.Forms.GroupBox();
-            this.butAcceptChar2 = new System.Windows.Forms.Button();
             this.nudPts2 = new System.Windows.Forms.NumericUpDown();
             this.labPts2 = new System.Windows.Forms.Label();
             this.labBlockPower2Computed = new System.Windows.Forms.Label();
@@ -64,7 +64,6 @@
             this.labHpRegen2 = new System.Windows.Forms.Label();
             this.labMaxHp2 = new System.Windows.Forms.Label();
             this.groupBoxCharacter1 = new System.Windows.Forms.GroupBox();
-            this.butAcceptChar1 = new System.Windows.Forms.Button();
             this.nudPts1 = new System.Windows.Forms.NumericUpDown();
             this.labPts1 = new System.Windows.Forms.Label();
             this.labBlockPower1Computed = new System.Windows.Forms.Label();
@@ -129,11 +128,12 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(784, 561);
+            this.tabControl1.Size = new System.Drawing.Size(784, 562);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.butStartFight);
             this.tabPage1.Controls.Add(this.textBoxInformations);
             this.tabPage1.Controls.Add(this.textBoxResults);
             this.tabPage1.Controls.Add(this.groupBoxCharacter2);
@@ -141,16 +141,26 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(776, 535);
+            this.tabPage1.Size = new System.Drawing.Size(776, 536);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // butStartFight
+            // 
+            this.butStartFight.Location = new System.Drawing.Point(172, 287);
+            this.butStartFight.Name = "butStartFight";
+            this.butStartFight.Size = new System.Drawing.Size(433, 23);
+            this.butStartFight.TabIndex = 4;
+            this.butStartFight.Text = "FIGHT!";
+            this.butStartFight.UseVisualStyleBackColor = true;
+            this.butStartFight.Click += new System.EventHandler(this.butStartFight_Click);
+            // 
             // textBoxInformations
             // 
-            this.textBoxInformations.Location = new System.Drawing.Point(9, 330);
+            this.textBoxInformations.Location = new System.Drawing.Point(9, 316);
             this.textBoxInformations.Name = "textBoxInformations";
-            this.textBoxInformations.Size = new System.Drawing.Size(759, 198);
+            this.textBoxInformations.Size = new System.Drawing.Size(759, 212);
             this.textBoxInformations.TabIndex = 3;
             this.textBoxInformations.Text = "";
             // 
@@ -158,13 +168,12 @@
             // 
             this.textBoxResults.Location = new System.Drawing.Point(172, 7);
             this.textBoxResults.Name = "textBoxResults";
-            this.textBoxResults.Size = new System.Drawing.Size(433, 316);
+            this.textBoxResults.Size = new System.Drawing.Size(433, 273);
             this.textBoxResults.TabIndex = 2;
             this.textBoxResults.Text = "";
             // 
             // groupBoxCharacter2
             // 
-            this.groupBoxCharacter2.Controls.Add(this.butAcceptChar2);
             this.groupBoxCharacter2.Controls.Add(this.nudPts2);
             this.groupBoxCharacter2.Controls.Add(this.labPts2);
             this.groupBoxCharacter2.Controls.Add(this.labBlockPower2Computed);
@@ -196,20 +205,10 @@
             this.groupBoxCharacter2.Controls.Add(this.labMaxHp2);
             this.groupBoxCharacter2.Location = new System.Drawing.Point(611, 6);
             this.groupBoxCharacter2.Name = "groupBoxCharacter2";
-            this.groupBoxCharacter2.Size = new System.Drawing.Size(157, 317);
+            this.groupBoxCharacter2.Size = new System.Drawing.Size(157, 304);
             this.groupBoxCharacter2.TabIndex = 1;
             this.groupBoxCharacter2.TabStop = false;
             this.groupBoxCharacter2.Text = "Character 2";
-            // 
-            // butAcceptChar2
-            // 
-            this.butAcceptChar2.Location = new System.Drawing.Point(10, 281);
-            this.butAcceptChar2.Name = "butAcceptChar2";
-            this.butAcceptChar2.Size = new System.Drawing.Size(141, 23);
-            this.butAcceptChar2.TabIndex = 29;
-            this.butAcceptChar2.Text = "Accept";
-            this.butAcceptChar2.UseVisualStyleBackColor = true;
-            this.butAcceptChar2.Click += new System.EventHandler(this.butAcceptChar2_Click);
             // 
             // nudPts2
             // 
@@ -228,6 +227,7 @@
             0,
             0,
             0});
+            this.nudPts2.ValueChanged += new System.EventHandler(this.nudPts2_ValueChanged);
             // 
             // labPts2
             // 
@@ -336,6 +336,7 @@
             0,
             0,
             0});
+            this.nudBlockPower2.ValueChanged += new System.EventHandler(this.nudBlockPower2_ValueChanged);
             // 
             // labBlockPower2
             // 
@@ -363,6 +364,7 @@
             0,
             0,
             0});
+            this.nudBlockRate2.ValueChanged += new System.EventHandler(this.nudBlockRate2_ValueChanged);
             // 
             // nudDodgeRate2
             // 
@@ -381,6 +383,7 @@
             0,
             0,
             0});
+            this.nudDodgeRate2.ValueChanged += new System.EventHandler(this.nudDodgeRate2_ValueChanged);
             // 
             // labBlockRate2
             // 
@@ -417,6 +420,7 @@
             0,
             0,
             0});
+            this.nudHitRate2.ValueChanged += new System.EventHandler(this.nudHitRate2_ValueChanged);
             // 
             // nudCritDmg2
             // 
@@ -435,6 +439,7 @@
             0,
             0,
             0});
+            this.nudCritDmg2.ValueChanged += new System.EventHandler(this.nudCritDmg2_ValueChanged);
             // 
             // labHitRate2
             // 
@@ -471,6 +476,7 @@
             0,
             0,
             0});
+            this.nudCritRate2.ValueChanged += new System.EventHandler(this.nudCritRate2_ValueChanged);
             // 
             // nudBaseDmg2
             // 
@@ -489,6 +495,7 @@
             0,
             0,
             0});
+            this.nudBaseDmg2.ValueChanged += new System.EventHandler(this.nudBaseDmg2_ValueChanged);
             // 
             // labCritRate2
             // 
@@ -525,6 +532,7 @@
             0,
             0,
             0});
+            this.nudHpRegen2.ValueChanged += new System.EventHandler(this.nudHpRegen2_ValueChanged);
             // 
             // nudMaxHp2
             // 
@@ -543,6 +551,7 @@
             0,
             0,
             0});
+            this.nudMaxHp2.ValueChanged += new System.EventHandler(this.nudMaxHp2_ValueChanged);
             // 
             // labHpRegen2
             // 
@@ -564,7 +573,6 @@
             // 
             // groupBoxCharacter1
             // 
-            this.groupBoxCharacter1.Controls.Add(this.butAcceptChar1);
             this.groupBoxCharacter1.Controls.Add(this.nudPts1);
             this.groupBoxCharacter1.Controls.Add(this.labPts1);
             this.groupBoxCharacter1.Controls.Add(this.labBlockPower1Computed);
@@ -596,20 +604,10 @@
             this.groupBoxCharacter1.Controls.Add(this.labMaxHp1);
             this.groupBoxCharacter1.Location = new System.Drawing.Point(8, 6);
             this.groupBoxCharacter1.Name = "groupBoxCharacter1";
-            this.groupBoxCharacter1.Size = new System.Drawing.Size(157, 317);
+            this.groupBoxCharacter1.Size = new System.Drawing.Size(157, 304);
             this.groupBoxCharacter1.TabIndex = 0;
             this.groupBoxCharacter1.TabStop = false;
             this.groupBoxCharacter1.Text = "Character 1";
-            // 
-            // butAcceptChar1
-            // 
-            this.butAcceptChar1.Location = new System.Drawing.Point(10, 281);
-            this.butAcceptChar1.Name = "butAcceptChar1";
-            this.butAcceptChar1.Size = new System.Drawing.Size(141, 23);
-            this.butAcceptChar1.TabIndex = 29;
-            this.butAcceptChar1.Text = "Accept";
-            this.butAcceptChar1.UseVisualStyleBackColor = true;
-            this.butAcceptChar1.Click += new System.EventHandler(this.butAcceptChar1_Click);
             // 
             // nudPts1
             // 
@@ -628,6 +626,7 @@
             0,
             0,
             0});
+            this.nudPts1.ValueChanged += new System.EventHandler(this.nudPts1_ValueChanged);
             // 
             // labPts1
             // 
@@ -736,6 +735,7 @@
             0,
             0,
             0});
+            this.nudBlockPower1.ValueChanged += new System.EventHandler(this.nudBlockPower1_ValueChanged);
             // 
             // labBlockPower1
             // 
@@ -763,6 +763,7 @@
             0,
             0,
             0});
+            this.nudBlockRate1.ValueChanged += new System.EventHandler(this.nudBlockRate1_ValueChanged);
             // 
             // nudDodgeRate1
             // 
@@ -781,6 +782,7 @@
             0,
             0,
             0});
+            this.nudDodgeRate1.ValueChanged += new System.EventHandler(this.nudDodgeRate1_ValueChanged);
             // 
             // labBlockRate1
             // 
@@ -817,6 +819,7 @@
             0,
             0,
             0});
+            this.nudHitRate1.ValueChanged += new System.EventHandler(this.nudHitRate1_ValueChanged);
             // 
             // nudCritDmg1
             // 
@@ -835,6 +838,7 @@
             0,
             0,
             0});
+            this.nudCritDmg1.ValueChanged += new System.EventHandler(this.nudCritDmg1_ValueChanged);
             // 
             // labHitRate1
             // 
@@ -871,6 +875,7 @@
             0,
             0,
             0});
+            this.nudCritRate1.ValueChanged += new System.EventHandler(this.nudCritRate1_ValueChanged);
             // 
             // nudBaseDmg1
             // 
@@ -889,6 +894,7 @@
             0,
             0,
             0});
+            this.nudBaseDmg1.ValueChanged += new System.EventHandler(this.nudBaseDmg1_ValueChanged);
             // 
             // labCritRate1
             // 
@@ -925,6 +931,7 @@
             0,
             0,
             0});
+            this.nudHpRegen1.ValueChanged += new System.EventHandler(this.nudHpRegen1_ValueChanged);
             // 
             // nudMaxHp1
             // 
@@ -943,6 +950,7 @@
             0,
             0,
             0});
+            this.nudMaxHp1.ValueChanged += new System.EventHandler(this.nudMaxHp1_ValueChanged);
             // 
             // labHpRegen1
             // 
@@ -976,7 +984,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 561);
+            this.ClientSize = new System.Drawing.Size(784, 562);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -1046,9 +1054,7 @@
         private System.Windows.Forms.Label labMaxHp1Computed;
         private System.Windows.Forms.NumericUpDown nudPts1;
         private System.Windows.Forms.Label labPts1;
-        private System.Windows.Forms.Button butAcceptChar1;
         private System.Windows.Forms.GroupBox groupBoxCharacter2;
-        private System.Windows.Forms.Button butAcceptChar2;
         private System.Windows.Forms.NumericUpDown nudPts2;
         private System.Windows.Forms.Label labPts2;
         private System.Windows.Forms.Label labBlockPower2Computed;
@@ -1080,6 +1086,7 @@
         private System.Windows.Forms.Label labMaxHp2;
         private System.Windows.Forms.RichTextBox textBoxResults;
         private System.Windows.Forms.RichTextBox textBoxInformations;
+        private System.Windows.Forms.Button butStartFight;
     }
 }
 
