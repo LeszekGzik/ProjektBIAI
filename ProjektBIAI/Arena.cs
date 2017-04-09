@@ -8,12 +8,14 @@ namespace ProjektBIAI
 {
     class Arena
     {
-        public Character char1, char2;
+        Character char1, char2;
+        public Random rnd;
 
         public Arena(Character _char1, Character _char2)
         {
             char1 = _char1;
             char2 = _char2;
+            rnd = new Random();
         }
 
         public string playBattleReport()
@@ -21,15 +23,17 @@ namespace ProjektBIAI
             string result = "";
             bool end = false;
             int round = 1;
+
+            char1.regenFull();
+            char2.regenFull();
+
             while (!end)
             {
                 result += ("-=ROUND " + round.ToString() + "=-\n");
-                result += "Character 1 ";
-                result += char1.regen();
-                result += "Character 2 ";
-                result += char2.regen();
-                result += char1.attack(char2);
-                result += char2.attack(char1);
+                result += ("Character 1 " + char1.regen());
+                result += ("Character 2 " + char2.regen());
+                result += ("Character 1" + char1.attack(char2, rnd));
+                result += ("Character 2" + char2.attack(char1, rnd));
                 if (char1.isDead())
                 {
                     result += "\nCharacter 1 is dead.";
@@ -40,6 +44,7 @@ namespace ProjektBIAI
                     result += "\nCharacter 2 is dead.";
                     end = true;
                 }
+                round++;
             }
             return result;
         }

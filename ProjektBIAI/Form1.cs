@@ -179,7 +179,8 @@ namespace ProjektBIAI
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            refreshCharacter1();
+            refreshCharacter2();
         }
     }
 }

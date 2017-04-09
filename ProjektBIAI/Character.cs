@@ -112,8 +112,6 @@ namespace ProjektBIAI
             this.dodgeRate = (int)(5 * (points * stats[6] / sum));
             this.blockRate = (int)(2 * (points * stats[7] / sum));
             this.blockPower = (0.5 - 0.05 * (points * stats[8] / sum));
-
-            this.currentHp = this.maxHp;
         }
 
         public double[] getComputedValues()
@@ -131,12 +129,60 @@ namespace ProjektBIAI
             return ret;
         }
 
+        public void regenFull()
+        {
+            this.currentHp = this.maxHp;
+        }
+
         public string regen()
         {
             currentHp += hpRegen;
             if (currentHp > maxHp)
                 currentHp = maxHp;
-            return " HP restored to " + currentHp;
+            return "restored to " + currentHp + " HP" + Environment.NewLine;
+        }
+
+        public string attack(Character enemy, Random rnd)
+        {
+            string result = "";
+            int dmg;
+
+            if (rnd.Next(0, 100) < (this.hitRate - enemy.dodgeRate))     //czy trafił?
+            {
+                if (rnd.Next(0, 100) < this.critRate)                    //czy krytyk?
+                {
+                    result += "'s attack hit critically! ";
+                    dmg = (int)(this.baseDmg * this.critDmg);
+                    enemy.currentHp -= dmg;
+                    result += ("Target took " + dmg.ToString() + " damage.\n");
+                }
+                else if (rnd.Next(0, 100) < enemy.blockRate)            //czy atak został zablokowany?
+                {
+                    result += "'s attack hit. Target blocked ";
+                    dmg = (int)(this.baseDmg * enemy.blockPower);
+                    enemy.currentHp -= dmg;
+                    if (enemy.blockPower < 0)
+                        result += ("and absorbed " + dmg.ToString() + " damage.\n");
+                    else
+                        result += ("and took only " + dmg.ToString() + " damage.\n");
+                }
+                else
+                {
+                    result += "'s attack hit. ";
+                    dmg = this.baseDmg;
+                    enemy.currentHp -= dmg;
+                    result += ("Target took " + dmg.ToString() + " damage.\n");
+                }
+            }
+            else
+                result += "'s attack missed.\n";
+
+            return result;
+        }
+
+        public bool isDead()
+        {
+            return (this.currentHp <= 0);
         }
     }
 }
