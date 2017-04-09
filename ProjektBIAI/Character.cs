@@ -39,7 +39,7 @@ namespace ProjektBIAI
         int critRate;
 
         /// <summary>
-        /// dodatkowe obrażenia zadawane przez trafienie krytyczne; bazowo +50% +5% za punkt
+        /// mnożnik obrażeń zadawanych przez trafienie krytyczne; bazowo +50% +5% za punkt
         /// </summary>
         double critDmg;
 
@@ -103,17 +103,17 @@ namespace ProjektBIAI
                 sum += value;
             }
 
-            this.maxHp = (int)(100 + 100 * (points*stats[0]/sum));
-            this.hpRegen = (int)(5 * (points*stats[1]/sum));
-            this.baseDmg = (int)(10 + 20 * (points*stats[2]/sum));
+            this.maxHp = (int)(100 + 100 * (points*stats[0] / sum));
+            this.hpRegen = (int)(5 * (points*stats[1] / sum));
+            this.baseDmg = (int)(10 + 20 * (points*stats[2] / sum));
+            this.critRate = (int)(2 * (points * stats[3] / sum));
+            this.critDmg = (1.5 + 0.05 * (points * stats[4] / sum));
+            this.hitRate = (int)(50 + 5 * (points * stats[5] / sum));
+            this.dodgeRate = (int)(5 * (points * stats[6] / sum));
+            this.blockRate = (int)(2 * (points * stats[7] / sum));
+            this.blockPower = (0.5 - 0.05 * (points * stats[8] / sum));
 
-            // dalszej części nie ogarnaim jaką miałeś koncepcję (część jest double część jest int a wszystkie są procentami), więc zostawiam Tobie
-            //this.critRate = 
-            //this.critDmg = 
-            //this.hitRate = 
-            //this.dodgeRate = 
-            //this.blockRate = 
-            //this.blockPower = 
+            this.currentHp = this.maxHp;
         }
 
         public double[] getComputedValues()
@@ -129,6 +129,14 @@ namespace ProjektBIAI
             ret[7] = blockRate;
             ret[8] = blockPower;
             return ret;
+        }
+
+        public string regen()
+        {
+            currentHp += hpRegen;
+            if (currentHp > maxHp)
+                currentHp = maxHp;
+            return " HP restored to " + currentHp;
         }
     }
 }

@@ -30,6 +30,7 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.textBoxInformations = new System.Windows.Forms.RichTextBox();
             this.textBoxResults = new System.Windows.Forms.RichTextBox();
             this.groupBoxCharacter2 = new System.Windows.Forms.GroupBox();
             this.butAcceptChar2 = new System.Windows.Forms.Button();
@@ -94,7 +95,6 @@
             this.labHpRegen1 = new System.Windows.Forms.Label();
             this.labMaxHp1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.textBoxInformations = new System.Windows.Forms.RichTextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBoxCharacter2.SuspendLayout();
@@ -129,7 +129,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(784, 562);
+            this.tabControl1.Size = new System.Drawing.Size(784, 561);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -141,10 +141,18 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(776, 536);
+            this.tabPage1.Size = new System.Drawing.Size(776, 535);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // textBoxInformations
+            // 
+            this.textBoxInformations.Location = new System.Drawing.Point(9, 330);
+            this.textBoxInformations.Name = "textBoxInformations";
+            this.textBoxInformations.Size = new System.Drawing.Size(759, 198);
+            this.textBoxInformations.TabIndex = 3;
+            this.textBoxInformations.Text = "";
             // 
             // textBoxResults
             // 
@@ -964,19 +972,11 @@
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // textBoxInformations
-            // 
-            this.textBoxInformations.Location = new System.Drawing.Point(9, 330);
-            this.textBoxInformations.Name = "textBoxInformations";
-            this.textBoxInformations.Size = new System.Drawing.Size(759, 198);
-            this.textBoxInformations.TabIndex = 3;
-            this.textBoxInformations.Text = "";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 562);
+            this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             this.Text = "Form1";
