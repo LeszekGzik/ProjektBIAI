@@ -162,7 +162,7 @@ namespace ProjektBIAI
                     dmg = (int)(this.baseDmg * enemy.blockPower);
                     enemy.currentHp -= dmg;
                     if (enemy.blockPower < 0)
-                        result += ("and absorbed " + dmg.ToString() + " damage.\n");
+                        result += ("and absorbed " + (-dmg).ToString() + " damage.\n");
                     else
                         result += ("and took only " + dmg.ToString() + " damage.\n");
                 }
