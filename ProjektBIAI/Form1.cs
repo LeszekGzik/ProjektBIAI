@@ -41,7 +41,8 @@ namespace ProjektBIAI
             labDodgeRate1Computed.Text = result[6].ToString();
             labBlockRate1Computed.Text = result[7].ToString();
             labBlockPower1Computed.Text = result[8].ToString();
-            textBoxInformations.Text += "Changed character 1" + Environment.NewLine;
+            textBoxInformations.AppendText("Changed character 1" + Environment.NewLine);
+            textBoxInformations.ScrollToCaret();
         }
 
         private void refreshCharacter2()
@@ -67,7 +68,8 @@ namespace ProjektBIAI
             labDodgeRate2Computed.Text = result[6].ToString();
             labBlockRate2Computed.Text = result[7].ToString();
             labBlockPower2Computed.Text = result[8].ToString();
-            textBoxInformations.Text += "Changed character 2" + Environment.NewLine;
+            textBoxInformations.AppendText("Changed character 2" + Environment.NewLine);
+            textBoxInformations.ScrollToCaret();
         }
 
 
@@ -175,6 +177,64 @@ namespace ProjektBIAI
         private void nudPts2_ValueChanged(object sender, EventArgs e)
         {
             refreshCharacter2();
+        }
+
+        private void butRandomStats1_Click(object sender, EventArgs e)
+        {
+            Random rand = new Random();
+            byte[] st = new byte[9];
+            rand.NextBytes(st);
+            nudMaxHp1.Value = st[0];
+            nudHpRegen1.Value = st[1];
+            nudBaseDmg1.Value = st[2];
+            nudCritRate1.Value = st[3];
+            nudCritDmg1.Value = st[4];
+            nudHitRate1.Value = st[5];
+            nudDodgeRate1.Value = st[6];
+            nudBlockRate1.Value = st[7];
+            nudBlockPower1.Value = st[8];
+            char1 = new Character(st, (byte)nudPts1.Value);
+            double[] result = char1.getComputedValues();
+            labMaxHp1Computed.Text = result[0].ToString();
+            labHpRegen1Computed.Text = result[1].ToString();
+            labBaseDmg1Computed.Text = result[2].ToString();
+            labCritRate1Computed.Text = result[3].ToString();
+            labCritDmg1Computed.Text = result[4].ToString();
+            labHitRate1Computed.Text = result[5].ToString();
+            labDodgeRate1Computed.Text = result[6].ToString();
+            labBlockRate1Computed.Text = result[7].ToString();
+            labBlockPower1Computed.Text = result[8].ToString();
+            textBoxInformations.AppendText("Randomized character 1" + Environment.NewLine);
+            textBoxInformations.ScrollToCaret();
+        }
+
+        private void butRandomStats2_Click(object sender, EventArgs e)
+        {
+            Random rand = new Random();
+            byte[] st = new byte[9];
+            rand.NextBytes(st);
+            nudMaxHp2.Value = st[0];
+            nudHpRegen2.Value = st[1];
+            nudBaseDmg2.Value = st[2];
+            nudCritRate2.Value = st[3];
+            nudCritDmg2.Value = st[4];
+            nudHitRate2.Value = st[5];
+            nudDodgeRate2.Value = st[6];
+            nudBlockRate2.Value = st[7];
+            nudBlockPower2.Value = st[8];
+            char2 = new Character(st, (byte)nudPts2.Value);
+            double[] result = char2.getComputedValues();
+            labMaxHp2Computed.Text = result[0].ToString();
+            labHpRegen2Computed.Text = result[1].ToString();
+            labBaseDmg2Computed.Text = result[2].ToString();
+            labCritRate2Computed.Text = result[3].ToString();
+            labCritDmg2Computed.Text = result[4].ToString();
+            labHitRate2Computed.Text = result[5].ToString();
+            labDodgeRate2Computed.Text = result[6].ToString();
+            labBlockRate2Computed.Text = result[7].ToString();
+            labBlockPower2Computed.Text = result[8].ToString();
+            textBoxInformations.AppendText("Randomized character 2" + Environment.NewLine);
+            textBoxInformations.ScrollToCaret();
         }
 
         private void Form1_Load(object sender, EventArgs e)

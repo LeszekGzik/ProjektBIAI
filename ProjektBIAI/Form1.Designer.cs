@@ -34,6 +34,7 @@
             this.textBoxInformations = new System.Windows.Forms.RichTextBox();
             this.textBoxResults = new System.Windows.Forms.RichTextBox();
             this.groupBoxCharacter2 = new System.Windows.Forms.GroupBox();
+            this.butRandomStats2 = new System.Windows.Forms.Button();
             this.nudPts2 = new System.Windows.Forms.NumericUpDown();
             this.labPts2 = new System.Windows.Forms.Label();
             this.labBlockPower2Computed = new System.Windows.Forms.Label();
@@ -64,6 +65,7 @@
             this.labHpRegen2 = new System.Windows.Forms.Label();
             this.labMaxHp2 = new System.Windows.Forms.Label();
             this.groupBoxCharacter1 = new System.Windows.Forms.GroupBox();
+            this.butRandomStats1 = new System.Windows.Forms.Button();
             this.nudPts1 = new System.Windows.Forms.NumericUpDown();
             this.labPts1 = new System.Windows.Forms.Label();
             this.labBlockPower1Computed = new System.Windows.Forms.Label();
@@ -174,6 +176,7 @@
             // 
             // groupBoxCharacter2
             // 
+            this.groupBoxCharacter2.Controls.Add(this.butRandomStats2);
             this.groupBoxCharacter2.Controls.Add(this.nudPts2);
             this.groupBoxCharacter2.Controls.Add(this.labPts2);
             this.groupBoxCharacter2.Controls.Add(this.labBlockPower2Computed);
@@ -209,6 +212,16 @@
             this.groupBoxCharacter2.TabIndex = 1;
             this.groupBoxCharacter2.TabStop = false;
             this.groupBoxCharacter2.Text = "Character 2";
+            // 
+            // butRandomStats2
+            // 
+            this.butRandomStats2.Location = new System.Drawing.Point(10, 275);
+            this.butRandomStats2.Name = "butRandomStats2";
+            this.butRandomStats2.Size = new System.Drawing.Size(141, 23);
+            this.butRandomStats2.TabIndex = 30;
+            this.butRandomStats2.Text = "Random Stats";
+            this.butRandomStats2.UseVisualStyleBackColor = true;
+            this.butRandomStats2.Click += new System.EventHandler(this.butRandomStats2_Click);
             // 
             // nudPts2
             // 
@@ -573,6 +586,7 @@
             // 
             // groupBoxCharacter1
             // 
+            this.groupBoxCharacter1.Controls.Add(this.butRandomStats1);
             this.groupBoxCharacter1.Controls.Add(this.nudPts1);
             this.groupBoxCharacter1.Controls.Add(this.labPts1);
             this.groupBoxCharacter1.Controls.Add(this.labBlockPower1Computed);
@@ -608,6 +622,16 @@
             this.groupBoxCharacter1.TabIndex = 0;
             this.groupBoxCharacter1.TabStop = false;
             this.groupBoxCharacter1.Text = "Character 1";
+            // 
+            // butRandomStats1
+            // 
+            this.butRandomStats1.Location = new System.Drawing.Point(10, 275);
+            this.butRandomStats1.Name = "butRandomStats1";
+            this.butRandomStats1.Size = new System.Drawing.Size(141, 23);
+            this.butRandomStats1.TabIndex = 29;
+            this.butRandomStats1.Text = "Random Stats";
+            this.butRandomStats1.UseVisualStyleBackColor = true;
+            this.butRandomStats1.Click += new System.EventHandler(this.butRandomStats1_Click);
             // 
             // nudPts1
             // 
@@ -1087,6 +1111,8 @@
         private System.Windows.Forms.RichTextBox textBoxResults;
         private System.Windows.Forms.RichTextBox textBoxInformations;
         private System.Windows.Forms.Button butStartFight;
+        private System.Windows.Forms.Button butRandomStats2;
+        private System.Windows.Forms.Button butRandomStats1;
     }
 }
 
