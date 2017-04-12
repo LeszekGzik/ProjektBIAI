@@ -12,9 +12,15 @@ namespace ProjektBIAI
 {
     public partial class UserControlEnvironment : UserControl
     {
+        World world;
         public UserControlEnvironment()
         {
             InitializeComponent();
+        }
+
+        private void buttonCreatePopulation_Click(object sender, EventArgs e)
+        {
+            world = new World((int)nudSizeOfPopulation.Value);
         }
     }
 }

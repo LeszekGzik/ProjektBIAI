@@ -159,6 +159,20 @@ namespace ProjektBIAI
             this.blockPower = (0.5 - 0.05 * (points * stats[8] / sum));
         }
 
+        /// <summary>
+        /// Zwraca tablicę zawierającą obliczone wartości statystyk
+        /// </summary>
+        /// <returns>
+        ///    ret[0] = maxHp;
+        ///    ret[1] = hpRegen;
+        ///    ret[2] = baseDmg;
+        ///    ret[3] = critRate;
+        ///    ret[4] = critDmg;
+        ///    ret[5] = hitRate;
+        ///    ret[6] = dodgeRate;
+        ///    ret[7] = blockRate;
+        ///    ret[8] = blockPower;
+        /// </returns>
         public double[] getComputedValues()
         {
             double[] ret = new double[9];

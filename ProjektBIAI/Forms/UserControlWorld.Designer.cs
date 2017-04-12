@@ -32,16 +32,18 @@
             this.nudSizeOfPopulation = new System.Windows.Forms.NumericUpDown();
             this.labelSizeOfPopulation = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabNewPopulation = new System.Windows.Forms.TabPage();
+            this.tabPopulation = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.buttonCreatePopulation = new System.Windows.Forms.Button();
             this.groupBoxSettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSizeOfPopulation)).BeginInit();
             this.tabControl1.SuspendLayout();
-            this.tabNewPopulation.SuspendLayout();
+            this.tabPopulation.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBoxSettings
             // 
+            this.groupBoxSettings.Controls.Add(this.buttonCreatePopulation);
             this.groupBoxSettings.Controls.Add(this.nudSizeOfPopulation);
             this.groupBoxSettings.Controls.Add(this.labelSizeOfPopulation);
             this.groupBoxSettings.Location = new System.Drawing.Point(6, 6);
@@ -84,7 +86,7 @@
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabNewPopulation);
+            this.tabControl1.Controls.Add(this.tabPopulation);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
@@ -93,16 +95,16 @@
             this.tabControl1.Size = new System.Drawing.Size(770, 530);
             this.tabControl1.TabIndex = 2;
             // 
-            // tabNewPopulation
+            // tabPopulation
             // 
-            this.tabNewPopulation.Controls.Add(this.groupBoxSettings);
-            this.tabNewPopulation.Location = new System.Drawing.Point(4, 22);
-            this.tabNewPopulation.Name = "tabNewPopulation";
-            this.tabNewPopulation.Padding = new System.Windows.Forms.Padding(3);
-            this.tabNewPopulation.Size = new System.Drawing.Size(762, 504);
-            this.tabNewPopulation.TabIndex = 0;
-            this.tabNewPopulation.Text = "New population";
-            this.tabNewPopulation.UseVisualStyleBackColor = true;
+            this.tabPopulation.Controls.Add(this.groupBoxSettings);
+            this.tabPopulation.Location = new System.Drawing.Point(4, 22);
+            this.tabPopulation.Name = "tabPopulation";
+            this.tabPopulation.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPopulation.Size = new System.Drawing.Size(762, 504);
+            this.tabPopulation.TabIndex = 0;
+            this.tabPopulation.Text = "Population";
+            this.tabPopulation.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 
@@ -113,6 +115,16 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // buttonCreatePopulation
+            // 
+            this.buttonCreatePopulation.Location = new System.Drawing.Point(10, 94);
+            this.buttonCreatePopulation.Name = "buttonCreatePopulation";
+            this.buttonCreatePopulation.Size = new System.Drawing.Size(245, 23);
+            this.buttonCreatePopulation.TabIndex = 2;
+            this.buttonCreatePopulation.Text = "Create population";
+            this.buttonCreatePopulation.UseVisualStyleBackColor = true;
+            this.buttonCreatePopulation.Click += new System.EventHandler(this.buttonCreatePopulation_Click);
             // 
             // UserControlEnvironment
             // 
@@ -125,7 +137,7 @@
             this.groupBoxSettings.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSizeOfPopulation)).EndInit();
             this.tabControl1.ResumeLayout(false);
-            this.tabNewPopulation.ResumeLayout(false);
+            this.tabPopulation.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -136,7 +148,8 @@
         private System.Windows.Forms.NumericUpDown nudSizeOfPopulation;
         private System.Windows.Forms.Label labelSizeOfPopulation;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabNewPopulation;
+        private System.Windows.Forms.TabPage tabPopulation;
         private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.Button buttonCreatePopulation;
     }
 }

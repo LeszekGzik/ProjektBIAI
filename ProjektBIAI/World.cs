@@ -13,14 +13,14 @@ namespace ProjektBIAI
     {
         List<Character> population;
 
-        void CreatePopulation(int sizeOfPopulation)
+        public World(int sizeOfPopulation)
         {
             Random rnd = new Random();
-            for (int i=0; i<sizeOfPopulation; i++)
+            population = new List<Character>();
+            for (int i = 0; i < sizeOfPopulation; i++)
             {
                 population.Add(new Character(rnd));
             }
-            
         }
     }
 }
