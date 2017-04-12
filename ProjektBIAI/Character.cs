@@ -88,7 +88,7 @@ namespace ProjektBIAI
         public Character()
         {
             stats = new byte[] { 1, 1, 1, 1, 1, 1, 1, 1, 1 };
-            computeValues(stats, 100);
+            ComputeValues(100);
         }      
 
         /// <summary>
@@ -98,7 +98,7 @@ namespace ProjektBIAI
         public Character(byte pts)
         {
             stats = new byte[] { 1, 1, 1, 1, 1, 1, 1, 1, 1 };
-            computeValues(stats, pts);
+            ComputeValues(pts);
         }
 
         /// <summary>
@@ -109,7 +109,7 @@ namespace ProjektBIAI
         {
             stats = new byte[9];
             rnd.NextBytes(stats);
-            computeValues(stats, 100);
+            ComputeValues(100);
         }
 
         /// <summary>
@@ -121,7 +121,7 @@ namespace ProjektBIAI
         {
             stats = new byte[9];
             rnd.NextBytes(stats);
-            computeValues(stats, pts);
+            ComputeValues(pts);
         }
 
         /// <summary>
@@ -133,15 +133,14 @@ namespace ProjektBIAI
         {
             stats = new byte[9];
             Array.Copy(sta, stats, 9);
-            computeValues(stats, pts);
+            ComputeValues(pts);
         }
 
         /// <summary>
         /// Oblicza wartości punktowe parametrów postaci na postawie tablicy ze statystykami i sumy punktów do rozdysponowania
         /// </summary>
-        /// <param name="stats">Tablica 9 wartości 0-255 ze stosunkiem statystyk</param>
         /// <param name="points">Łączna liczba punktów do rozdysponowania</param>
-        void computeValues(byte[] stats, byte points)
+        void ComputeValues(byte points)
         {
             double sum = 0; // suma wszystkich statystyk, double aby wymusić dzielenie rzeczywiste
             foreach (byte value in stats)
