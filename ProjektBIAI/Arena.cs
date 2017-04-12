@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ProjektBIAI
 {
+    /// <summary>
+    /// Arena walki dwóch postaci
+    /// </summary>
     class Arena
     {
         Character char1, char2;

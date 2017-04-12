@@ -6,12 +6,15 @@ using System.Threading.Tasks;
 
 namespace ProjektBIAI
 {
+    /// <summary>
+    /// Pojedyncza postać
+    /// </summary>
     class Character
     {
         /// <summary>
         /// stosunek statystyk z wartościami 0-255
         /// </summary>
-        byte[] stats = new byte [9]; 
+        byte[] stats; 
 
         /// <summary>
         /// aktualna wartość HP, ustawiana na początku walki i zmniejszana w jej trakcie
@@ -64,12 +67,29 @@ namespace ProjektBIAI
         double blockPower;
 
         /// <summary>
-        /// Konstruktor domyślny, tworzy postać z równomiernie rozłożonymi statystykami, łącznie zawierającą 100 pkt
+        /// Stosunek statystyk z wartościami 0-255
+        /// </summary>
+        public byte[] Stats
+        {
+            get
+            {
+                return stats;
+            }
+
+            set
+            {
+                stats = value;
+            }
+        }
+
+        /// <summary>
+        /// Konstruktor domyślny, tworzy postać z równomiernie rozłożonymi statystykami, suma punktów do rozdysponowania == 100
         /// </summary>
         public Character()
         {
-            computeValues(new byte[] { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, 100);
-        }
+            stats = new byte[] { 1, 1, 1, 1, 1, 1, 1, 1, 1 };
+            computeValues(stats, 100);
+        }      
 
         /// <summary>
         /// Tworzy postać z równomiernie rozłożonymi statystykami, suma punktów podana w parametrze
@@ -77,7 +97,31 @@ namespace ProjektBIAI
         /// <param name="pts">Łączna liczba punktów do rozdysponowania</param>
         public Character(byte pts)
         {
-            computeValues(new byte[] { 1, 1, 1, 1, 1, 1, 1, 1, 1 }, pts);
+            stats = new byte[] { 1, 1, 1, 1, 1, 1, 1, 1, 1 };
+            computeValues(stats, pts);
+        }
+
+        /// <summary>
+        /// Tworzy postać z losowo rozłożonymi statystykami, suma punktów do rozdysponowania == 100
+        /// </summary>
+        /// <param name="rnd">Generator liczb pseudolosowych</param>
+        public Character(Random rnd)
+        {
+            stats = new byte[9];
+            rnd.NextBytes(stats);
+            computeValues(stats, 100);
+        }
+
+        /// <summary>
+        /// Tworzy postać z losowo rozłożonymi statystykami, suma punktów podana w parametrze
+        /// </summary>
+        /// <param name="rnd">Generator liczb pseudolosowych</param>
+        /// <param name="pts">Ilość punktów do rozdysponowania</param>
+        public Character(Random rnd, byte pts)
+        {
+            stats = new byte[9];
+            rnd.NextBytes(stats);
+            computeValues(stats, pts);
         }
 
         /// <summary>
@@ -87,7 +131,9 @@ namespace ProjektBIAI
         /// <param name="pts">Łączna liczba punktów do rozdysponowania</param>
         public Character (byte[]sta, byte pts)
         {
-            computeValues(sta, pts);
+            stats = new byte[9];
+            Array.Copy(sta, stats, 9);
+            computeValues(stats, pts);
         }
 
         /// <summary>

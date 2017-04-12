@@ -1,6 +1,6 @@
 ﻿namespace ProjektBIAI
 {
-    partial class Form1
+    partial class FormMain
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabSimulator = new System.Windows.Forms.TabPage();
             this.butStartFight = new System.Windows.Forms.Button();
             this.textBoxInformations = new System.Windows.Forms.RichTextBox();
             this.textBoxResults = new System.Windows.Forms.RichTextBox();
@@ -95,9 +95,10 @@
             this.nudMaxHp1 = new System.Windows.Forms.NumericUpDown();
             this.labHpRegen1 = new System.Windows.Forms.Label();
             this.labMaxHp1 = new System.Windows.Forms.Label();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabWorld = new System.Windows.Forms.TabPage();
+            this.userControlWorld = new ProjektBIAI.UserControlEnvironment();
             this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.tabSimulator.SuspendLayout();
             this.groupBoxCharacter2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudPts2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudBlockPower2)).BeginInit();
@@ -120,12 +121,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudBaseDmg1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudHpRegen1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMaxHp1)).BeginInit();
+            this.tabWorld.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabSimulator);
+            this.tabControl1.Controls.Add(this.tabWorld);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -133,20 +135,20 @@
             this.tabControl1.Size = new System.Drawing.Size(784, 562);
             this.tabControl1.TabIndex = 0;
             // 
-            // tabPage1
+            // tabSimulator
             // 
-            this.tabPage1.Controls.Add(this.butStartFight);
-            this.tabPage1.Controls.Add(this.textBoxInformations);
-            this.tabPage1.Controls.Add(this.textBoxResults);
-            this.tabPage1.Controls.Add(this.groupBoxCharacter2);
-            this.tabPage1.Controls.Add(this.groupBoxCharacter1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(776, 536);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabSimulator.Controls.Add(this.butStartFight);
+            this.tabSimulator.Controls.Add(this.textBoxInformations);
+            this.tabSimulator.Controls.Add(this.textBoxResults);
+            this.tabSimulator.Controls.Add(this.groupBoxCharacter2);
+            this.tabSimulator.Controls.Add(this.groupBoxCharacter1);
+            this.tabSimulator.Location = new System.Drawing.Point(4, 22);
+            this.tabSimulator.Name = "tabSimulator";
+            this.tabSimulator.Padding = new System.Windows.Forms.Padding(3);
+            this.tabSimulator.Size = new System.Drawing.Size(776, 536);
+            this.tabSimulator.TabIndex = 0;
+            this.tabSimulator.Text = "Simulator";
+            this.tabSimulator.UseVisualStyleBackColor = true;
             // 
             // butStartFight
             // 
@@ -994,27 +996,36 @@
             this.labMaxHp1.TabIndex = 0;
             this.labMaxHp1.Text = "Max HP";
             // 
-            // tabPage2
+            // tabWorld
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(776, 536);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabWorld.Controls.Add(this.userControlWorld);
+            this.tabWorld.Location = new System.Drawing.Point(4, 22);
+            this.tabWorld.Name = "tabWorld";
+            this.tabWorld.Padding = new System.Windows.Forms.Padding(3);
+            this.tabWorld.Size = new System.Drawing.Size(776, 536);
+            this.tabWorld.TabIndex = 1;
+            this.tabWorld.Text = "World";
+            this.tabWorld.UseVisualStyleBackColor = true;
             // 
-            // Form1
+            // userControlWorld
+            // 
+            this.userControlWorld.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userControlWorld.Location = new System.Drawing.Point(3, 3);
+            this.userControlWorld.Name = "userControlWorld";
+            this.userControlWorld.Size = new System.Drawing.Size(770, 530);
+            this.userControlWorld.TabIndex = 0;
+            // 
+            // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 562);
             this.Controls.Add(this.tabControl1);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "FormMain";
+            this.Text = "Battle Arena BIAI";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
+            this.tabSimulator.ResumeLayout(false);
             this.groupBoxCharacter2.ResumeLayout(false);
             this.groupBoxCharacter2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudPts2)).EndInit();
@@ -1039,6 +1050,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudBaseDmg1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudHpRegen1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMaxHp1)).EndInit();
+            this.tabWorld.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1046,8 +1058,8 @@
         #endregion
 
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabSimulator;
+        private System.Windows.Forms.TabPage tabWorld;
         private System.Windows.Forms.GroupBox groupBoxCharacter1;
         private System.Windows.Forms.NumericUpDown nudBlockPower1; 
         private System.Windows.Forms.Label labBlockPower1; 
@@ -1113,6 +1125,7 @@
         private System.Windows.Forms.Button butStartFight;
         private System.Windows.Forms.Button butRandomStats2;
         private System.Windows.Forms.Button butRandomStats1;
+        private UserControlEnvironment userControlWorld;
     }
 }
 

@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace ProjektBIAI
 {
-    public partial class Form1 : Form
+    public partial class FormMain : Form
     {
         Character char1, char2;
-        public Form1()
+        public FormMain()
         {
             InitializeComponent();
         }
@@ -77,6 +77,8 @@ namespace ProjektBIAI
         {
             Arena arena = new ProjektBIAI.Arena(char1, char2);
             textBoxResults.Text = arena.playBattleReport();
+            textBoxResults.AppendText(Environment.NewLine);
+            textBoxResults.ScrollToCaret();
         }
 
         private void nudMaxHp1_ValueChanged(object sender, EventArgs e)
@@ -182,8 +184,9 @@ namespace ProjektBIAI
         private void butRandomStats1_Click(object sender, EventArgs e)
         {
             Random rand = new Random();
+            char1 = new Character(rand, (byte)nudPts1.Value);
             byte[] st = new byte[9];
-            rand.NextBytes(st);
+            Array.Copy(char1.Stats, st, 9);
             nudMaxHp1.Value = st[0];
             nudHpRegen1.Value = st[1];
             nudBaseDmg1.Value = st[2];
@@ -193,7 +196,6 @@ namespace ProjektBIAI
             nudDodgeRate1.Value = st[6];
             nudBlockRate1.Value = st[7];
             nudBlockPower1.Value = st[8];
-            char1 = new Character(st, (byte)nudPts1.Value);
             double[] result = char1.getComputedValues();
             labMaxHp1Computed.Text = result[0].ToString();
             labHpRegen1Computed.Text = result[1].ToString();
@@ -211,8 +213,9 @@ namespace ProjektBIAI
         private void butRandomStats2_Click(object sender, EventArgs e)
         {
             Random rand = new Random();
+            char2 = new Character(rand, (byte)nudPts2.Value);
             byte[] st = new byte[9];
-            rand.NextBytes(st);
+            Array.Copy(char2.Stats, st, 9);
             nudMaxHp2.Value = st[0];
             nudHpRegen2.Value = st[1];
             nudBaseDmg2.Value = st[2];
@@ -221,8 +224,7 @@ namespace ProjektBIAI
             nudHitRate2.Value = st[5];
             nudDodgeRate2.Value = st[6];
             nudBlockRate2.Value = st[7];
-            nudBlockPower2.Value = st[8];
-            char2 = new Character(st, (byte)nudPts2.Value);
+            nudBlockPower2.Value = st[8];            
             double[] result = char2.getComputedValues();
             labMaxHp2Computed.Text = result[0].ToString();
             labHpRegen2Computed.Text = result[1].ToString();
