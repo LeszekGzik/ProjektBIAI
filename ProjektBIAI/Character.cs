@@ -12,6 +12,11 @@ namespace ProjektBIAI
     class Character
     {
         /// <summary>
+        /// Wartość współczynnika fitness
+        /// </summary>
+        int fitness;
+
+        /// <summary>
         /// stosunek statystyk z wartościami 0-255
         /// </summary>
         byte[] stats; 
@@ -79,6 +84,19 @@ namespace ProjektBIAI
             set
             {
                 stats = value;
+            }
+        }
+
+        public int Fitness
+        {
+            get
+            {
+                return fitness;
+            }
+
+            set
+            {
+                fitness = value;
             }
         }
 
