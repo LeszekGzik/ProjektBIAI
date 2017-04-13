@@ -29,19 +29,22 @@ namespace ProjektBIAI
         /// <summary>
         /// Tablica statystyk przeciwników dla danego świata, potrzebnych do obliczania fitness
         /// </summary>
-        byte[] statsOfOpponentsForFitness = new byte[9];
+        byte[] statsOfOpponentsForFitness;
 
         public World(int sizeOfPopulation, int battlesForFitness, byte stepForFitness, byte[] statsForFitness)
         {
+
             Random rnd = new Random();
             population = new List<Character>();
+            statsOfOpponentsForFitness = new byte[9];
             for (int i = 0; i < sizeOfPopulation; i++)
             {
                 population.Add(new Character(rnd));
             }
             numberOfBattlesForCalculateFitness = battlesForFitness;
             stepOfIncrementOpponentsForFitness = stepForFitness;
-            statsForFitness.CopyTo(statsOfOpponentsForFitness, 0);
+            Array.Copy(statsForFitness, statsOfOpponentsForFitness, 9);
+            //statsForFitness.CopyTo(statsOfOpponentsForFitness, 0);
         }
 
         /// <summary>

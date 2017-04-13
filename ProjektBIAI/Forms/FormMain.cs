@@ -239,6 +239,11 @@ namespace ProjektBIAI
             textBoxInformations.ScrollToCaret();
         }
 
+        private void userControlWorld_Load(object sender, EventArgs e)
+        {
+
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
             refreshCharacter1();

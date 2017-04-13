@@ -96,7 +96,7 @@
             this.labHpRegen1 = new System.Windows.Forms.Label();
             this.labMaxHp1 = new System.Windows.Forms.Label();
             this.tabWorld = new System.Windows.Forms.TabPage();
-            this.userControlWorld = new ProjektBIAI.UserControlEnvironment();
+            this.userControlWorld = new ProjektBIAI.UserControlWorld();
             this.tabControl1.SuspendLayout();
             this.tabSimulator.SuspendLayout();
             this.groupBoxCharacter2.SuspendLayout();
@@ -132,7 +132,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(784, 562);
+            this.tabControl1.Size = new System.Drawing.Size(780, 551);
             this.tabControl1.TabIndex = 0;
             // 
             // tabSimulator
@@ -145,7 +145,7 @@
             this.tabSimulator.Location = new System.Drawing.Point(4, 22);
             this.tabSimulator.Name = "tabSimulator";
             this.tabSimulator.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSimulator.Size = new System.Drawing.Size(776, 536);
+            this.tabSimulator.Size = new System.Drawing.Size(772, 525);
             this.tabSimulator.TabIndex = 0;
             this.tabSimulator.Text = "Simulator";
             this.tabSimulator.UseVisualStyleBackColor = true;
@@ -1002,7 +1002,7 @@
             this.tabWorld.Location = new System.Drawing.Point(4, 22);
             this.tabWorld.Name = "tabWorld";
             this.tabWorld.Padding = new System.Windows.Forms.Padding(3);
-            this.tabWorld.Size = new System.Drawing.Size(776, 536);
+            this.tabWorld.Size = new System.Drawing.Size(1023, 525);
             this.tabWorld.TabIndex = 1;
             this.tabWorld.Text = "World";
             this.tabWorld.UseVisualStyleBackColor = true;
@@ -1012,14 +1012,15 @@
             this.userControlWorld.Dock = System.Windows.Forms.DockStyle.Fill;
             this.userControlWorld.Location = new System.Drawing.Point(3, 3);
             this.userControlWorld.Name = "userControlWorld";
-            this.userControlWorld.Size = new System.Drawing.Size(770, 530);
+            this.userControlWorld.Size = new System.Drawing.Size(1017, 519);
             this.userControlWorld.TabIndex = 0;
+            this.userControlWorld.Load += new System.EventHandler(this.userControlWorld_Load);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 562);
+            this.ClientSize = new System.Drawing.Size(780, 551);
             this.Controls.Add(this.tabControl1);
             this.Name = "FormMain";
             this.Text = "Battle Arena BIAI";
@@ -1125,7 +1126,7 @@
         private System.Windows.Forms.Button butStartFight;
         private System.Windows.Forms.Button butRandomStats2;
         private System.Windows.Forms.Button butRandomStats1;
-        private UserControlEnvironment userControlWorld;
+        private UserControlWorld userControlWorld;
     }
 }
 

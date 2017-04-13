@@ -119,6 +119,7 @@
             this.butRandomStats.TabIndex = 29;
             this.butRandomStats.Text = "Random Stats";
             this.butRandomStats.UseVisualStyleBackColor = true;
+            this.butRandomStats.Click += new System.EventHandler(this.butRandomStats_Click);
             // 
             // nudPts
             // 
@@ -137,6 +138,7 @@
             0,
             0,
             0});
+            this.nudPts.ValueChanged += new System.EventHandler(this.nudPts_ValueChanged);
             // 
             // labPts
             // 
@@ -245,6 +247,7 @@
             0,
             0,
             0});
+            this.nudBlockPower.ValueChanged += new System.EventHandler(this.nudBlockPower_ValueChanged);
             // 
             // labBlockPower
             // 
@@ -272,6 +275,7 @@
             0,
             0,
             0});
+            this.nudBlockRate.ValueChanged += new System.EventHandler(this.nudBlockRate_ValueChanged);
             // 
             // nudDodgeRate
             // 
@@ -290,6 +294,7 @@
             0,
             0,
             0});
+            this.nudDodgeRate.ValueChanged += new System.EventHandler(this.nudDodgeRate_ValueChanged);
             // 
             // labBlockRate
             // 
@@ -326,6 +331,7 @@
             0,
             0,
             0});
+            this.nudHitRate.ValueChanged += new System.EventHandler(this.nudHitRate_ValueChanged);
             // 
             // nudCritDmg
             // 
@@ -344,6 +350,7 @@
             0,
             0,
             0});
+            this.nudCritDmg.ValueChanged += new System.EventHandler(this.nudCritDmg_ValueChanged);
             // 
             // labHitRate
             // 
@@ -380,6 +387,7 @@
             0,
             0,
             0});
+            this.nudCritRate.ValueChanged += new System.EventHandler(this.nudCritRate_ValueChanged);
             // 
             // nudBaseDmg
             // 
@@ -398,6 +406,7 @@
             0,
             0,
             0});
+            this.nudBaseDmg.ValueChanged += new System.EventHandler(this.nudBaseDmg_ValueChanged);
             // 
             // labCritRate
             // 
@@ -434,6 +443,7 @@
             0,
             0,
             0});
+            this.nudHpRegen.ValueChanged += new System.EventHandler(this.nudHpRegen_ValueChanged);
             // 
             // nudMaxHp
             // 
@@ -452,6 +462,7 @@
             0,
             0,
             0});
+            this.nudMaxHp.ValueChanged += new System.EventHandler(this.nudMaxHp_ValueChanged);
             // 
             // labHpRegen1
             // 
