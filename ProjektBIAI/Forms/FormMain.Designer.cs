@@ -30,8 +30,8 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabSimulator = new System.Windows.Forms.TabPage();
-            this.userControlCharacter2 = new ProjektBIAI.Forms.UserControlCharacter();
-            this.userControlCharacter1 = new ProjektBIAI.Forms.UserControlCharacter();
+            this.userControlCharacter2 = new ProjektBIAI.Forms.UserControlCharacter("Character 2");
+            this.userControlCharacter1 = new ProjektBIAI.Forms.UserControlCharacter("Character 1");
             this.butStartFight = new System.Windows.Forms.Button();
             this.textBoxResults = new System.Windows.Forms.RichTextBox();
             this.tabWorld = new System.Windows.Forms.TabPage();
