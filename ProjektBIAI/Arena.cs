@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 
 namespace ProjektBIAI
 {
+
     /// <summary>
     /// Arena walki dwóch postaci
     /// </summary>
     class Arena
     {
+        public const int ROUNDSLIMIT = 1000;
+
         Character char1, char2;
         public Random rnd;
 
@@ -21,6 +24,10 @@ namespace ProjektBIAI
             rnd = new Random();
         }
 
+        /// <summary>
+        /// metoda rozgrywająca walkę między postaciami w arenie
+        /// </summary>
+        /// <returns>raport z walki (string), runda po rundzie</returns>
         public string playBattleReport()
         {
             string result = "";
@@ -48,6 +55,11 @@ namespace ProjektBIAI
                     end = true;
                 }
                 round++;
+                if ((round == Arena.ROUNDSLIMIT)&&(end == false))
+                {
+                    result += "\n-=DRAW=-";
+                    end = true;
+                }
             }
             return result;
         }
@@ -58,7 +70,35 @@ namespace ProjektBIAI
         /// <returns>true jeśli wygrał char1, false jeśli char2</returns>
         public bool playBattle()
         {
-            return true;
+            bool end = false;
+            bool char1Wins = false;
+            int round = 1;
+
+            char1.regenFull();
+            char2.regenFull();
+
+            while (!end)
+            {
+                char1.regen();
+                char2.regen();
+                char1.attack(char2, rnd);
+                char2.attack(char1, rnd);
+                if (char1.isDead())
+                {
+                    end = true;
+                }
+                if (char2.isDead())
+                {
+                    char1Wins = true;
+                    end = true;
+                }
+                round++;
+                if ((round == Arena.ROUNDSLIMIT) && (end == false))
+                {
+                    end = true;
+                }
+            }
+            return char1Wins;
         }
     }
 }
