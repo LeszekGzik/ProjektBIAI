@@ -21,6 +21,12 @@ namespace ProjektBIAI.Forms
             InitializeComponent();
         }
 
+        public UserControlCharacter(string charName)
+        {
+            InitializeComponent();
+            groupBoxCharacter.Text = charName;
+        }
+
         private void refreshCharacter()
         {
             pts = (byte)nudPts.Value;
