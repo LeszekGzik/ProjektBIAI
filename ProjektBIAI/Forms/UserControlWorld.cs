@@ -13,6 +13,7 @@ namespace ProjektBIAI
     public partial class UserControlEnvironment : UserControl
     {
         World world;
+        byte[] tempTableWithStats = new byte[9];
         public UserControlEnvironment()
         {
             InitializeComponent();
@@ -20,7 +21,7 @@ namespace ProjektBIAI
 
         private void buttonCreatePopulation_Click(object sender, EventArgs e)
         {
-            world = new World((int)nudSizeOfPopulation.Value);
+            world = new World((int)nudSizeOfPopulation.Value, (int)nudNumberOfBattlesForCalculateFitness.Value, (byte)nudStepForFitness.Value, tempTableWithStats);
         }
     }
 }
