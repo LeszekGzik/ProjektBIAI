@@ -12,26 +12,30 @@ namespace ProjektBIAI.Forms
 {
     public partial class UserControlCharacter : UserControl
     {
-        Character char1;
+        Character character;
+        byte[] stats;
+        byte pts;
+
         public UserControlCharacter()
         {
             InitializeComponent();
         }
 
-        private void refreshCharacter1()
+        private void refreshCharacter()
         {
-            byte[] st = new byte[9];
-            st[0] = (byte)nudMaxHp.Value;
-            st[1] = (byte)nudHpRegen.Value;
-            st[2] = (byte)nudBaseDmg.Value;
-            st[3] = (byte)nudCritRate.Value;
-            st[4] = (byte)nudCritDmg.Value;
-            st[5] = (byte)nudHitRate.Value;
-            st[6] = (byte)nudDodgeRate.Value;
-            st[7] = (byte)nudBlockRate.Value;
-            st[8] = (byte)nudBlockPower.Value;
-            char1 = new Character(st, (byte)nudPts.Value);
-            double[] result = char1.getComputedValues();
+            pts = (byte)nudPts.Value;
+            stats = new byte[9];
+            stats[0] = (byte)nudMaxHp.Value;
+            stats[1] = (byte)nudHpRegen.Value;
+            stats[2] = (byte)nudBaseDmg.Value;
+            stats[3] = (byte)nudCritRate.Value;
+            stats[4] = (byte)nudCritDmg.Value;
+            stats[5] = (byte)nudHitRate.Value;
+            stats[6] = (byte)nudDodgeRate.Value;
+            stats[7] = (byte)nudBlockRate.Value;
+            stats[8] = (byte)nudBlockPower.Value;
+            character = new Character(stats, (byte)nudPts.Value);
+            double[] result = character.getComputedValues();
             labMaxHpComputed.Text = result[0].ToString();
             labHpRegenComputed.Text = result[1].ToString();
             labBaseDmgComputed.Text = result[2].ToString();
@@ -43,54 +47,54 @@ namespace ProjektBIAI.Forms
             labBlockPowerComputed.Text = result[8].ToString();
         }
 
-        private void nudMaxHp1_ValueChanged(object sender, EventArgs e)
+        private void nudMaxHp_ValueChanged(object sender, EventArgs e)
         {
-            refreshCharacter1();
+            refreshCharacter();
         }
 
-        private void nudHpRegen1_ValueChanged(object sender, EventArgs e)
+        private void nudHpRegen_ValueChanged(object sender, EventArgs e)
         {
-            refreshCharacter1();
+            refreshCharacter();
         }
 
-        private void nudBaseDmg1_ValueChanged(object sender, EventArgs e)
+        private void nudBaseDmg_ValueChanged(object sender, EventArgs e)
         {
-            refreshCharacter1();
+            refreshCharacter();
         }
 
-        private void nudCritRate1_ValueChanged(object sender, EventArgs e)
+        private void nudCritRate_ValueChanged(object sender, EventArgs e)
         {
-            refreshCharacter1();
+            refreshCharacter();
         }
 
-        private void nudCritDmg1_ValueChanged(object sender, EventArgs e)
+        private void nudCritDmg_ValueChanged(object sender, EventArgs e)
         {
-            refreshCharacter1();
+            refreshCharacter();
         }
 
-        private void nudHitRate1_ValueChanged(object sender, EventArgs e)
+        private void nudHitRate_ValueChanged(object sender, EventArgs e)
         {
-            refreshCharacter1();
+            refreshCharacter();
         }
 
-        private void nudDodgeRate1_ValueChanged(object sender, EventArgs e)
+        private void nudDodgeRate_ValueChanged(object sender, EventArgs e)
         {
-            refreshCharacter1();
+            refreshCharacter();
         }
 
-        private void nudBlockRate1_ValueChanged(object sender, EventArgs e)
+        private void nudBlockRate_ValueChanged(object sender, EventArgs e)
         {
-            refreshCharacter1();
+            refreshCharacter();
         }
 
-        private void nudBlockPower1_ValueChanged(object sender, EventArgs e)
+        private void nudBlockPower_ValueChanged(object sender, EventArgs e)
         {
-            refreshCharacter1();
+            refreshCharacter();
         }
 
-        private void nudPts1_ValueChanged(object sender, EventArgs e)
+        private void nudPts_ValueChanged(object sender, EventArgs e)
         {
-            refreshCharacter1();
+            refreshCharacter();
         }
     }
 }
