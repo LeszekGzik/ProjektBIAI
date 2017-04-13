@@ -13,12 +13,19 @@ namespace ProjektBIAI.Forms
     public partial class UserControlCharacter : UserControl
     {
         Character character;
-        public byte[] stats;
-        byte pts;
+        byte points;
 
-        public Character getChar()
+        public Character Character
         {
-            return character;
+            get
+            {
+                return character;
+            }
+
+            set
+            {
+                character = value;
+            }
         }
 
         public UserControlCharacter()
@@ -27,7 +34,7 @@ namespace ProjektBIAI.Forms
             refreshCharacter();
         }
 
-        public UserControlCharacter(string charName)
+        public UserControlCharacter(String charName)
         {
             InitializeComponent();
             groupBoxCharacter.Text = charName;
@@ -36,8 +43,8 @@ namespace ProjektBIAI.Forms
         
         private void refreshCharacter()
         {
-            pts = (byte)nudPts.Value;
-            stats = new byte[9];
+            points = (byte)nudPts.Value;
+            byte [] stats = new byte[9];
             stats[0] = (byte)nudMaxHp.Value;
             stats[1] = (byte)nudHpRegen.Value;
             stats[2] = (byte)nudBaseDmg.Value;
@@ -115,7 +122,7 @@ namespace ProjektBIAI.Forms
             Random rand = new Random();
             character = new Character(rand, (byte)nudPts.Value);
             byte[] st = new byte[9];
-            Array.Copy(character.Stats, st, 9);
+            character.Stats.CopyTo(st, 0);
             nudMaxHp.Value = st[0];
             nudHpRegen.Value = st[1];
             nudBaseDmg.Value = st[2];

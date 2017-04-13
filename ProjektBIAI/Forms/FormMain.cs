@@ -20,8 +20,8 @@ namespace ProjektBIAI
 
         private void butStartFight_Click(object sender, EventArgs e)
         {
-            char1 = userControlCharacter1.getChar();
-            char2 = userControlCharacter2.getChar();
+            char1 = userControlCharacter1.Character;
+            char2 = userControlCharacter2.Character;
             Arena arena = new ProjektBIAI.Arena(char1, char2);
             textBoxResults.Text = arena.playBattleReport();
             textBoxResults.AppendText(Environment.NewLine);

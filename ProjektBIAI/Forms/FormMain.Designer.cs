@@ -30,8 +30,8 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabSimulator = new System.Windows.Forms.TabPage();
-            this.userControlCharacter2 = new ProjektBIAI.Forms.UserControlCharacter("Character 2");
-            this.userControlCharacter1 = new ProjektBIAI.Forms.UserControlCharacter("Character 1");
+            this.userControlCharacter2 = new ProjektBIAI.Forms.UserControlCharacter();
+            this.userControlCharacter1 = new ProjektBIAI.Forms.UserControlCharacter();
             this.butStartFight = new System.Windows.Forms.Button();
             this.textBoxResults = new System.Windows.Forms.RichTextBox();
             this.tabWorld = new System.Windows.Forms.TabPage();
@@ -49,7 +49,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(780, 413);
+            this.tabControl1.Size = new System.Drawing.Size(784, 562);
             this.tabControl1.TabIndex = 0;
             // 
             // tabSimulator
@@ -61,7 +61,7 @@
             this.tabSimulator.Location = new System.Drawing.Point(4, 22);
             this.tabSimulator.Name = "tabSimulator";
             this.tabSimulator.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSimulator.Size = new System.Drawing.Size(772, 387);
+            this.tabSimulator.Size = new System.Drawing.Size(776, 536);
             this.tabSimulator.TabIndex = 0;
             this.tabSimulator.Text = "Simulator";
             this.tabSimulator.UseVisualStyleBackColor = true;
@@ -122,7 +122,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(780, 413);
+            this.ClientSize = new System.Drawing.Size(784, 562);
             this.Controls.Add(this.tabControl1);
             this.Name = "FormMain";
             this.Text = "Battle Arena BIAI";

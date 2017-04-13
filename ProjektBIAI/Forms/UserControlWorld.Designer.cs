@@ -39,7 +39,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPopulation = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.userControlCharacter1 = new ProjektBIAI.Forms.UserControlCharacter();
+            this.userControlCharacter1 = new ProjektBIAI.Forms.UserControlCharacter("Opponent template");
             this.groupBoxSettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudStepForFitness)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNumberOfBattlesForCalculateFitness)).BeginInit();
