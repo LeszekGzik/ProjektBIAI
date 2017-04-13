@@ -192,17 +192,17 @@
             // 
             // userControlCharacter1
             // 
-            this.userControlCharacter1.Location = new System.Drawing.Point(3, 142);
+            this.userControlCharacter1.Location = new System.Drawing.Point(284, 6);
             this.userControlCharacter1.Name = "userControlCharacter1";
             this.userControlCharacter1.Size = new System.Drawing.Size(164, 310);
             this.userControlCharacter1.TabIndex = 2;
             // 
-            // UserControlEnvironment
+            // UserControlWorld
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tabControl1);
-            this.Name = "UserControlEnvironment";
+            this.Name = "UserControlWorld";
             this.Size = new System.Drawing.Size(770, 530);
             this.groupBoxSettings.ResumeLayout(false);
             this.groupBoxSettings.PerformLayout();

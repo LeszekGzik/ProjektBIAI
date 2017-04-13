@@ -16,17 +16,24 @@ namespace ProjektBIAI.Forms
         public byte[] stats;
         byte pts;
 
+        public Character getChar()
+        {
+            return character;
+        }
+
         public UserControlCharacter()
         {
             InitializeComponent();
+            refreshCharacter();
         }
 
         public UserControlCharacter(string charName)
         {
             InitializeComponent();
             groupBoxCharacter.Text = charName;
+            refreshCharacter();
         }
-
+        
         private void refreshCharacter()
         {
             pts = (byte)nudPts.Value;

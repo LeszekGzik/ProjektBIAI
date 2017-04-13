@@ -9,7 +9,7 @@ namespace ProjektBIAI
     /// <summary>
     /// Pojedyncza postać
     /// </summary>
-    class Character
+    public class Character
     {
         /// <summary>
         /// Wartość współczynnika fitness
