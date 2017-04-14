@@ -28,97 +28,59 @@
         /// </summary>
         private void InitializeComponent()
         {
+            ProjektBIAI.Character character1 = new ProjektBIAI.Character();
             this.groupBoxSettings = new System.Windows.Forms.GroupBox();
+            this.labelIsPopulationCreated = new System.Windows.Forms.Label();
+            this.buttonCreatePopulation = new System.Windows.Forms.Button();
+            this.nudSizeOfPopulation = new System.Windows.Forms.NumericUpDown();
+            this.labelSizeOfPopulation = new System.Windows.Forms.Label();
             this.labStepForFitness = new System.Windows.Forms.Label();
             this.nudStepForFitness = new System.Windows.Forms.NumericUpDown();
             this.nudNumberOfBattlesForCalculateFitness = new System.Windows.Forms.NumericUpDown();
             this.labelNumberOfBattlesForCalculateFitness = new System.Windows.Forms.Label();
-            this.buttonCreatePopulation = new System.Windows.Forms.Button();
-            this.nudSizeOfPopulation = new System.Windows.Forms.NumericUpDown();
-            this.labelSizeOfPopulation = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPopulation = new System.Windows.Forms.TabPage();
+            this.labelRecalculateFitness = new System.Windows.Forms.Label();
+            this.buttonRecalculateFitness = new System.Windows.Forms.Button();
+            this.listViewPopulation = new System.Windows.Forms.ListView();
+            this.groupBoxCalculateFitness = new System.Windows.Forms.GroupBox();
+            this.userControlCharacter1 = new ProjektBIAI.Forms.UserControlCharacter();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.userControlCharacter1 = new ProjektBIAI.Forms.UserControlCharacter("Opponent template");
             this.groupBoxSettings.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSizeOfPopulation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStepForFitness)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNumberOfBattlesForCalculateFitness)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSizeOfPopulation)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPopulation.SuspendLayout();
+            this.groupBoxCalculateFitness.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBoxSettings
             // 
-            this.groupBoxSettings.Controls.Add(this.labStepForFitness);
-            this.groupBoxSettings.Controls.Add(this.nudStepForFitness);
-            this.groupBoxSettings.Controls.Add(this.nudNumberOfBattlesForCalculateFitness);
-            this.groupBoxSettings.Controls.Add(this.labelNumberOfBattlesForCalculateFitness);
+            this.groupBoxSettings.Controls.Add(this.labelIsPopulationCreated);
             this.groupBoxSettings.Controls.Add(this.buttonCreatePopulation);
             this.groupBoxSettings.Controls.Add(this.nudSizeOfPopulation);
             this.groupBoxSettings.Controls.Add(this.labelSizeOfPopulation);
             this.groupBoxSettings.Location = new System.Drawing.Point(6, 6);
             this.groupBoxSettings.Name = "groupBoxSettings";
-            this.groupBoxSettings.Size = new System.Drawing.Size(261, 130);
+            this.groupBoxSettings.Size = new System.Drawing.Size(261, 95);
             this.groupBoxSettings.TabIndex = 1;
             this.groupBoxSettings.TabStop = false;
             this.groupBoxSettings.Text = "Settings";
             // 
-            // labStepForFitness
+            // labelIsPopulationCreated
             // 
-            this.labStepForFitness.AutoSize = true;
-            this.labStepForFitness.Location = new System.Drawing.Point(7, 74);
-            this.labStepForFitness.Name = "labStepForFitness";
-            this.labStepForFitness.Size = new System.Drawing.Size(131, 13);
-            this.labStepForFitness.TabIndex = 6;
-            this.labStepForFitness.Text = "Step for calculating fitness";
-            // 
-            // nudStepForFitness
-            // 
-            this.nudStepForFitness.Location = new System.Drawing.Point(183, 72);
-            this.nudStepForFitness.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudStepForFitness.Name = "nudStepForFitness";
-            this.nudStepForFitness.Size = new System.Drawing.Size(72, 20);
-            this.nudStepForFitness.TabIndex = 5;
-            this.nudStepForFitness.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // nudNumberOfBattlesForCalculateFitness
-            // 
-            this.nudNumberOfBattlesForCalculateFitness.Location = new System.Drawing.Point(183, 46);
-            this.nudNumberOfBattlesForCalculateFitness.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudNumberOfBattlesForCalculateFitness.Name = "nudNumberOfBattlesForCalculateFitness";
-            this.nudNumberOfBattlesForCalculateFitness.Size = new System.Drawing.Size(72, 20);
-            this.nudNumberOfBattlesForCalculateFitness.TabIndex = 4;
-            this.nudNumberOfBattlesForCalculateFitness.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            // 
-            // labelNumberOfBattlesForCalculateFitness
-            // 
-            this.labelNumberOfBattlesForCalculateFitness.AutoSize = true;
-            this.labelNumberOfBattlesForCalculateFitness.Location = new System.Drawing.Point(7, 48);
-            this.labelNumberOfBattlesForCalculateFitness.Name = "labelNumberOfBattlesForCalculateFitness";
-            this.labelNumberOfBattlesForCalculateFitness.Size = new System.Drawing.Size(175, 13);
-            this.labelNumberOfBattlesForCalculateFitness.TabIndex = 3;
-            this.labelNumberOfBattlesForCalculateFitness.Text = "Number of battles (calculate fitness)";
+            this.labelIsPopulationCreated.AutoSize = true;
+            this.labelIsPopulationCreated.Location = new System.Drawing.Point(7, 72);
+            this.labelIsPopulationCreated.Name = "labelIsPopulationCreated";
+            this.labelIsPopulationCreated.Size = new System.Drawing.Size(114, 13);
+            this.labelIsPopulationCreated.TabIndex = 7;
+            this.labelIsPopulationCreated.Text = "Population not created";
+            this.labelIsPopulationCreated.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // buttonCreatePopulation
             // 
-            this.buttonCreatePopulation.Location = new System.Drawing.Point(6, 98);
+            this.buttonCreatePopulation.Location = new System.Drawing.Point(10, 46);
             this.buttonCreatePopulation.Name = "buttonCreatePopulation";
             this.buttonCreatePopulation.Size = new System.Drawing.Size(245, 23);
             this.buttonCreatePopulation.TabIndex = 2;
@@ -157,6 +119,58 @@
             this.labelSizeOfPopulation.TabIndex = 0;
             this.labelSizeOfPopulation.Text = "Size of population";
             // 
+            // labStepForFitness
+            // 
+            this.labStepForFitness.AutoSize = true;
+            this.labStepForFitness.Location = new System.Drawing.Point(6, 50);
+            this.labStepForFitness.Name = "labStepForFitness";
+            this.labStepForFitness.Size = new System.Drawing.Size(125, 13);
+            this.labStepForFitness.TabIndex = 6;
+            this.labStepForFitness.Text = "Step (level of opponents)";
+            // 
+            // nudStepForFitness
+            // 
+            this.nudStepForFitness.Location = new System.Drawing.Point(183, 48);
+            this.nudStepForFitness.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudStepForFitness.Name = "nudStepForFitness";
+            this.nudStepForFitness.Size = new System.Drawing.Size(72, 20);
+            this.nudStepForFitness.TabIndex = 5;
+            this.nudStepForFitness.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // nudNumberOfBattlesForCalculateFitness
+            // 
+            this.nudNumberOfBattlesForCalculateFitness.Location = new System.Drawing.Point(183, 19);
+            this.nudNumberOfBattlesForCalculateFitness.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudNumberOfBattlesForCalculateFitness.Name = "nudNumberOfBattlesForCalculateFitness";
+            this.nudNumberOfBattlesForCalculateFitness.Size = new System.Drawing.Size(72, 20);
+            this.nudNumberOfBattlesForCalculateFitness.TabIndex = 4;
+            this.nudNumberOfBattlesForCalculateFitness.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // labelNumberOfBattlesForCalculateFitness
+            // 
+            this.labelNumberOfBattlesForCalculateFitness.AutoSize = true;
+            this.labelNumberOfBattlesForCalculateFitness.Location = new System.Drawing.Point(7, 21);
+            this.labelNumberOfBattlesForCalculateFitness.Name = "labelNumberOfBattlesForCalculateFitness";
+            this.labelNumberOfBattlesForCalculateFitness.Size = new System.Drawing.Size(90, 13);
+            this.labelNumberOfBattlesForCalculateFitness.TabIndex = 3;
+            this.labelNumberOfBattlesForCalculateFitness.Text = "Number of battles";
+            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPopulation);
@@ -170,6 +184,10 @@
             // 
             // tabPopulation
             // 
+            this.tabPopulation.Controls.Add(this.labelRecalculateFitness);
+            this.tabPopulation.Controls.Add(this.buttonRecalculateFitness);
+            this.tabPopulation.Controls.Add(this.listViewPopulation);
+            this.tabPopulation.Controls.Add(this.groupBoxCalculateFitness);
             this.tabPopulation.Controls.Add(this.userControlCharacter1);
             this.tabPopulation.Controls.Add(this.groupBoxSettings);
             this.tabPopulation.Location = new System.Drawing.Point(4, 22);
@@ -179,6 +197,66 @@
             this.tabPopulation.TabIndex = 0;
             this.tabPopulation.Text = "Population";
             this.tabPopulation.UseVisualStyleBackColor = true;
+            // 
+            // labelRecalculateFitness
+            // 
+            this.labelRecalculateFitness.AutoSize = true;
+            this.labelRecalculateFitness.Location = new System.Drawing.Point(177, 230);
+            this.labelRecalculateFitness.MaximumSize = new System.Drawing.Size(90, 0);
+            this.labelRecalculateFitness.Name = "labelRecalculateFitness";
+            this.labelRecalculateFitness.Size = new System.Drawing.Size(0, 13);
+            this.labelRecalculateFitness.TabIndex = 10;
+            // 
+            // buttonRecalculateFitness
+            // 
+            this.buttonRecalculateFitness.Enabled = false;
+            this.buttonRecalculateFitness.Location = new System.Drawing.Point(177, 189);
+            this.buttonRecalculateFitness.Name = "buttonRecalculateFitness";
+            this.buttonRecalculateFitness.Size = new System.Drawing.Size(90, 34);
+            this.buttonRecalculateFitness.TabIndex = 9;
+            this.buttonRecalculateFitness.Text = "Recalculate fitness";
+            this.buttonRecalculateFitness.UseVisualStyleBackColor = true;
+            this.buttonRecalculateFitness.Click += new System.EventHandler(this.buttonRecalculateFitness_Click);
+            // 
+            // listViewPopulation
+            // 
+            this.listViewPopulation.Location = new System.Drawing.Point(274, 7);
+            this.listViewPopulation.Name = "listViewPopulation";
+            this.listViewPopulation.Size = new System.Drawing.Size(482, 491);
+            this.listViewPopulation.TabIndex = 8;
+            this.listViewPopulation.UseCompatibleStateImageBehavior = false;
+            // 
+            // groupBoxCalculateFitness
+            // 
+            this.groupBoxCalculateFitness.Controls.Add(this.labelNumberOfBattlesForCalculateFitness);
+            this.groupBoxCalculateFitness.Controls.Add(this.nudNumberOfBattlesForCalculateFitness);
+            this.groupBoxCalculateFitness.Controls.Add(this.labStepForFitness);
+            this.groupBoxCalculateFitness.Controls.Add(this.nudStepForFitness);
+            this.groupBoxCalculateFitness.Location = new System.Drawing.Point(7, 108);
+            this.groupBoxCalculateFitness.Name = "groupBoxCalculateFitness";
+            this.groupBoxCalculateFitness.Size = new System.Drawing.Size(260, 74);
+            this.groupBoxCalculateFitness.TabIndex = 7;
+            this.groupBoxCalculateFitness.TabStop = false;
+            this.groupBoxCalculateFitness.Text = "Fitness calculation settings";
+            // 
+            // userControlCharacter1
+            // 
+            character1.Fitness = 0;
+            character1.Stats = new byte[] {
+        ((byte)(1)),
+        ((byte)(1)),
+        ((byte)(1)),
+        ((byte)(1)),
+        ((byte)(1)),
+        ((byte)(1)),
+        ((byte)(1)),
+        ((byte)(1)),
+        ((byte)(1))};
+            this.userControlCharacter1.Character = character1;
+            this.userControlCharacter1.Location = new System.Drawing.Point(6, 188);
+            this.userControlCharacter1.Name = "userControlCharacter1";
+            this.userControlCharacter1.Size = new System.Drawing.Size(164, 310);
+            this.userControlCharacter1.TabIndex = 2;
             // 
             // tabPage2
             // 
@@ -190,13 +268,6 @@
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // userControlCharacter1
-            // 
-            this.userControlCharacter1.Location = new System.Drawing.Point(284, 6);
-            this.userControlCharacter1.Name = "userControlCharacter1";
-            this.userControlCharacter1.Size = new System.Drawing.Size(164, 310);
-            this.userControlCharacter1.TabIndex = 2;
-            // 
             // UserControlWorld
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -206,11 +277,14 @@
             this.Size = new System.Drawing.Size(770, 530);
             this.groupBoxSettings.ResumeLayout(false);
             this.groupBoxSettings.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSizeOfPopulation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStepForFitness)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNumberOfBattlesForCalculateFitness)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSizeOfPopulation)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPopulation.ResumeLayout(false);
+            this.tabPopulation.PerformLayout();
+            this.groupBoxCalculateFitness.ResumeLayout(false);
+            this.groupBoxCalculateFitness.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -229,5 +303,10 @@
         private System.Windows.Forms.Label labStepForFitness;
         private System.Windows.Forms.NumericUpDown nudStepForFitness;
         private Forms.UserControlCharacter userControlCharacter1;
+        private System.Windows.Forms.Label labelIsPopulationCreated;
+        private System.Windows.Forms.Button buttonRecalculateFitness;
+        private System.Windows.Forms.ListView listViewPopulation;
+        private System.Windows.Forms.GroupBox groupBoxCalculateFitness;
+        private System.Windows.Forms.Label labelRecalculateFitness;
     }
 }

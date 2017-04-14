@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ProjektBIAI
 {
@@ -50,14 +52,18 @@ namespace ProjektBIAI
         /// <summary>
         /// Oblicza współczynnik fitness dla całej populacji zapisanej na świecie
         /// </summary>
-        public void CalculateFitness()
+        public void CalculateFitness(Label calculationStatus)
         {
             Arena arena;
+            int characterIndex = 0;
+            Stopwatch stopwatch = new Stopwatch();
             foreach (Character ch in population)
             {
+                stopwatch.Start();
+                calculationStatus.Text = "Calculated " + characterIndex.ToString() + "/" + population.Count.ToString();
+                calculationStatus.Update();
                 bool end = false;
                 byte opponentLevel = stepOfIncrementOpponentsForFitness;
-
                 while (!end)
                 {
                     arena = new Arena(ch, new Character(statsOfOpponentsForFitness, opponentLevel));
@@ -91,7 +97,12 @@ namespace ProjektBIAI
                         ch.Fitness++;
                     }
                 }
+                characterIndex++;
+                calculationStatus.Text = "Calculated " + characterIndex.ToString() + "/" + population.Count.ToString();
+                calculationStatus.Update();
             }
+            stopwatch.Stop();
+            calculationStatus.Text += " in " + stopwatch.Elapsed.TotalSeconds + " sec";
         }
     }
 }
