@@ -93,5 +93,11 @@ namespace ProjektBIAI
             // Perform the sort with these new sort options.
             this.listViewPopulation.Sort();
         }
+
+        private void listViewPopulation_DoubleClick(object sender, EventArgs e)
+        {
+            int clickedID = int.Parse(((ListView)sender).SelectedItems[0].Text);
+            MessageBox.Show("Tu bedzie podgląd postaci o ID " + clickedID.ToString() + " jak ktoś go napisze :P");
+        }
     }
 }
