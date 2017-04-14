@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProjektBIAI
 {
@@ -27,46 +23,55 @@ namespace ProjektBIAI
         int currentHp;
 
         /// <summary>
+        /// STAT [0]
         /// HP - punkty zdrowia; bazowo 100 + 100 za punkt
         /// </summary>
         int maxHp;
 
         /// <summary>
+        /// STAT [1]
         /// regeneracja HP na rundę; 5 za punkt
         /// </summary>
         int hpRegen;
 
         /// <summary>
+        /// STAT [2]
         /// obrażenia; bazowo 10 + 20 za punkt
         /// </summary>
         int baseDmg;
 
         /// <summary>
+        /// STAT [3]
         /// szansa na trafienie krytyczne; bazowo 0% + 2% za punkt
         /// </summary>
         int critRate;
 
         /// <summary>
+        /// STAT [4]
         /// mnożnik obrażeń zadawanych przez trafienie krytyczne; bazowo +50% +5% za punkt
         /// </summary>
         double critDmg;
 
         /// <summary>
+        /// STAT [5]
         /// szansa na trafienie; bazowo 50% + 5% za punkt
         /// </summary>
         int hitRate;
 
         /// <summary>
+        /// STAT [6]
         /// szansa na uniknięcie trafienia; -5% za punkt
         /// </summary>
         int dodgeRate;
 
         /// <summary>
+        /// STAT [7]
         /// szansa na zablokowanie; 0% +2% za punkt
         /// </summary>
         int blockRate;
 
         /// <summary>
+        /// STAT [8]
         /// procent o jaki zmniejszone są obrażenia po udanym bloku; bazowo -50% -5% za punkt
         /// </summary>
         double blockPower;
@@ -87,6 +92,9 @@ namespace ProjektBIAI
             }
         }
 
+        /// <summary>
+        /// Wartość współczynnika fitness
+        /// </summary>
         public int Fitness
         {
             get
@@ -150,7 +158,7 @@ namespace ProjektBIAI
         public Character (byte[]sta, byte pts)
         {
             stats = new byte[9];
-            Array.Copy(sta, stats, 9);
+            sta.CopyTo(stats, 0);
             ComputeValues(pts);
         }
 
@@ -206,11 +214,18 @@ namespace ProjektBIAI
             return ret;
         }
 
+        /// <summary>
+        /// Ustawia postaci maksymalne HP
+        /// </summary>
         public void regenFull()
         {
             this.currentHp = this.maxHp;
         }
 
+        /// <summary>
+        /// Zwiększa HP postaci o współczynnik hpRegen
+        /// </summary>
+        /// <returns>String z informacją o przywróconym HP</returns>
         public string regen()
         {
             currentHp += hpRegen;
@@ -219,6 +234,12 @@ namespace ProjektBIAI
             return "restored to " + currentHp + " HP" + Environment.NewLine;
         }
 
+        /// <summary>
+        /// Zaatakuj przeciwnika podanego w parametrze
+        /// </summary>
+        /// <param name="enemy">Przeciwnik do zaatakowania</param>
+        /// <param name="rnd">Generator liczb pseudolosowych</param>
+        /// <returns>String z informacją o walce</returns>
         public string attack(Character enemy, Random rnd)
         {
             string result = "";

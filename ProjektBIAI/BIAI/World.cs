@@ -14,17 +14,17 @@ namespace ProjektBIAI
     class World
     {
         /// <summary>
-        /// Najświeższa, aktualnie żyjąca populacja
+        /// najświeższa, aktualnie żyjąca populacja
         /// </summary>
         List<Character> population;
 
         /// <summary>
-        /// Ilość walk rozgrywanych z każdym przeciwnikiem przy wyznaczaniu fitness
+        /// ilość walk rozgrywanych z każdym przeciwnikiem przy wyznaczaniu fitness
         /// </summary>
         int numberOfBattlesForCalculateFitness;
 
         /// <summary>
-        /// Krok poziomu przeciwników przy wyznaczaniu fitness
+        /// krok poziomu przeciwników przy wyznaczaniu fitness
         /// </summary>
         byte stepOfIncrementOpponentsForFitness;
 
@@ -33,6 +33,9 @@ namespace ProjektBIAI
         /// </summary>
         byte[] statsOfOpponentsForFitness;
 
+        /// <summary>
+        /// Ilość walk rozgrywanych z każdym przeciwnikiem przy wyznaczaniu fitness
+        /// </summary>
         public int NumberOfBattlesForCalculateFitness
         {
             get
@@ -46,6 +49,9 @@ namespace ProjektBIAI
             }
         }
 
+        /// <summary>
+        /// Krok poziomu przeciwników przy wyznaczaniu fitness
+        /// </summary>
         public byte StepOfIncrementOpponentsForFitness
         {
             get
@@ -59,6 +65,9 @@ namespace ProjektBIAI
             }
         }
 
+        /// <summary>
+        /// Najświeższa, aktualnie żyjąca populacja
+        /// </summary>
         public List<Character> Population
         {
             get
@@ -72,6 +81,10 @@ namespace ProjektBIAI
             }
         }
 
+        /// <summary>
+        /// Zapisuje parametry Fitness do tablicy
+        /// </summary>
+        /// <param name="previosFitness">Tablica do której zapisane zostaną wyniki</param>
         internal void UpdatePreviousFitness(int[] previosFitness)
         {
             for (int i=0; i<population.Count; i++)
@@ -98,6 +111,7 @@ namespace ProjektBIAI
         /// <summary>
         /// Oblicza współczynnik fitness dla całej populacji zapisanej na świecie
         /// </summary>
+        /// <param name="calculationStatus">Etykieta z aktualnym statusem operacji</param>
         public void CalculateFitness(Label calculationStatus)
         {
             Arena arena;

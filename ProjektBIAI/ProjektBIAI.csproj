@@ -46,8 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Arena.cs" />
-    <Compile Include="Character.cs" />
+    <Compile Include="BIAI\Arena.cs" />
+    <Compile Include="BIAI\Character.cs" />
     <Compile Include="Forms\FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,7 +69,7 @@
     <Compile Include="Forms\UserControlWorld.Designer.cs">
       <DependentUpon>UserControlWorld.cs</DependentUpon>
     </Compile>
-    <Compile Include="World.cs" />
+    <Compile Include="BIAI\World.cs" />
     <EmbeddedResource Include="Forms\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>

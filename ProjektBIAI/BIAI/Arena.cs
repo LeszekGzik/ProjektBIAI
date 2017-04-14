@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProjektBIAI
 {
@@ -12,6 +8,9 @@ namespace ProjektBIAI
     /// </summary>
     class Arena
     {
+        /// <summary>
+        /// Limit ataków w rundzie, po osiągnięciu tej wartości walka uznawana za nierozstrzygniętą
+        /// </summary>
         public const int ROUNDSLIMIT = 1000;
 
         Character char1, char2;
