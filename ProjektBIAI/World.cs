@@ -33,6 +33,53 @@ namespace ProjektBIAI
         /// </summary>
         byte[] statsOfOpponentsForFitness;
 
+        public int NumberOfBattlesForCalculateFitness
+        {
+            get
+            {
+                return numberOfBattlesForCalculateFitness;
+            }
+
+            set
+            {
+                numberOfBattlesForCalculateFitness = value;
+            }
+        }
+
+        public byte StepOfIncrementOpponentsForFitness
+        {
+            get
+            {
+                return stepOfIncrementOpponentsForFitness;
+            }
+
+            set
+            {
+                stepOfIncrementOpponentsForFitness = value;
+            }
+        }
+
+        public List<Character> Population
+        {
+            get
+            {
+                return population;
+            }
+
+            set
+            {
+                population = value;
+            }
+        }
+
+        internal void UpdatePreviousFitness(int[] previosFitness)
+        {
+            for (int i=0; i<population.Count; i++)
+            {
+                previosFitness[i] = population[i].Fitness;
+            }
+        }
+
         public World(int sizeOfPopulation, int battlesForFitness, byte stepForFitness, byte[] statsForFitness)
         {
 
@@ -45,8 +92,7 @@ namespace ProjektBIAI
             }
             numberOfBattlesForCalculateFitness = battlesForFitness;
             stepOfIncrementOpponentsForFitness = stepForFitness;
-            Array.Copy(statsForFitness, statsOfOpponentsForFitness, 9);
-            //statsForFitness.CopyTo(statsOfOpponentsForFitness, 0);
+            statsForFitness.CopyTo(statsOfOpponentsForFitness, 0);
         }
 
         /// <summary>
@@ -60,8 +106,6 @@ namespace ProjektBIAI
             foreach (Character ch in population)
             {
                 stopwatch.Start();
-                calculationStatus.Text = "Calculated " + characterIndex.ToString() + "/" + population.Count.ToString();
-                calculationStatus.Update();
                 bool end = false;
                 byte opponentLevel = stepOfIncrementOpponentsForFitness;
                 while (!end)
