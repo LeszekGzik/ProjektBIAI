@@ -60,6 +60,7 @@
     <Compile Include="Forms\UserControlCharacter.Designer.cs">
       <DependentUpon>UserControlCharacter.cs</DependentUpon>
     </Compile>
+    <Compile Include="ListViewColumnSorter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Forms\UserControlWorld.cs">

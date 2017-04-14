@@ -46,10 +46,10 @@
             this.columnHeaderID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderFitness = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderPreviousFitness = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.groupBoxCalculateFitness = new System.Windows.Forms.GroupBox();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.userControlCharacter1 = new ProjektBIAI.Forms.UserControlCharacter();
             this.columnHeaderChange = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.groupBoxCalculateFitness = new System.Windows.Forms.GroupBox();
+            this.userControlCharacter1 = new ProjektBIAI.Forms.UserControlCharacter();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBoxSettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSizeOfPopulation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStepForFitness)).BeginInit();
@@ -237,6 +237,7 @@
             this.listViewPopulation.TabIndex = 8;
             this.listViewPopulation.UseCompatibleStateImageBehavior = false;
             this.listViewPopulation.View = System.Windows.Forms.View.Details;
+            this.listViewPopulation.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listViewPopulation_ColumnClick);
             // 
             // columnHeaderID
             // 
@@ -253,6 +254,10 @@
             this.columnHeaderPreviousFitness.Text = "Previous fitness";
             this.columnHeaderPreviousFitness.Width = 100;
             // 
+            // columnHeaderChange
+            // 
+            this.columnHeaderChange.Text = "Change";
+            // 
             // groupBoxCalculateFitness
             // 
             this.groupBoxCalculateFitness.Controls.Add(this.labelNumberOfBattlesForCalculateFitness);
@@ -265,16 +270,6 @@
             this.groupBoxCalculateFitness.TabIndex = 7;
             this.groupBoxCalculateFitness.TabStop = false;
             this.groupBoxCalculateFitness.Text = "Fitness calculation settings";
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(762, 504);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // userControlCharacter1
             // 
@@ -295,9 +290,15 @@
             this.userControlCharacter1.Size = new System.Drawing.Size(164, 310);
             this.userControlCharacter1.TabIndex = 2;
             // 
-            // columnHeaderChange
+            // tabPage2
             // 
-            this.columnHeaderChange.Text = "Change";
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(762, 504);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // UserControlWorld
             // 

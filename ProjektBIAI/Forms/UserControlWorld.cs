@@ -12,11 +12,14 @@ namespace ProjektBIAI
 {
     public partial class UserControlWorld : UserControl
     {
+        private ListViewColumnSorter lvwColumnSorter;
         World world;
         int[] previosFitness;
         public UserControlWorld()
         {
             InitializeComponent();
+            lvwColumnSorter = new ListViewColumnSorter();
+            this.listViewPopulation.ListViewItemSorter = lvwColumnSorter;
         }
 
         private void buttonCreatePopulation_Click(object sender, EventArgs e)
@@ -60,9 +63,35 @@ namespace ProjektBIAI
                 ListViewItem lvi = new ListViewItem(i.ToString());
                 lvi.SubItems.Add(world.Population[i].Fitness.ToString());
                 lvi.SubItems.Add(previosFitness[i].ToString());
-                lvi.SubItems.Add((world.Population[i].Fitness - previosFitness[i]).ToString());
+                lvi.SubItems.Add(Math.Abs(world.Population[i].Fitness - previosFitness[i]).ToString());
                 listViewPopulation.Items.Add(lvi);
             }
+        }
+
+        private void listViewPopulation_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            // Determine if clicked column is already the column that is being sorted.
+            if (e.Column == lvwColumnSorter.SortColumn)
+            {
+                // Reverse the current sort direction for this column.
+                if (lvwColumnSorter.Order == SortOrder.Ascending)
+                {
+                    lvwColumnSorter.Order = SortOrder.Descending;
+                }
+                else
+                {
+                    lvwColumnSorter.Order = SortOrder.Ascending;
+                }
+            }
+            else
+            {
+                // Set the column number that is to be sorted; default to ascending.
+                lvwColumnSorter.SortColumn = e.Column;
+                lvwColumnSorter.Order = SortOrder.Ascending;
+            }
+
+            // Perform the sort with these new sort options.
+            this.listViewPopulation.Sort();
         }
     }
 }
