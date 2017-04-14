@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using ProjektBIAI.Forms;
 
 namespace ProjektBIAI
 {
@@ -97,7 +91,14 @@ namespace ProjektBIAI
         private void listViewPopulation_DoubleClick(object sender, EventArgs e)
         {
             int clickedID = int.Parse(((ListView)sender).SelectedItems[0].Text);
-            MessageBox.Show("Tu bedzie podgląd postaci o ID " + clickedID.ToString() + " jak ktoś go napisze :P");
+            byte[] stats = new byte[9];
+            world.Population[clickedID].Stats.CopyTo(stats,0);
+            UserControlCharacter clickedCharacter = new UserControlCharacter(stats);
+            clickedCharacter.Dock = DockStyle.Fill;
+            Form window = new Form();
+            window.Controls.Add(clickedCharacter);
+            window.Size = new System.Drawing.Size(180, 320);
+            window.Show();
         }
     }
 }

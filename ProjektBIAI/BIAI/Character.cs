@@ -78,6 +78,15 @@ namespace ProjektBIAI
 
         /// <summary>
         /// Stosunek statystyk z wartościami 0-255
+        /// [0] = maxHp;
+        /// [1] = hpRegen;
+        /// [2] = baseDmg;
+        /// [3] = critRate;
+        /// [4] = critDmg;
+        /// [5] = hitRate;
+        /// [6] = dodgeRate;
+        /// [7] = blockRate;
+        /// [8] = blockPower;
         /// </summary>
         public byte[] Stats
         {

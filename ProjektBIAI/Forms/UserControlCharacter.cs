@@ -40,6 +40,34 @@ namespace ProjektBIAI.Forms
             groupBoxCharacter.Text = charName;
             refreshCharacter();
         }
+
+        public UserControlCharacter(byte[] charStats)
+        {
+            InitializeComponent();
+            character = new Character(charStats, 100);
+            labPts.Visible = false;
+            nudPts.Visible = false;
+            butRandomStats.Visible = false;
+            nudMaxHp.Value = charStats[0];
+            nudHpRegen.Value = charStats[1];
+            nudBaseDmg.Value = charStats[2];
+            nudCritRate.Value = charStats[3];
+            nudCritDmg.Value = charStats[4];
+            nudHitRate.Value = charStats[5];
+            nudDodgeRate.Value = charStats[6];
+            nudBlockRate.Value = charStats[7];
+            nudBlockPower.Value = charStats[8];
+            double[] result = character.getComputedValues();
+            labMaxHpComputed.Text = result[0].ToString();
+            labHpRegenComputed.Text = result[1].ToString();
+            labBaseDmgComputed.Text = result[2].ToString();
+            labCritRateComputed.Text = result[3].ToString();
+            labCritDmgComputed.Text = result[4].ToString();
+            labHitRateComputed.Text = result[5].ToString();
+            labDodgeRateComputed.Text = result[6].ToString();
+            labBlockRateComputed.Text = result[7].ToString();
+            labBlockPowerComputed.Text = result[8].ToString();
+        }
         
         private void refreshCharacter()
         {
