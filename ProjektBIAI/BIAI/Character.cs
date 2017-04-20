@@ -231,6 +231,18 @@ namespace ProjektBIAI
             this.currentHp = this.maxHp;
         }
 
+        internal void swapGenesWith(Character character, Random rnd)
+        {
+            byte temp;
+            int crossingPoint = rnd.Next(1, 9);
+            for (int i = 0; i<crossingPoint; i++)
+            {
+                temp = stats[i];
+                stats[i] = character.stats[i];
+                character.stats[i] = temp;
+            }
+        }
+
         /// <summary>
         /// Zwiększa HP postaci o współczynnik hpRegen
         /// </summary>

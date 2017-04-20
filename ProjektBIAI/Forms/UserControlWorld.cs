@@ -156,7 +156,7 @@ namespace ProjektBIAI
 
         private void buttonNextGeneration_Click(object sender, EventArgs e)
         {
-            world.ArchiveCurrentPopulation();           //TODO: ewolucja
+            world.BreedNewGeneration((int)nudMutationRate.Value, (int)nudMaxMutationValue.Value);
             UpdateListViewGenerations();
         }
 
@@ -164,7 +164,7 @@ namespace ProjektBIAI
         {
             for (int i = 0; i<nudXGenerations.Value; i++)
             {
-                world.ArchiveCurrentPopulation();       //TODO: ewolucja
+                world.BreedNewGeneration((int)nudMutationRate.Value, (int)nudMaxMutationValue.Value);
                 UpdateListViewGenerations();
             }
         }

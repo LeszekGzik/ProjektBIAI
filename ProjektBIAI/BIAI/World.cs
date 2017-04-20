@@ -187,5 +187,49 @@ namespace ProjektBIAI
             stopwatch.Stop();
             calculationStatus.Text += " in " + stopwatch.Elapsed.TotalSeconds + " sec";
         }
+
+        internal void BreedNewGeneration(int mutationRate, int mutationMax)
+        {
+            double randomNum;
+            int totalFitness = 0;
+            Random rnd = new Random();
+            List<Character> nextGen = new List<Character>();
+            List<Character> currentGen = new List<Character>(AllPopulations[AllPopulations.Count - 1]);
+
+            foreach (Character ch in currentGen)
+            {
+                totalFitness += ch.Fitness;
+            }
+
+            //selekcja - ważona ruletka
+            for (int i = 0; i < currentGen.Count; i++)
+            {
+                randomNum = (double)rnd.Next(1, 10000);
+                int index = -1;
+                while (randomNum > 0)
+                {
+                    index++;
+                    randomNum -= ((double)currentGen[index].Fitness / (double)totalFitness) * 10000;
+                }
+                nextGen.Add(currentGen[index]);
+            }
+
+            //krzyżowanie
+            for (int i = 0; i < nextGen.Count; i+=2)
+            {
+                nextGen[i].swapGenesWith(nextGen[i + 1], rnd);
+            }
+
+            //mutacje
+            for (int i = 0; i < nextGen.Count; i += 2)
+            {
+                if (rnd.Next(1,100) < mutationRate)
+                {
+                    nextGen[i].Stats[(byte)rnd.Next(0, 9)] += (byte)(rnd.Next(0, 2 * mutationMax + 1) - mutationMax);
+                }
+            }
+
+            AllPopulations.Add(nextGen);
+        }
     }
 }
