@@ -157,6 +157,8 @@ namespace ProjektBIAI
         private void buttonNextGeneration_Click(object sender, EventArgs e)
         {
             world.BreedNewGeneration((int)nudMutationRate.Value, (int)nudMaxMutationValue.Value);
+            world.Population = world.AllPopulations[world.AllPopulations.Count - 1];
+            world.CalculateFitness(labelRecalculateFitness);
             UpdateListViewGenerations();
         }
 
@@ -165,6 +167,8 @@ namespace ProjektBIAI
             for (int i = 0; i<nudXGenerations.Value; i++)
             {
                 world.BreedNewGeneration((int)nudMutationRate.Value, (int)nudMaxMutationValue.Value);
+                world.Population = world.AllPopulations[world.AllPopulations.Count - 1];
+                world.CalculateFitness(labelRecalculateFitness);
                 UpdateListViewGenerations();
             }
         }

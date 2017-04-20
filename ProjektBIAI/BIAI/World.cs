@@ -211,7 +211,7 @@ namespace ProjektBIAI
                     index++;
                     randomNum -= ((double)currentGen[index].Fitness / (double)totalFitness) * 10000;
                 }
-                nextGen.Add(currentGen[index]);
+                nextGen.Add(new Character(currentGen[index].Stats, 100));
             }
 
             //krzyżowanie
@@ -221,14 +221,13 @@ namespace ProjektBIAI
             }
 
             //mutacje
-            for (int i = 0; i < nextGen.Count; i += 2)
+            for (int i = 0; i < nextGen.Count; i++)
             {
                 if (rnd.Next(1,100) < mutationRate)
                 {
                     nextGen[i].Stats[(byte)rnd.Next(0, 9)] += (byte)(rnd.Next(0, 2 * mutationMax + 1) - mutationMax);
                 }
             }
-
             AllPopulations.Add(nextGen);
         }
     }
