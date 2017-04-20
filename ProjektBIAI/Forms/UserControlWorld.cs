@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using ProjektBIAI.Forms;
 
@@ -8,7 +9,7 @@ namespace ProjektBIAI
     {
         private ListViewColumnSorter lvwColumnSorter;
         World world;
-        int[] previosFitness;
+        int[] previousFitness;
         public UserControlWorld()
         {
             InitializeComponent();
@@ -21,10 +22,15 @@ namespace ProjektBIAI
             if ((world == null) || (MessageBox.Show("This will destroy existing population!", "Are you sure?", MessageBoxButtons.YesNo) == DialogResult.Yes))
             {
                 world = new World((int)nudSizeOfPopulation.Value, (int)nudNumberOfBattlesForCalculateFitness.Value, (byte)nudStepForFitness.Value, userControlCharacter1.Character.Stats);
-                previosFitness = new int[(int)nudSizeOfPopulation.Value];                
+                previousFitness = new int[(int)nudSizeOfPopulation.Value];                
                 world.CalculateFitness(labelIsPopulationCreated);
+                UpdateListViewPopulation();
+                world.ArchiveCurrentPopulation();
+                UpdateListViewGenerations();
                 buttonRecalculateFitness.Enabled = true;
-                UpdateListVievPopulation();
+                buttonNextGeneration.Enabled = true;
+                buttonXGenerations.Enabled = true;
+                nudXGenerations.Enabled = true;
             }
             else
             {
@@ -32,11 +38,57 @@ namespace ProjektBIAI
             }            
         }
 
+        private int calculatePopulationAvgFitness(List<Character> population)
+        {
+            int avg = 0;
+            foreach (Character ch in world.Population)
+            {
+                avg += ch.Fitness;
+            }
+            return (int)(avg/population.Count);
+        }
+
+        private int calculatePopulationMinFitness(List<Character> population)
+        {
+            int minFitness = calculatePopulationMaxFitness(population);
+            foreach (Character ch in world.Population)
+            {
+                if (ch.Fitness < minFitness)
+                    minFitness = ch.Fitness;
+            }
+            return minFitness;
+        }
+
+        private int calculatePopulationMaxFitness(List<Character> population)
+        {
+            int maxFitness = 0;
+            foreach (Character ch in world.Population)
+            {
+                if (ch.Fitness > maxFitness)
+                    maxFitness = ch.Fitness;
+            }
+            return maxFitness;
+        }
+
         private void buttonRecalculateFitness_Click(object sender, EventArgs e)
         {
-            world.UpdatePreviousFitness(previosFitness);
+            world.UpdatePreviousFitness(previousFitness);
             world.CalculateFitness(labelRecalculateFitness);
-            UpdateListVievPopulation();
+            UpdateListViewPopulation();
+            UpdateListViewGenerations();
+        }
+
+        private void UpdateListViewGenerations()
+        {
+            listViewGenerations.Items.Clear();
+            for (int i = 0; i < world.AllPopulations.Count; i++)
+            {
+                ListViewItem lvi = new ListViewItem(i.ToString());
+                lvi.SubItems.Add(calculatePopulationMaxFitness(world.AllPopulations[i]).ToString());
+                lvi.SubItems.Add(calculatePopulationMinFitness(world.AllPopulations[i]).ToString());
+                lvi.SubItems.Add(calculatePopulationAvgFitness(world.AllPopulations[i]).ToString());
+                listViewGenerations.Items.Add(lvi);
+            }
         }
 
         private void nudStepForFitness_ValueChanged(object sender, EventArgs e)
@@ -49,15 +101,15 @@ namespace ProjektBIAI
             world.NumberOfBattlesForCalculateFitness = (int)nudNumberOfBattlesForCalculateFitness.Value;
         }
 
-        private void UpdateListVievPopulation()
+        private void UpdateListViewPopulation()
         {
             listViewPopulation.Items.Clear();
             for (int i=0; i<world.Population.Count; i++)
             {
                 ListViewItem lvi = new ListViewItem(i.ToString());
                 lvi.SubItems.Add(world.Population[i].Fitness.ToString());
-                lvi.SubItems.Add(previosFitness[i].ToString());
-                lvi.SubItems.Add(Math.Abs(world.Population[i].Fitness - previosFitness[i]).ToString());
+                lvi.SubItems.Add(previousFitness[i].ToString());
+                lvi.SubItems.Add(Math.Abs(world.Population[i].Fitness - previousFitness[i]).ToString());
                 listViewPopulation.Items.Add(lvi);
             }
         }
@@ -99,6 +151,21 @@ namespace ProjektBIAI
             window.Controls.Add(clickedCharacter);
             window.Size = new System.Drawing.Size(180, 320);
             window.Show();
+        }
+
+        private void buttonNextGeneration_Click(object sender, EventArgs e)
+        {
+            world.ArchiveCurrentPopulation();           //TODO: ewolucja
+            UpdateListViewGenerations();
+        }
+
+        private void buttonXGenerations_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i<nudXGenerations.Value; i++)
+            {
+                world.ArchiveCurrentPopulation();       //TODO: ewolucja
+                UpdateListViewGenerations();
+            }
         }
     }
 }

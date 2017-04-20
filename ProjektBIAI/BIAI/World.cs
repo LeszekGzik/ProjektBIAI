@@ -19,6 +19,11 @@ namespace ProjektBIAI
         List<Character> population;
 
         /// <summary>
+        /// lista wszystkich populacji
+        /// </summary>
+        List<List<Character>> allPopulations;
+
+        /// <summary>
         /// ilość walk rozgrywanych z każdym przeciwnikiem przy wyznaczaniu fitness
         /// </summary>
         int numberOfBattlesForCalculateFitness;
@@ -47,6 +52,12 @@ namespace ProjektBIAI
             {
                 numberOfBattlesForCalculateFitness = value;
             }
+        }
+
+        internal void ArchiveCurrentPopulation()
+        {
+            List<Character> lst = new List<Character>(population);
+            AllPopulations.Add(lst);
         }
 
         /// <summary>
@@ -81,15 +92,28 @@ namespace ProjektBIAI
             }
         }
 
+        public List<List<Character>> AllPopulations
+        {
+            get
+            {
+                return allPopulations;
+            }
+
+            set
+            {
+                allPopulations = value;
+            }
+        }
+
         /// <summary>
         /// Zapisuje parametry Fitness do tablicy
         /// </summary>
-        /// <param name="previosFitness">Tablica do której zapisane zostaną wyniki</param>
-        internal void UpdatePreviousFitness(int[] previosFitness)
+        /// <param name="previousFitness">Tablica do której zapisane zostaną wyniki</param>
+        internal void UpdatePreviousFitness(int[] previousFitness)
         {
             for (int i=0; i<population.Count; i++)
             {
-                previosFitness[i] = population[i].Fitness;
+                previousFitness[i] = population[i].Fitness;
             }
         }
 
@@ -98,6 +122,7 @@ namespace ProjektBIAI
 
             Random rnd = new Random();
             population = new List<Character>();
+            allPopulations = new List<List<Character>>();
             statsOfOpponentsForFitness = new byte[9];
             for (int i = 0; i < sizeOfPopulation; i++)
             {

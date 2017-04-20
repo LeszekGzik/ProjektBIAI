@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ProjektBIAI.Character character1 = new ProjektBIAI.Character();
+            ProjektBIAI.Character character2 = new ProjektBIAI.Character();
             this.groupBoxSettings = new System.Windows.Forms.GroupBox();
             this.labelIsPopulationCreated = new System.Windows.Forms.Label();
             this.buttonCreatePopulation = new System.Windows.Forms.Button();
@@ -48,8 +48,17 @@
             this.columnHeaderPreviousFitness = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderChange = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBoxCalculateFitness = new System.Windows.Forms.GroupBox();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.userControlCharacter1 = new ProjektBIAI.Forms.UserControlCharacter();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.groupBoxEvolutionControls = new System.Windows.Forms.GroupBox();
+            this.nudXGenerations = new System.Windows.Forms.NumericUpDown();
+            this.buttonXGenerations = new System.Windows.Forms.Button();
+            this.buttonNextGeneration = new System.Windows.Forms.Button();
+            this.listViewGenerations = new System.Windows.Forms.ListView();
+            this.columnHeaderGen = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderMaxFitness = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderMinFitness = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderAvgFitness = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBoxSettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSizeOfPopulation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStepForFitness)).BeginInit();
@@ -57,6 +66,9 @@
             this.tabControl1.SuspendLayout();
             this.tabPopulation.SuspendLayout();
             this.groupBoxCalculateFitness.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.groupBoxEvolutionControls.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudXGenerations)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBoxSettings
@@ -275,20 +287,10 @@
             this.groupBoxCalculateFitness.TabStop = false;
             this.groupBoxCalculateFitness.Text = "Fitness calculation settings";
             // 
-            // tabPage2
-            // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(762, 504);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
             // userControlCharacter1
             // 
-            character1.Fitness = 0;
-            character1.Stats = new byte[] {
+            character2.Fitness = 0;
+            character2.Stats = new byte[] {
         ((byte)(1)),
         ((byte)(1)),
         ((byte)(1)),
@@ -298,11 +300,106 @@
         ((byte)(1)),
         ((byte)(1)),
         ((byte)(1))};
-            this.userControlCharacter1.Character = character1;
+            this.userControlCharacter1.Character = character2;
             this.userControlCharacter1.Location = new System.Drawing.Point(6, 188);
             this.userControlCharacter1.Name = "userControlCharacter1";
             this.userControlCharacter1.Size = new System.Drawing.Size(164, 310);
             this.userControlCharacter1.TabIndex = 2;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.groupBoxEvolutionControls);
+            this.tabPage2.Controls.Add(this.listViewGenerations);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(762, 504);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Generations";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // groupBoxEvolutionControls
+            // 
+            this.groupBoxEvolutionControls.Controls.Add(this.nudXGenerations);
+            this.groupBoxEvolutionControls.Controls.Add(this.buttonXGenerations);
+            this.groupBoxEvolutionControls.Controls.Add(this.buttonNextGeneration);
+            this.groupBoxEvolutionControls.Location = new System.Drawing.Point(41, 20);
+            this.groupBoxEvolutionControls.Name = "groupBoxEvolutionControls";
+            this.groupBoxEvolutionControls.Size = new System.Drawing.Size(191, 81);
+            this.groupBoxEvolutionControls.TabIndex = 10;
+            this.groupBoxEvolutionControls.TabStop = false;
+            this.groupBoxEvolutionControls.Text = "Evolution";
+            // 
+            // nudXGenerations
+            // 
+            this.nudXGenerations.Enabled = false;
+            this.nudXGenerations.Location = new System.Drawing.Point(6, 51);
+            this.nudXGenerations.Name = "nudXGenerations";
+            this.nudXGenerations.Size = new System.Drawing.Size(53, 20);
+            this.nudXGenerations.TabIndex = 2;
+            this.nudXGenerations.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // buttonXGenerations
+            // 
+            this.buttonXGenerations.Enabled = false;
+            this.buttonXGenerations.Location = new System.Drawing.Point(66, 48);
+            this.buttonXGenerations.Name = "buttonXGenerations";
+            this.buttonXGenerations.Size = new System.Drawing.Size(119, 23);
+            this.buttonXGenerations.TabIndex = 1;
+            this.buttonXGenerations.Text = "Do X Generations";
+            this.buttonXGenerations.UseVisualStyleBackColor = true;
+            this.buttonXGenerations.Click += new System.EventHandler(this.buttonXGenerations_Click);
+            // 
+            // buttonNextGeneration
+            // 
+            this.buttonNextGeneration.Enabled = false;
+            this.buttonNextGeneration.Location = new System.Drawing.Point(6, 19);
+            this.buttonNextGeneration.Name = "buttonNextGeneration";
+            this.buttonNextGeneration.Size = new System.Drawing.Size(179, 23);
+            this.buttonNextGeneration.TabIndex = 0;
+            this.buttonNextGeneration.Text = "Next Generation";
+            this.buttonNextGeneration.UseVisualStyleBackColor = true;
+            this.buttonNextGeneration.Click += new System.EventHandler(this.buttonNextGeneration_Click);
+            // 
+            // listViewGenerations
+            // 
+            this.listViewGenerations.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeaderGen,
+            this.columnHeaderMaxFitness,
+            this.columnHeaderMinFitness,
+            this.columnHeaderAvgFitness});
+            this.listViewGenerations.FullRowSelect = true;
+            this.listViewGenerations.GridLines = true;
+            this.listViewGenerations.Location = new System.Drawing.Point(274, 7);
+            this.listViewGenerations.MultiSelect = false;
+            this.listViewGenerations.Name = "listViewGenerations";
+            this.listViewGenerations.Size = new System.Drawing.Size(482, 491);
+            this.listViewGenerations.TabIndex = 9;
+            this.listViewGenerations.UseCompatibleStateImageBehavior = false;
+            this.listViewGenerations.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeaderGen
+            // 
+            this.columnHeaderGen.Text = "Generation";
+            this.columnHeaderGen.Width = 100;
+            // 
+            // columnHeaderMaxFitness
+            // 
+            this.columnHeaderMaxFitness.Text = "Max. Fitness";
+            this.columnHeaderMaxFitness.Width = 128;
+            // 
+            // columnHeaderMinFitness
+            // 
+            this.columnHeaderMinFitness.Text = "Min. Fitness";
+            this.columnHeaderMinFitness.Width = 100;
+            // 
+            // columnHeaderAvgFitness
+            // 
+            this.columnHeaderAvgFitness.Text = "Average";
             // 
             // UserControlWorld
             // 
@@ -321,6 +418,9 @@
             this.tabPopulation.PerformLayout();
             this.groupBoxCalculateFitness.ResumeLayout(false);
             this.groupBoxCalculateFitness.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.groupBoxEvolutionControls.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.nudXGenerations)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -348,5 +448,14 @@
         private System.Windows.Forms.ColumnHeader columnHeaderFitness;
         private System.Windows.Forms.ColumnHeader columnHeaderPreviousFitness;
         private System.Windows.Forms.ColumnHeader columnHeaderChange;
+        private System.Windows.Forms.GroupBox groupBoxEvolutionControls;
+        private System.Windows.Forms.NumericUpDown nudXGenerations;
+        private System.Windows.Forms.Button buttonXGenerations;
+        private System.Windows.Forms.Button buttonNextGeneration;
+        private System.Windows.Forms.ListView listViewGenerations;
+        private System.Windows.Forms.ColumnHeader columnHeaderGen;
+        private System.Windows.Forms.ColumnHeader columnHeaderMaxFitness;
+        private System.Windows.Forms.ColumnHeader columnHeaderMinFitness;
+        private System.Windows.Forms.ColumnHeader columnHeaderAvgFitness;
     }
 }
