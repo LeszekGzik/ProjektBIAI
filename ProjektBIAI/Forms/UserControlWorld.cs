@@ -42,7 +42,7 @@ namespace ProjektBIAI
         private int calculatePopulationAvgFitness(List<Character> population)
         {
             int avg = 0;
-            foreach (Character ch in world.Population)
+            foreach (Character ch in population)
             {
                 avg += ch.Fitness;
             }
@@ -52,7 +52,7 @@ namespace ProjektBIAI
         private int calculatePopulationMinFitness(List<Character> population)
         {
             int minFitness = calculatePopulationMaxFitness(population);
-            foreach (Character ch in world.Population)
+            foreach (Character ch in population)
             {
                 if (ch.Fitness < minFitness)
                     minFitness = ch.Fitness;
@@ -63,7 +63,7 @@ namespace ProjektBIAI
         private int calculatePopulationMaxFitness(List<Character> population)
         {
             int maxFitness = 0;
-            foreach (Character ch in world.Population)
+            foreach (Character ch in population)
             {
                 if (ch.Fitness > maxFitness)
                     maxFitness = ch.Fitness;
