@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ProjektBIAI.Character character2 = new ProjektBIAI.Character();
+            ProjektBIAI.Character character1 = new ProjektBIAI.Character();
             this.groupBoxSettings = new System.Windows.Forms.GroupBox();
             this.labelIsPopulationCreated = new System.Windows.Forms.Label();
             this.buttonCreatePopulation = new System.Windows.Forms.Button();
@@ -48,7 +48,6 @@
             this.columnHeaderPreviousFitness = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderChange = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBoxCalculateFitness = new System.Windows.Forms.GroupBox();
-            this.userControlCharacter1 = new ProjektBIAI.Forms.UserControlCharacter();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBoxEvolutionControls = new System.Windows.Forms.GroupBox();
             this.nudXGenerations = new System.Windows.Forms.NumericUpDown();
@@ -59,6 +58,8 @@
             this.columnHeaderMaxFitness = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderMinFitness = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderAvgFitness = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.userControlCharacter1 = new ProjektBIAI.Forms.UserControlCharacter();
+            this.labelGenerationNumber = new System.Windows.Forms.Label();
             this.groupBoxSettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSizeOfPopulation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStepForFitness)).BeginInit();
@@ -202,6 +203,7 @@
             // 
             // tabPopulation
             // 
+            this.tabPopulation.Controls.Add(this.labelGenerationNumber);
             this.tabPopulation.Controls.Add(this.labelRecalculateFitness);
             this.tabPopulation.Controls.Add(this.buttonRecalculateFitness);
             this.tabPopulation.Controls.Add(this.listViewPopulation);
@@ -245,10 +247,10 @@
             this.columnHeaderChange});
             this.listViewPopulation.FullRowSelect = true;
             this.listViewPopulation.GridLines = true;
-            this.listViewPopulation.Location = new System.Drawing.Point(274, 7);
+            this.listViewPopulation.Location = new System.Drawing.Point(274, 41);
             this.listViewPopulation.MultiSelect = false;
             this.listViewPopulation.Name = "listViewPopulation";
-            this.listViewPopulation.Size = new System.Drawing.Size(482, 491);
+            this.listViewPopulation.Size = new System.Drawing.Size(482, 457);
             this.listViewPopulation.TabIndex = 8;
             this.listViewPopulation.UseCompatibleStateImageBehavior = false;
             this.listViewPopulation.View = System.Windows.Forms.View.Details;
@@ -286,25 +288,6 @@
             this.groupBoxCalculateFitness.TabIndex = 7;
             this.groupBoxCalculateFitness.TabStop = false;
             this.groupBoxCalculateFitness.Text = "Fitness calculation settings";
-            // 
-            // userControlCharacter1
-            // 
-            character2.Fitness = 0;
-            character2.Stats = new byte[] {
-        ((byte)(1)),
-        ((byte)(1)),
-        ((byte)(1)),
-        ((byte)(1)),
-        ((byte)(1)),
-        ((byte)(1)),
-        ((byte)(1)),
-        ((byte)(1)),
-        ((byte)(1))};
-            this.userControlCharacter1.Character = character2;
-            this.userControlCharacter1.Location = new System.Drawing.Point(6, 188);
-            this.userControlCharacter1.Name = "userControlCharacter1";
-            this.userControlCharacter1.Size = new System.Drawing.Size(164, 310);
-            this.userControlCharacter1.TabIndex = 2;
             // 
             // tabPage2
             // 
@@ -381,6 +364,8 @@
             this.listViewGenerations.TabIndex = 9;
             this.listViewGenerations.UseCompatibleStateImageBehavior = false;
             this.listViewGenerations.View = System.Windows.Forms.View.Details;
+            this.listViewGenerations.SelectedIndexChanged += new System.EventHandler(this.listViewGenerations_SelectedIndexChanged);
+            this.listViewGenerations.DoubleClick += new System.EventHandler(this.listViewGenerations_DoubleClick);
             // 
             // columnHeaderGen
             // 
@@ -400,6 +385,34 @@
             // columnHeaderAvgFitness
             // 
             this.columnHeaderAvgFitness.Text = "Average";
+            // 
+            // userControlCharacter1
+            // 
+            character1.Fitness = 0;
+            character1.Stats = new byte[] {
+        ((byte)(1)),
+        ((byte)(1)),
+        ((byte)(1)),
+        ((byte)(1)),
+        ((byte)(1)),
+        ((byte)(1)),
+        ((byte)(1)),
+        ((byte)(1)),
+        ((byte)(1))};
+            this.userControlCharacter1.Character = character1;
+            this.userControlCharacter1.Location = new System.Drawing.Point(6, 188);
+            this.userControlCharacter1.Name = "userControlCharacter1";
+            this.userControlCharacter1.Size = new System.Drawing.Size(164, 310);
+            this.userControlCharacter1.TabIndex = 2;
+            // 
+            // labelGenerationNumber
+            // 
+            this.labelGenerationNumber.AutoSize = true;
+            this.labelGenerationNumber.Location = new System.Drawing.Point(274, 22);
+            this.labelGenerationNumber.Name = "labelGenerationNumber";
+            this.labelGenerationNumber.Size = new System.Drawing.Size(75, 13);
+            this.labelGenerationNumber.TabIndex = 11;
+            this.labelGenerationNumber.Text = "Generation #0";
             // 
             // UserControlWorld
             // 
@@ -457,5 +470,6 @@
         private System.Windows.Forms.ColumnHeader columnHeaderMaxFitness;
         private System.Windows.Forms.ColumnHeader columnHeaderMinFitness;
         private System.Windows.Forms.ColumnHeader columnHeaderAvgFitness;
+        private System.Windows.Forms.Label labelGenerationNumber;
     }
 }

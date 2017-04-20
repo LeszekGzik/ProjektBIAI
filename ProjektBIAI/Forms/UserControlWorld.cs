@@ -27,6 +27,7 @@ namespace ProjektBIAI
                 UpdateListViewPopulation();
                 world.ArchiveCurrentPopulation();
                 UpdateListViewGenerations();
+                listViewGenerations.Items[0].Selected = true;
                 buttonRecalculateFitness.Enabled = true;
                 buttonNextGeneration.Enabled = true;
                 buttonXGenerations.Enabled = true;
@@ -165,6 +166,29 @@ namespace ProjektBIAI
             {
                 world.ArchiveCurrentPopulation();       //TODO: ewolucja
                 UpdateListViewGenerations();
+            }
+        }
+
+        private void listViewGenerations_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listViewGenerations.SelectedItems.Count > 0)
+            { 
+                int num = listViewGenerations.Items.IndexOf(listViewGenerations.SelectedItems[0]);
+                world.Population = world.AllPopulations[num];
+                UpdateListViewPopulation();
+                labelGenerationNumber.Text = ("Generation #" + num);
+            }
+        }
+
+        private void listViewGenerations_DoubleClick(object sender, EventArgs e)
+        {
+            if (listViewGenerations.SelectedItems.Count > 0)
+            {
+                int num = listViewGenerations.Items.IndexOf(listViewGenerations.SelectedItems[0]);
+                world.Population = world.AllPopulations[num];
+                UpdateListViewPopulation();
+                labelGenerationNumber.Text = ("Generation #" + num);
+                tabControl1.SelectedIndex = 0;
             }
         }
     }
