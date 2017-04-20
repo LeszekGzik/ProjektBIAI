@@ -156,7 +156,7 @@ namespace ProjektBIAI
 
         private void buttonNextGeneration_Click(object sender, EventArgs e)
         {
-            world.BreedNewGeneration((int)nudMutationRate.Value, (int)nudMaxMutationValue.Value);
+            world.BreedNewGeneration((int)nudMutationRate.Value, (int)nudMaxMutationValue.Value, radioButtonLinearIndex.Checked);
             world.Population = world.AllPopulations[world.AllPopulations.Count - 1];
             world.CalculateFitness(labelRecalculateFitness);
             UpdateListViewGenerations();
@@ -166,7 +166,7 @@ namespace ProjektBIAI
         {
             for (int i = 0; i<nudXGenerations.Value; i++)
             {
-                world.BreedNewGeneration((int)nudMutationRate.Value, (int)nudMaxMutationValue.Value);
+                world.BreedNewGeneration((int)nudMutationRate.Value, (int)nudMaxMutationValue.Value, radioButtonLinearIndex.Checked);
                 world.Population = world.AllPopulations[world.AllPopulations.Count - 1];
                 world.CalculateFitness(labelRecalculateFitness);
                 UpdateListViewGenerations();
@@ -178,9 +178,7 @@ namespace ProjektBIAI
             if (listViewGenerations.SelectedItems.Count > 0)
             { 
                 int num = listViewGenerations.Items.IndexOf(listViewGenerations.SelectedItems[0]);
-                world.Population = world.AllPopulations[num];
-                UpdateListViewPopulation();
-                labelGenerationNumber.Text = ("Generation #" + num);
+                nudGenerationNumber.Value = (num);
             }
         }
 
@@ -189,11 +187,30 @@ namespace ProjektBIAI
             if (listViewGenerations.SelectedItems.Count > 0)
             {
                 int num = listViewGenerations.Items.IndexOf(listViewGenerations.SelectedItems[0]);
-                world.Population = world.AllPopulations[num];
-                UpdateListViewPopulation();
-                labelGenerationNumber.Text = ("Generation #" + num);
+                nudGenerationNumber.Value = (num);
                 tabControl1.SelectedIndex = 0;
             }
+        }
+
+        private void nudGenerationNumber_ValueChanged(object sender, EventArgs e)
+        {
+            if (nudGenerationNumber.Value < world.AllPopulations.Count)
+            {
+                if (nudGenerationNumber.Value >= 0)
+                {
+                    world.Population = world.AllPopulations[(int)nudGenerationNumber.Value];
+                    UpdateListViewPopulation();
+                }
+                else
+                {
+                    nudGenerationNumber.Value = 0;
+                }
+            }
+            else
+            {
+                nudGenerationNumber.Value = world.AllPopulations.Count - 1;
+            }
+
         }
     }
 }

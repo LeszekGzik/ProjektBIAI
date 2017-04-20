@@ -188,7 +188,7 @@ namespace ProjektBIAI
             calculationStatus.Text += " in " + stopwatch.Elapsed.TotalSeconds + " sec";
         }
 
-        internal void BreedNewGeneration(int mutationRate, int mutationMax)
+        internal void BreedNewGeneration(int mutationRate, int mutationMax, bool linearIndex)
         {
             double randomNum;
             int totalFitness = 0;
@@ -196,22 +196,43 @@ namespace ProjektBIAI
             List<Character> nextGen = new List<Character>();
             List<Character> currentGen = new List<Character>(AllPopulations[AllPopulations.Count - 1]);
 
-            foreach (Character ch in currentGen)
+            //selekcja
+            if (linearIndex)    //selekcja rankingiem liniowym
             {
-                totalFitness += ch.Fitness;
-            }
-
-            //selekcja - ważona ruletka
-            for (int i = 0; i < currentGen.Count; i++)
-            {
-                randomNum = (double)rnd.Next(1, 10000);
-                int index = -1;
-                while (randomNum > 0)
+                List<Character> sortedList = currentGen.OrderBy(o => o.Fitness).ToList();
+                for (int i = 0; i < currentGen.Count; i++)
                 {
-                    index++;
-                    randomNum -= ((double)currentGen[index].Fitness / (double)totalFitness) * 10000;
+                    totalFitness += i+1;
                 }
-                nextGen.Add(new Character(currentGen[index].Stats, 100));
+                for (int i = 0; i < currentGen.Count; i++)
+                {
+                    randomNum = rnd.Next(1, totalFitness);
+                    int index = -1;
+                    while (randomNum > 0)
+                    {
+                        index++;
+                        randomNum -= index + 1;
+                    }
+                    nextGen.Add(new Character(sortedList[index].Stats, 100));
+                }
+            }
+            else                //selekcja kołem ruletki
+            {
+                foreach (Character ch in currentGen)
+                {
+                    totalFitness += ch.Fitness;
+                }
+                for (int i = 0; i < currentGen.Count; i++)
+                {
+                    randomNum = (double)rnd.Next(1, 10000);
+                    int index = -1;
+                    while (randomNum > 0)
+                    {
+                        index++;
+                        randomNum -= ((double)currentGen[index].Fitness / (double)totalFitness) * 10000;
+                    }
+                    nextGen.Add(new Character(currentGen[index].Stats, 100));
+                }
             }
 
             //krzyżowanie

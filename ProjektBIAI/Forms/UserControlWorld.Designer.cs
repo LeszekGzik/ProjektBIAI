@@ -49,8 +49,12 @@
             this.columnHeaderPreviousFitness = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderChange = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBoxCalculateFitness = new System.Windows.Forms.GroupBox();
-            this.userControlCharacter1 = new ProjektBIAI.Forms.UserControlCharacter();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.groupBoxEvolutionSettings = new System.Windows.Forms.GroupBox();
+            this.nudMaxMutationValue = new System.Windows.Forms.NumericUpDown();
+            this.labelMaxMutationValue = new System.Windows.Forms.Label();
+            this.nudMutationRate = new System.Windows.Forms.NumericUpDown();
+            this.labelMutationRate = new System.Windows.Forms.Label();
             this.groupBoxGenerationControls = new System.Windows.Forms.GroupBox();
             this.nudXGenerations = new System.Windows.Forms.NumericUpDown();
             this.buttonXGenerations = new System.Windows.Forms.Button();
@@ -60,11 +64,11 @@
             this.columnHeaderMaxFitness = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderMinFitness = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderAvgFitness = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.groupBoxEvolutionSettings = new System.Windows.Forms.GroupBox();
-            this.labelMutationRate = new System.Windows.Forms.Label();
-            this.nudMutationRate = new System.Windows.Forms.NumericUpDown();
-            this.labelMaxMutationValue = new System.Windows.Forms.Label();
-            this.nudMaxMutationValue = new System.Windows.Forms.NumericUpDown();
+            this.nudGenerationNumber = new System.Windows.Forms.NumericUpDown();
+            this.userControlCharacter1 = new ProjektBIAI.Forms.UserControlCharacter();
+            this.groupBoxSelectionSettings = new System.Windows.Forms.GroupBox();
+            this.radioButtonBiasedRoulette = new System.Windows.Forms.RadioButton();
+            this.radioButtonLinearIndex = new System.Windows.Forms.RadioButton();
             this.groupBoxSettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSizeOfPopulation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStepForFitness)).BeginInit();
@@ -73,11 +77,13 @@
             this.tabPopulation.SuspendLayout();
             this.groupBoxCalculateFitness.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.groupBoxEvolutionSettings.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMaxMutationValue)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMutationRate)).BeginInit();
             this.groupBoxGenerationControls.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudXGenerations)).BeginInit();
-            this.groupBoxEvolutionSettings.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudMutationRate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudMaxMutationValue)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudGenerationNumber)).BeginInit();
+            this.groupBoxSelectionSettings.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBoxSettings
@@ -211,6 +217,7 @@
             // 
             // tabPopulation
             // 
+            this.tabPopulation.Controls.Add(this.nudGenerationNumber);
             this.tabPopulation.Controls.Add(this.labelGenerationNumber);
             this.tabPopulation.Controls.Add(this.labelRecalculateFitness);
             this.tabPopulation.Controls.Add(this.buttonRecalculateFitness);
@@ -231,9 +238,9 @@
             this.labelGenerationNumber.AutoSize = true;
             this.labelGenerationNumber.Location = new System.Drawing.Point(274, 22);
             this.labelGenerationNumber.Name = "labelGenerationNumber";
-            this.labelGenerationNumber.Size = new System.Drawing.Size(75, 13);
+            this.labelGenerationNumber.Size = new System.Drawing.Size(69, 13);
             this.labelGenerationNumber.TabIndex = 11;
-            this.labelGenerationNumber.Text = "Generation #0";
+            this.labelGenerationNumber.Text = "Generation #";
             // 
             // labelRecalculateFitness
             // 
@@ -306,27 +313,9 @@
             this.groupBoxCalculateFitness.TabStop = false;
             this.groupBoxCalculateFitness.Text = "Fitness calculation settings";
             // 
-            // userControlCharacter1
-            // 
-            character1.Fitness = 0;
-            character1.Stats = new byte[] {
-        ((byte)(1)),
-        ((byte)(1)),
-        ((byte)(1)),
-        ((byte)(1)),
-        ((byte)(1)),
-        ((byte)(1)),
-        ((byte)(1)),
-        ((byte)(1)),
-        ((byte)(1))};
-            this.userControlCharacter1.Character = character1;
-            this.userControlCharacter1.Location = new System.Drawing.Point(6, 188);
-            this.userControlCharacter1.Name = "userControlCharacter1";
-            this.userControlCharacter1.Size = new System.Drawing.Size(164, 310);
-            this.userControlCharacter1.TabIndex = 2;
-            // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.groupBoxSelectionSettings);
             this.tabPage2.Controls.Add(this.groupBoxEvolutionSettings);
             this.tabPage2.Controls.Add(this.groupBoxGenerationControls);
             this.tabPage2.Controls.Add(this.listViewGenerations);
@@ -337,6 +326,61 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Generations";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // groupBoxEvolutionSettings
+            // 
+            this.groupBoxEvolutionSettings.Controls.Add(this.nudMaxMutationValue);
+            this.groupBoxEvolutionSettings.Controls.Add(this.labelMaxMutationValue);
+            this.groupBoxEvolutionSettings.Controls.Add(this.nudMutationRate);
+            this.groupBoxEvolutionSettings.Controls.Add(this.labelMutationRate);
+            this.groupBoxEvolutionSettings.Location = new System.Drawing.Point(41, 184);
+            this.groupBoxEvolutionSettings.Name = "groupBoxEvolutionSettings";
+            this.groupBoxEvolutionSettings.Size = new System.Drawing.Size(191, 88);
+            this.groupBoxEvolutionSettings.TabIndex = 11;
+            this.groupBoxEvolutionSettings.TabStop = false;
+            this.groupBoxEvolutionSettings.Text = "Evolution settings";
+            // 
+            // nudMaxMutationValue
+            // 
+            this.nudMaxMutationValue.Location = new System.Drawing.Point(131, 58);
+            this.nudMaxMutationValue.Name = "nudMaxMutationValue";
+            this.nudMaxMutationValue.Size = new System.Drawing.Size(46, 20);
+            this.nudMaxMutationValue.TabIndex = 3;
+            this.nudMaxMutationValue.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // labelMaxMutationValue
+            // 
+            this.labelMaxMutationValue.AutoSize = true;
+            this.labelMaxMutationValue.Location = new System.Drawing.Point(7, 60);
+            this.labelMaxMutationValue.Name = "labelMaxMutationValue";
+            this.labelMaxMutationValue.Size = new System.Drawing.Size(102, 13);
+            this.labelMaxMutationValue.TabIndex = 2;
+            this.labelMaxMutationValue.Text = "Max. mutation value";
+            // 
+            // nudMutationRate
+            // 
+            this.nudMutationRate.Location = new System.Drawing.Point(131, 31);
+            this.nudMutationRate.Name = "nudMutationRate";
+            this.nudMutationRate.Size = new System.Drawing.Size(46, 20);
+            this.nudMutationRate.TabIndex = 1;
+            this.nudMutationRate.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            // 
+            // labelMutationRate
+            // 
+            this.labelMutationRate.AutoSize = true;
+            this.labelMutationRate.Location = new System.Drawing.Point(7, 31);
+            this.labelMutationRate.Name = "labelMutationRate";
+            this.labelMutationRate.Size = new System.Drawing.Size(86, 13);
+            this.labelMutationRate.TabIndex = 0;
+            this.labelMutationRate.Text = "Mutation rate [%]";
             // 
             // groupBoxGenerationControls
             // 
@@ -423,60 +467,65 @@
             // 
             this.columnHeaderAvgFitness.Text = "Average";
             // 
-            // groupBoxEvolutionSettings
+            // nudGenerationNumber
             // 
-            this.groupBoxEvolutionSettings.Controls.Add(this.nudMaxMutationValue);
-            this.groupBoxEvolutionSettings.Controls.Add(this.labelMaxMutationValue);
-            this.groupBoxEvolutionSettings.Controls.Add(this.nudMutationRate);
-            this.groupBoxEvolutionSettings.Controls.Add(this.labelMutationRate);
-            this.groupBoxEvolutionSettings.Location = new System.Drawing.Point(41, 107);
-            this.groupBoxEvolutionSettings.Name = "groupBoxEvolutionSettings";
-            this.groupBoxEvolutionSettings.Size = new System.Drawing.Size(191, 88);
-            this.groupBoxEvolutionSettings.TabIndex = 11;
-            this.groupBoxEvolutionSettings.TabStop = false;
-            this.groupBoxEvolutionSettings.Text = "Evolution settings";
+            this.nudGenerationNumber.Location = new System.Drawing.Point(349, 20);
+            this.nudGenerationNumber.Name = "nudGenerationNumber";
+            this.nudGenerationNumber.Size = new System.Drawing.Size(38, 20);
+            this.nudGenerationNumber.TabIndex = 12;
+            this.nudGenerationNumber.ValueChanged += new System.EventHandler(this.nudGenerationNumber_ValueChanged);
             // 
-            // labelMutationRate
+            // userControlCharacter1
             // 
-            this.labelMutationRate.AutoSize = true;
-            this.labelMutationRate.Location = new System.Drawing.Point(7, 31);
-            this.labelMutationRate.Name = "labelMutationRate";
-            this.labelMutationRate.Size = new System.Drawing.Size(86, 13);
-            this.labelMutationRate.TabIndex = 0;
-            this.labelMutationRate.Text = "Mutation rate [%]";
+            character1.Fitness = 0;
+            character1.Stats = new byte[] {
+        ((byte)(1)),
+        ((byte)(1)),
+        ((byte)(1)),
+        ((byte)(1)),
+        ((byte)(1)),
+        ((byte)(1)),
+        ((byte)(1)),
+        ((byte)(1)),
+        ((byte)(1))};
+            this.userControlCharacter1.Character = character1;
+            this.userControlCharacter1.Location = new System.Drawing.Point(6, 188);
+            this.userControlCharacter1.Name = "userControlCharacter1";
+            this.userControlCharacter1.Size = new System.Drawing.Size(164, 310);
+            this.userControlCharacter1.TabIndex = 2;
             // 
-            // nudMutationRate
+            // groupBoxSelectionSettings
             // 
-            this.nudMutationRate.Location = new System.Drawing.Point(131, 31);
-            this.nudMutationRate.Name = "nudMutationRate";
-            this.nudMutationRate.Size = new System.Drawing.Size(46, 20);
-            this.nudMutationRate.TabIndex = 1;
-            this.nudMutationRate.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
+            this.groupBoxSelectionSettings.Controls.Add(this.radioButtonLinearIndex);
+            this.groupBoxSelectionSettings.Controls.Add(this.radioButtonBiasedRoulette);
+            this.groupBoxSelectionSettings.Location = new System.Drawing.Point(41, 107);
+            this.groupBoxSelectionSettings.Name = "groupBoxSelectionSettings";
+            this.groupBoxSelectionSettings.Size = new System.Drawing.Size(191, 71);
+            this.groupBoxSelectionSettings.TabIndex = 12;
+            this.groupBoxSelectionSettings.TabStop = false;
+            this.groupBoxSelectionSettings.Text = "Selection method";
             // 
-            // labelMaxMutationValue
+            // radioButtonBiasedRoulette
             // 
-            this.labelMaxMutationValue.AutoSize = true;
-            this.labelMaxMutationValue.Location = new System.Drawing.Point(7, 60);
-            this.labelMaxMutationValue.Name = "labelMaxMutationValue";
-            this.labelMaxMutationValue.Size = new System.Drawing.Size(102, 13);
-            this.labelMaxMutationValue.TabIndex = 2;
-            this.labelMaxMutationValue.Text = "Max. mutation value";
+            this.radioButtonBiasedRoulette.AutoSize = true;
+            this.radioButtonBiasedRoulette.Checked = true;
+            this.radioButtonBiasedRoulette.Location = new System.Drawing.Point(10, 24);
+            this.radioButtonBiasedRoulette.Name = "radioButtonBiasedRoulette";
+            this.radioButtonBiasedRoulette.Size = new System.Drawing.Size(95, 17);
+            this.radioButtonBiasedRoulette.TabIndex = 0;
+            this.radioButtonBiasedRoulette.TabStop = true;
+            this.radioButtonBiasedRoulette.Text = "Biased roulette";
+            this.radioButtonBiasedRoulette.UseVisualStyleBackColor = true;
             // 
-            // nudMaxMutationValue
+            // radioButtonLinearIndex
             // 
-            this.nudMaxMutationValue.Location = new System.Drawing.Point(131, 58);
-            this.nudMaxMutationValue.Name = "nudMaxMutationValue";
-            this.nudMaxMutationValue.Size = new System.Drawing.Size(46, 20);
-            this.nudMaxMutationValue.TabIndex = 3;
-            this.nudMaxMutationValue.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
+            this.radioButtonLinearIndex.AutoSize = true;
+            this.radioButtonLinearIndex.Location = new System.Drawing.Point(10, 47);
+            this.radioButtonLinearIndex.Name = "radioButtonLinearIndex";
+            this.radioButtonLinearIndex.Size = new System.Drawing.Size(82, 17);
+            this.radioButtonLinearIndex.TabIndex = 1;
+            this.radioButtonLinearIndex.Text = "Linear index";
+            this.radioButtonLinearIndex.UseVisualStyleBackColor = true;
             // 
             // UserControlWorld
             // 
@@ -496,12 +545,15 @@
             this.groupBoxCalculateFitness.ResumeLayout(false);
             this.groupBoxCalculateFitness.PerformLayout();
             this.tabPage2.ResumeLayout(false);
-            this.groupBoxGenerationControls.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.nudXGenerations)).EndInit();
             this.groupBoxEvolutionSettings.ResumeLayout(false);
             this.groupBoxEvolutionSettings.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudMutationRate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMaxMutationValue)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMutationRate)).EndInit();
+            this.groupBoxGenerationControls.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.nudXGenerations)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudGenerationNumber)).EndInit();
+            this.groupBoxSelectionSettings.ResumeLayout(false);
+            this.groupBoxSelectionSettings.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -544,5 +596,9 @@
         private System.Windows.Forms.Label labelMaxMutationValue;
         private System.Windows.Forms.NumericUpDown nudMutationRate;
         private System.Windows.Forms.Label labelMutationRate;
+        private System.Windows.Forms.NumericUpDown nudGenerationNumber;
+        private System.Windows.Forms.GroupBox groupBoxSelectionSettings;
+        private System.Windows.Forms.RadioButton radioButtonLinearIndex;
+        private System.Windows.Forms.RadioButton radioButtonBiasedRoulette;
     }
 }
