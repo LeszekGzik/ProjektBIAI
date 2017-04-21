@@ -49,7 +49,9 @@
             this.columnHeaderFitness = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderPreviousFitness = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderChange = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderGenotype = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBoxCalculateFitness = new System.Windows.Forms.GroupBox();
+            this.userControlCharacter1 = new ProjektBIAI.Forms.UserControlCharacter();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBoxMutationMethod = new System.Windows.Forms.GroupBox();
             this.nudPercentMutation = new System.Windows.Forms.NumericUpDown();
@@ -74,8 +76,7 @@
             this.columnHeaderMaxFitness = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderMinFitness = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderAvgFitness = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeaderGenotype = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.userControlCharacter1 = new ProjektBIAI.Forms.UserControlCharacter();
+            this.labelCreatingGenerationStatus = new System.Windows.Forms.Label();
             this.groupBoxSettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSizeOfPopulation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStepForFitness)).BeginInit();
@@ -318,6 +319,11 @@
             // 
             this.columnHeaderChange.Text = "Change";
             // 
+            // columnHeaderGenotype
+            // 
+            this.columnHeaderGenotype.Text = "Genotype";
+            this.columnHeaderGenotype.Width = 163;
+            // 
             // groupBoxCalculateFitness
             // 
             this.groupBoxCalculateFitness.Controls.Add(this.labelNumberOfBattlesForCalculateFitness);
@@ -330,6 +336,25 @@
             this.groupBoxCalculateFitness.TabIndex = 7;
             this.groupBoxCalculateFitness.TabStop = false;
             this.groupBoxCalculateFitness.Text = "Fitness calculation settings";
+            // 
+            // userControlCharacter1
+            // 
+            character1.Fitness = 0;
+            character1.Stats = new byte[] {
+        ((byte)(1)),
+        ((byte)(1)),
+        ((byte)(1)),
+        ((byte)(1)),
+        ((byte)(1)),
+        ((byte)(1)),
+        ((byte)(1)),
+        ((byte)(1)),
+        ((byte)(1))};
+            this.userControlCharacter1.Character = character1;
+            this.userControlCharacter1.Location = new System.Drawing.Point(6, 188);
+            this.userControlCharacter1.Name = "userControlCharacter1";
+            this.userControlCharacter1.Size = new System.Drawing.Size(164, 310);
+            this.userControlCharacter1.TabIndex = 2;
             // 
             // tabPage2
             // 
@@ -354,7 +379,7 @@
             this.groupBoxMutationMethod.Controls.Add(this.radioButtonPercentMutation);
             this.groupBoxMutationMethod.Controls.Add(this.radioButtonConstantMutation);
             this.groupBoxMutationMethod.Controls.Add(this.radioButtonRandomMutation);
-            this.groupBoxMutationMethod.Location = new System.Drawing.Point(6, 272);
+            this.groupBoxMutationMethod.Location = new System.Drawing.Point(6, 294);
             this.groupBoxMutationMethod.Name = "groupBoxMutationMethod";
             this.groupBoxMutationMethod.Size = new System.Drawing.Size(248, 102);
             this.groupBoxMutationMethod.TabIndex = 2;
@@ -436,7 +461,7 @@
             // 
             this.groupBoxSelectionSettings.Controls.Add(this.radioButtonLinearIndex);
             this.groupBoxSelectionSettings.Controls.Add(this.radioButtonBiasedRoulette);
-            this.groupBoxSelectionSettings.Location = new System.Drawing.Point(6, 107);
+            this.groupBoxSelectionSettings.Location = new System.Drawing.Point(6, 129);
             this.groupBoxSelectionSettings.Name = "groupBoxSelectionSettings";
             this.groupBoxSelectionSettings.Size = new System.Drawing.Size(248, 71);
             this.groupBoxSelectionSettings.TabIndex = 12;
@@ -470,7 +495,7 @@
             this.groupBoxMutationSettings.Controls.Add(this.checkBoxDisableMutation);
             this.groupBoxMutationSettings.Controls.Add(this.nudMutationRate);
             this.groupBoxMutationSettings.Controls.Add(this.labelMutationRate);
-            this.groupBoxMutationSettings.Location = new System.Drawing.Point(6, 184);
+            this.groupBoxMutationSettings.Location = new System.Drawing.Point(6, 206);
             this.groupBoxMutationSettings.Name = "groupBoxMutationSettings";
             this.groupBoxMutationSettings.Size = new System.Drawing.Size(248, 82);
             this.groupBoxMutationSettings.TabIndex = 11;
@@ -511,12 +536,13 @@
             // 
             // groupBoxGenerationControls
             // 
+            this.groupBoxGenerationControls.Controls.Add(this.labelCreatingGenerationStatus);
             this.groupBoxGenerationControls.Controls.Add(this.nudXGenerations);
             this.groupBoxGenerationControls.Controls.Add(this.buttonXGenerations);
             this.groupBoxGenerationControls.Controls.Add(this.buttonNextGeneration);
             this.groupBoxGenerationControls.Location = new System.Drawing.Point(6, 20);
             this.groupBoxGenerationControls.Name = "groupBoxGenerationControls";
-            this.groupBoxGenerationControls.Size = new System.Drawing.Size(248, 81);
+            this.groupBoxGenerationControls.Size = new System.Drawing.Size(248, 103);
             this.groupBoxGenerationControls.TabIndex = 10;
             this.groupBoxGenerationControls.TabStop = false;
             this.groupBoxGenerationControls.Text = "Generation Control";
@@ -594,29 +620,13 @@
             // 
             this.columnHeaderAvgFitness.Text = "Average";
             // 
-            // columnHeaderGenotype
+            // labelCreatingGenerationStatus
             // 
-            this.columnHeaderGenotype.Text = "Genotype";
-            this.columnHeaderGenotype.Width = 163;
-            // 
-            // userControlCharacter1
-            // 
-            character1.Fitness = 0;
-            character1.Stats = new byte[] {
-        ((byte)(1)),
-        ((byte)(1)),
-        ((byte)(1)),
-        ((byte)(1)),
-        ((byte)(1)),
-        ((byte)(1)),
-        ((byte)(1)),
-        ((byte)(1)),
-        ((byte)(1))};
-            this.userControlCharacter1.Character = character1;
-            this.userControlCharacter1.Location = new System.Drawing.Point(6, 188);
-            this.userControlCharacter1.Name = "userControlCharacter1";
-            this.userControlCharacter1.Size = new System.Drawing.Size(164, 310);
-            this.userControlCharacter1.TabIndex = 2;
+            this.labelCreatingGenerationStatus.AutoSize = true;
+            this.labelCreatingGenerationStatus.Location = new System.Drawing.Point(10, 78);
+            this.labelCreatingGenerationStatus.Name = "labelCreatingGenerationStatus";
+            this.labelCreatingGenerationStatus.Size = new System.Drawing.Size(0, 13);
+            this.labelCreatingGenerationStatus.TabIndex = 3;
             // 
             // UserControlWorld
             // 
@@ -648,6 +658,7 @@
             this.groupBoxMutationSettings.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudMutationRate)).EndInit();
             this.groupBoxGenerationControls.ResumeLayout(false);
+            this.groupBoxGenerationControls.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudXGenerations)).EndInit();
             this.ResumeLayout(false);
 
@@ -702,5 +713,6 @@
         private System.Windows.Forms.NumericUpDown nudConstantMutation;
         private System.Windows.Forms.NumericUpDown nudRandomMutation;
         private System.Windows.Forms.ColumnHeader columnHeaderGenotype;
+        private System.Windows.Forms.Label labelCreatingGenerationStatus;
     }
 }

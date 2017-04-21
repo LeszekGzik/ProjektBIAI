@@ -167,31 +167,7 @@ namespace ProjektBIAI
             window.Show();
         }
 
-        private void buttonNextGeneration_Click(object sender, EventArgs e)
-        {
-            int mutationValue;
-            switch(currentMutationType)
-            {
-                case MutationType.RANDOM:
-                    mutationValue = (int)nudRandomMutation.Value;
-                    break;
-                case MutationType.CONSTANT:
-                    mutationValue = (int)nudConstantMutation.Value;
-                    break;
-                case MutationType.PERCENT:
-                    mutationValue = (int)nudPercentMutation.Value;
-                    break;
-                default:
-                    mutationValue = 0;
-                    break;
-            }
-            world.BreedNewGeneration((int)nudMutationRate.Value, mutationValue, radioButtonLinearIndex.Checked, currentMutationType);
-            world.Population = world.AllPopulations[world.AllPopulations.Count - 1];
-            world.CalculateFitness(labelRecalculateFitness);
-            UpdateListViewGenerations();
-        }
-
-        private void buttonXGenerations_Click(object sender, EventArgs e)
+        private void nextGeneration (int numberOfGenerations)
         {
             int mutationValue;
             switch (currentMutationType)
@@ -209,13 +185,22 @@ namespace ProjektBIAI
                     mutationValue = 0;
                     break;
             }
-            for (int i = 0; i<nudXGenerations.Value; i++)
+            for (int i = 0; i < nudXGenerations.Value; i++)
             {
-                world.BreedNewGeneration((int)nudMutationRate.Value, mutationValue, radioButtonLinearIndex.Checked, currentMutationType);
+                world.BreedNewGeneration((int)nudMutationRate.Value, mutationValue, radioButtonLinearIndex.Checked, currentMutationType, labelCreatingGenerationStatus);
                 world.Population = world.AllPopulations[world.AllPopulations.Count - 1];
-                world.CalculateFitness(labelRecalculateFitness);
+                world.CalculateFitness(labelCreatingGenerationStatus);
                 UpdateListViewGenerations();
             }
+        }
+        private void buttonNextGeneration_Click(object sender, EventArgs e)
+        {
+            nextGeneration(1);
+        }
+
+        private void buttonXGenerations_Click(object sender, EventArgs e)
+        {
+            nextGeneration((int)nudXGenerations.Value);
         }
 
         private void listViewGenerations_SelectedIndexChanged(object sender, EventArgs e)

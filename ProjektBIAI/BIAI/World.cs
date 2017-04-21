@@ -190,17 +190,21 @@ namespace ProjektBIAI
             calculationStatus.Text += " in " + stopwatch.Elapsed.TotalSeconds + " sec";
         }
 
-        internal void BreedNewGeneration(int mutationRate, int mutationValue, bool linearIndex, MutationType mutationType)
+        internal void BreedNewGeneration(int mutationRate, int mutationValue, bool linearIndex, MutationType mutationType, Label status)
         {
+            status.Text = "INIT";
+            status.Update();
             int randomNum;
             int totalFitness = 0;
             Random rnd = new Random();
             List<Character> nextGen = new List<Character>();
             List<Character> currentGen = new List<Character>(AllPopulations[AllPopulations.Count - 1]);
-
+            
             //selekcja
             if (linearIndex)    //selekcja rankingiem liniowym
             {
+                status.Text = "LINEAR SELECTION";
+                status.Update();
                 List<Character> sortedList = currentGen.OrderBy(o => o.Fitness).ToList();
                 for (int i = 0; i < currentGen.Count; i++)
                 {
@@ -220,6 +224,8 @@ namespace ProjektBIAI
             }
             else                //selekcja kołem ruletki
             {
+                status.Text = "BIASED SELECTION";
+                status.Update();
                 foreach (Character ch in currentGen)
                 {
                     totalFitness += ch.Fitness;
@@ -240,6 +246,8 @@ namespace ProjektBIAI
             //krzyżowanie
             for (int i = 0; i < nextGen.Count; i+=2)
             {
+                status.Text = "CROSSING " + (i / 2).ToString() + '/' + (nextGen.Count / 2).ToString();
+                status.Update();
                 nextGen[i].swapGenesWith(nextGen[i + 1], rnd);
             }
 
@@ -249,6 +257,8 @@ namespace ProjektBIAI
                 case MutationType.RANDOM:
                     for (int i = 0; i < nextGen.Count; i++)
                     {
+                        status.Text = "RANDOM MUTATION " + i.ToString() + '/' + nextGen.Count.ToString();
+                        status.Update();
                         if (rnd.Next(1, 100) < mutationRate)
                         {
                             nextGen[i].Stats[(byte)rnd.Next(0, 9)] += (byte)(rnd.Next(0, 2 * mutationValue + 1) - mutationValue);
@@ -258,6 +268,8 @@ namespace ProjektBIAI
                 case MutationType.CONSTANT:
                     for (int i = 0; i < nextGen.Count; i++)
                     {
+                        status.Text = "CONSTANT MUTATION " + i.ToString() + '/' + nextGen.Count.ToString();
+                        status.Update();
                         if (rnd.Next(1, 100) < mutationRate)
                         {
                             if (rnd.Next(1, 3) == 1)    //losowanie - dodać czy odjąć?
@@ -270,6 +282,8 @@ namespace ProjektBIAI
                 case MutationType.PERCENT:
                     for (int i = 0; i < nextGen.Count; i++)
                     {
+                        status.Text = "PERCENT MUTATION " + i.ToString() + '/' + nextGen.Count.ToString();
+                        status.Update();
                         if (rnd.Next(1, 100) < mutationRate)
                         {
                             byte chosenStat = (byte)rnd.Next(0, 9);
@@ -284,6 +298,8 @@ namespace ProjektBIAI
                     break;
             }
             AllPopulations.Add(nextGen);
+            status.Text = "Breeding finished!";
+            status.Update();
         }
     }
 }
