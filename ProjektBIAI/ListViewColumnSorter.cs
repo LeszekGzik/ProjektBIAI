@@ -51,8 +51,16 @@ public class ListViewColumnSorter : IComparer
         listviewY = (ListViewItem)y;
 
         // Compare the two items
-        //compareResult = ObjectCompare.Compare(listviewX.SubItems[ColumnToSort].Text, listviewY.SubItems[ColumnToSort].Text);
-        compareResult = int.Parse(listviewX.SubItems[ColumnToSort].Text) - int.Parse(listviewY.SubItems[ColumnToSort].Text);
+        if (ColumnToSort != 4)
+        {
+            compareResult = int.Parse(listviewX.SubItems[ColumnToSort].Text) - int.Parse(listviewY.SubItems[ColumnToSort].Text);
+        }
+        else
+        {
+            compareResult = ObjectCompare.Compare(listviewX.SubItems[ColumnToSort].Text, listviewY.SubItems[ColumnToSort].Text);
+        }
+  
+            
 
         // Calculate correct return value based on object comparison
         if (OrderOfSort == SortOrder.Ascending)

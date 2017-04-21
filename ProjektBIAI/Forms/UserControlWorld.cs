@@ -8,7 +8,7 @@ namespace ProjektBIAI
     public partial class UserControlWorld : UserControl
     {
         private ListViewColumnSorter lvwColumnSorter;
-        public MutationType currentMutationType = MutationType.random;
+        public MutationType currentMutationType = MutationType.RANDOM;
         World world;
         int[] previousFitness;
         public UserControlWorld()
@@ -90,6 +90,7 @@ namespace ProjektBIAI
                 lvi.SubItems.Add(calculatePopulationMinFitness(world.AllPopulations[i]).ToString());
                 lvi.SubItems.Add(calculatePopulationAvgFitness(world.AllPopulations[i]).ToString());
                 listViewGenerations.Items.Add(lvi);
+                listViewGenerations.Update();
             }
         }
 
@@ -103,6 +104,9 @@ namespace ProjektBIAI
             world.NumberOfBattlesForCalculateFitness = (int)nudNumberOfBattlesForCalculateFitness.Value;
         }
 
+        /// <summary>
+        /// Aktualizacja okna z populacją
+        /// </summary>
         private void UpdateListViewPopulation()
         {
             listViewPopulation.Items.Clear();
@@ -112,6 +116,14 @@ namespace ProjektBIAI
                 lvi.SubItems.Add(world.Population[i].Fitness.ToString());
                 lvi.SubItems.Add(previousFitness[i].ToString());
                 lvi.SubItems.Add(Math.Abs(world.Population[i].Fitness - previousFitness[i]).ToString());
+                string genotype = String.Empty;
+                byte[] stats = world.Population[i].Stats;
+                foreach (byte st in stats)
+                {
+                    genotype += st.ToString("X2");
+                    genotype += ' ';
+                }
+                lvi.SubItems.Add(genotype);
                 listViewPopulation.Items.Add(lvi);
             }
         }
@@ -160,13 +172,13 @@ namespace ProjektBIAI
             int mutationValue;
             switch(currentMutationType)
             {
-                case MutationType.random:
+                case MutationType.RANDOM:
                     mutationValue = (int)nudRandomMutation.Value;
                     break;
-                case MutationType.constant:
+                case MutationType.CONSTANT:
                     mutationValue = (int)nudConstantMutation.Value;
                     break;
-                case MutationType.percent:
+                case MutationType.PERCENT:
                     mutationValue = (int)nudPercentMutation.Value;
                     break;
                 default:
@@ -184,13 +196,13 @@ namespace ProjektBIAI
             int mutationValue;
             switch (currentMutationType)
             {
-                case MutationType.random:
+                case MutationType.RANDOM:
                     mutationValue = (int)nudRandomMutation.Value;
                     break;
-                case MutationType.constant:
+                case MutationType.CONSTANT:
                     mutationValue = (int)nudConstantMutation.Value;
                     break;
-                case MutationType.percent:
+                case MutationType.PERCENT:
                     mutationValue = (int)nudPercentMutation.Value;
                     break;
                 default:
@@ -278,13 +290,13 @@ namespace ProjektBIAI
         private void UpdateCurrentMutationType()
         {
             if (checkBoxDisableMutation.Checked)
-                currentMutationType = MutationType.none;
+                currentMutationType = MutationType.NONE;
             else if (radioButtonConstantMutation.Checked)
-                currentMutationType = MutationType.constant;
+                currentMutationType = MutationType.CONSTANT;
             else if (radioButtonPercentMutation.Checked)
-                currentMutationType = MutationType.percent;
+                currentMutationType = MutationType.PERCENT;
             else if (radioButtonRandomMutation.Checked)
-                currentMutationType = MutationType.random;
+                currentMutationType = MutationType.RANDOM;
         }
 
         private void radioButtonRandomMutation_CheckedChanged(object sender, EventArgs e)

@@ -54,7 +54,7 @@
     <Compile Include="Forms\FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\MutationType.cs" />
+    <Compile Include="Enums.cs" />
     <Compile Include="Forms\UserControlCharacter.cs">
       <SubType>UserControl</SubType>
     </Compile>

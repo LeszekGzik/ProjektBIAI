@@ -2,15 +2,11 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ProjektBIAI.Forms;
 
 namespace ProjektBIAI
 {
-    
-
     /// <summary>
     /// Klasa przechowująca całą populację
     /// </summary>
@@ -57,6 +53,9 @@ namespace ProjektBIAI
             }
         }
 
+        /// <summary>
+        /// Zapisuje aktualną populację do listy wszystkich populacji
+        /// </summary>
         internal void ArchiveCurrentPopulation()
         {
             List<Character> lst = new List<Character>(population);
@@ -247,7 +246,7 @@ namespace ProjektBIAI
             //mutacje
             switch (mutationType)
             {
-                case MutationType.random:
+                case MutationType.RANDOM:
                     for (int i = 0; i < nextGen.Count; i++)
                     {
                         if (rnd.Next(1, 100) < mutationRate)
@@ -256,7 +255,7 @@ namespace ProjektBIAI
                         }
                     }
                     break;
-                case MutationType.constant:
+                case MutationType.CONSTANT:
                     for (int i = 0; i < nextGen.Count; i++)
                     {
                         if (rnd.Next(1, 100) < mutationRate)
@@ -268,7 +267,7 @@ namespace ProjektBIAI
                         }
                     }
                     break;
-                case MutationType.percent:
+                case MutationType.PERCENT:
                     for (int i = 0; i < nextGen.Count; i++)
                     {
                         if (rnd.Next(1, 100) < mutationRate)

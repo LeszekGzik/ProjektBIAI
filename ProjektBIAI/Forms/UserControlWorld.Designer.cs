@@ -74,6 +74,7 @@
             this.columnHeaderMaxFitness = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderMinFitness = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderAvgFitness = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderGenotype = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.userControlCharacter1 = new ProjektBIAI.Forms.UserControlCharacter();
             this.groupBoxSettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSizeOfPopulation)).BeginInit();
@@ -285,7 +286,8 @@
             this.columnHeaderID,
             this.columnHeaderFitness,
             this.columnHeaderPreviousFitness,
-            this.columnHeaderChange});
+            this.columnHeaderChange,
+            this.columnHeaderGenotype});
             this.listViewPopulation.FullRowSelect = true;
             this.listViewPopulation.GridLines = true;
             this.listViewPopulation.Location = new System.Drawing.Point(274, 41);
@@ -301,17 +303,16 @@
             // columnHeaderID
             // 
             this.columnHeaderID.Text = "ID";
-            this.columnHeaderID.Width = 100;
             // 
             // columnHeaderFitness
             // 
             this.columnHeaderFitness.Text = "Fitness";
-            this.columnHeaderFitness.Width = 128;
+            this.columnHeaderFitness.Width = 90;
             // 
             // columnHeaderPreviousFitness
             // 
             this.columnHeaderPreviousFitness.Text = "Previous fitness";
-            this.columnHeaderPreviousFitness.Width = 100;
+            this.columnHeaderPreviousFitness.Width = 90;
             // 
             // columnHeaderChange
             // 
@@ -593,6 +594,11 @@
             // 
             this.columnHeaderAvgFitness.Text = "Average";
             // 
+            // columnHeaderGenotype
+            // 
+            this.columnHeaderGenotype.Text = "Genotype";
+            this.columnHeaderGenotype.Width = 163;
+            // 
             // userControlCharacter1
             // 
             character1.Fitness = 0;
@@ -695,5 +701,6 @@
         private System.Windows.Forms.NumericUpDown nudPercentMutation;
         private System.Windows.Forms.NumericUpDown nudConstantMutation;
         private System.Windows.Forms.NumericUpDown nudRandomMutation;
+        private System.Windows.Forms.ColumnHeader columnHeaderGenotype;
     }
 }
