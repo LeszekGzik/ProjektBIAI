@@ -8,6 +8,7 @@ namespace ProjektBIAI
     public partial class UserControlWorld : UserControl
     {
         private ListViewColumnSorter lvwColumnSorter;
+        public MutationType currentMutationType = MutationType.random;
         World world;
         int[] previousFitness;
         public UserControlWorld()
@@ -156,7 +157,23 @@ namespace ProjektBIAI
 
         private void buttonNextGeneration_Click(object sender, EventArgs e)
         {
-            world.BreedNewGeneration((int)nudMutationRate.Value, (int)nudMaxMutationValue.Value, radioButtonLinearIndex.Checked);
+            int mutationValue;
+            switch(currentMutationType)
+            {
+                case MutationType.random:
+                    mutationValue = (int)nudRandomMutation.Value;
+                    break;
+                case MutationType.constant:
+                    mutationValue = (int)nudConstantMutation.Value;
+                    break;
+                case MutationType.percent:
+                    mutationValue = (int)nudPercentMutation.Value;
+                    break;
+                default:
+                    mutationValue = 0;
+                    break;
+            }
+            world.BreedNewGeneration((int)nudMutationRate.Value, mutationValue, radioButtonLinearIndex.Checked, currentMutationType);
             world.Population = world.AllPopulations[world.AllPopulations.Count - 1];
             world.CalculateFitness(labelRecalculateFitness);
             UpdateListViewGenerations();
@@ -164,9 +181,25 @@ namespace ProjektBIAI
 
         private void buttonXGenerations_Click(object sender, EventArgs e)
         {
+            int mutationValue;
+            switch (currentMutationType)
+            {
+                case MutationType.random:
+                    mutationValue = (int)nudRandomMutation.Value;
+                    break;
+                case MutationType.constant:
+                    mutationValue = (int)nudConstantMutation.Value;
+                    break;
+                case MutationType.percent:
+                    mutationValue = (int)nudPercentMutation.Value;
+                    break;
+                default:
+                    mutationValue = 0;
+                    break;
+            }
             for (int i = 0; i<nudXGenerations.Value; i++)
             {
-                world.BreedNewGeneration((int)nudMutationRate.Value, (int)nudMaxMutationValue.Value, radioButtonLinearIndex.Checked);
+                world.BreedNewGeneration((int)nudMutationRate.Value, mutationValue, radioButtonLinearIndex.Checked, currentMutationType);
                 world.Population = world.AllPopulations[world.AllPopulations.Count - 1];
                 world.CalculateFitness(labelRecalculateFitness);
                 UpdateListViewGenerations();
@@ -211,6 +244,62 @@ namespace ProjektBIAI
                 nudGenerationNumber.Value = world.AllPopulations.Count - 1;
             }
 
+        }
+
+        private void checkBoxDisableMutation_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxDisableMutation.Checked)
+            {
+                nudConstantMutation.Enabled = false;
+                nudMutationRate.Enabled = false;
+                nudPercentMutation.Enabled = false;
+                nudRandomMutation.Enabled = false;
+                radioButtonConstantMutation.Enabled = false;
+                radioButtonPercentMutation.Enabled = false;
+                radioButtonRandomMutation.Enabled = false;
+                UpdateCurrentMutationType();
+            }
+            else
+            {
+                nudConstantMutation.Enabled = true;
+                nudMutationRate.Enabled = true;
+                nudPercentMutation.Enabled = true;
+                nudRandomMutation.Enabled = true;
+                radioButtonConstantMutation.Enabled = true;
+                radioButtonPercentMutation.Enabled = true;
+                radioButtonRandomMutation.Enabled = true;
+                UpdateCurrentMutationType();
+            }
+        }
+
+        /// <summary>
+        /// metoda, która ustawia currentMutationType w zależności od stanu kontrolek
+        /// </summary>
+        private void UpdateCurrentMutationType()
+        {
+            if (checkBoxDisableMutation.Checked)
+                currentMutationType = MutationType.none;
+            else if (radioButtonConstantMutation.Checked)
+                currentMutationType = MutationType.constant;
+            else if (radioButtonPercentMutation.Checked)
+                currentMutationType = MutationType.percent;
+            else if (radioButtonRandomMutation.Checked)
+                currentMutationType = MutationType.random;
+        }
+
+        private void radioButtonRandomMutation_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateCurrentMutationType();
+        }
+
+        private void radioButtonConstantMutation_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateCurrentMutationType();
+        }
+
+        private void radioButtonPercentMutation_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateCurrentMutationType();
         }
     }
 }

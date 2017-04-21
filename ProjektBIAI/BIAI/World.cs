@@ -5,14 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ProjektBIAI.Forms;
 
 namespace ProjektBIAI
 {
+    
+
     /// <summary>
     /// Klasa przechowująca całą populację
     /// </summary>
     class World
-    {
+    { 
         /// <summary>
         /// najświeższa, aktualnie żyjąca populacja
         /// </summary>
@@ -188,9 +191,9 @@ namespace ProjektBIAI
             calculationStatus.Text += " in " + stopwatch.Elapsed.TotalSeconds + " sec";
         }
 
-        internal void BreedNewGeneration(int mutationRate, int mutationMax, bool linearIndex)
+        internal void BreedNewGeneration(int mutationRate, int mutationValue, bool linearIndex, MutationType mutationType)
         {
-            double randomNum;
+            int randomNum;
             int totalFitness = 0;
             Random rnd = new Random();
             List<Character> nextGen = new List<Character>();
@@ -224,12 +227,12 @@ namespace ProjektBIAI
                 }
                 for (int i = 0; i < currentGen.Count; i++)
                 {
-                    randomNum = (double)rnd.Next(1, 10000);
+                    randomNum = rnd.Next(1, totalFitness);
                     int index = -1;
                     while (randomNum > 0)
                     {
                         index++;
-                        randomNum -= ((double)currentGen[index].Fitness / (double)totalFitness) * 10000;
+                        randomNum -= currentGen[index].Fitness;
                     }
                     nextGen.Add(new Character(currentGen[index].Stats, 100));
                 }
@@ -242,12 +245,44 @@ namespace ProjektBIAI
             }
 
             //mutacje
-            for (int i = 0; i < nextGen.Count; i++)
+            switch (mutationType)
             {
-                if (rnd.Next(1,100) < mutationRate)
-                {
-                    nextGen[i].Stats[(byte)rnd.Next(0, 9)] += (byte)(rnd.Next(0, 2 * mutationMax + 1) - mutationMax);
-                }
+                case MutationType.random:
+                    for (int i = 0; i < nextGen.Count; i++)
+                    {
+                        if (rnd.Next(1, 100) < mutationRate)
+                        {
+                            nextGen[i].Stats[(byte)rnd.Next(0, 9)] += (byte)(rnd.Next(0, 2 * mutationValue + 1) - mutationValue);
+                        }
+                    }
+                    break;
+                case MutationType.constant:
+                    for (int i = 0; i < nextGen.Count; i++)
+                    {
+                        if (rnd.Next(1, 100) < mutationRate)
+                        {
+                            if (rnd.Next(1, 3) == 1)    //losowanie - dodać czy odjąć?
+                                nextGen[i].Stats[(byte)rnd.Next(0, 9)] += (byte)mutationValue;
+                            else
+                                nextGen[i].Stats[(byte)rnd.Next(0, 9)] -= (byte)mutationValue;
+                        }
+                    }
+                    break;
+                case MutationType.percent:
+                    for (int i = 0; i < nextGen.Count; i++)
+                    {
+                        if (rnd.Next(1, 100) < mutationRate)
+                        {
+                            byte chosenStat = (byte)rnd.Next(0, 9);
+                            if (rnd.Next(1, 3) == 1)    //losowanie - dodać czy odjąć?
+                                nextGen[i].Stats[chosenStat] += (byte)((int)nextGen[i].Stats[chosenStat] * mutationValue / 100);
+                            else
+                                nextGen[i].Stats[chosenStat] -= (byte)((int)nextGen[i].Stats[chosenStat] * mutationValue / 100);
+                        }
+                    }
+                    break;
+                default:
+                    break;
             }
             AllPopulations.Add(nextGen);
         }
