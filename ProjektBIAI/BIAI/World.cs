@@ -15,7 +15,7 @@ namespace ProjektBIAI
         /// <summary>
         /// najświeższa, aktualnie żyjąca populacja
         /// </summary>
-        List<Character> population;
+        List<Character> currentPopulation;
 
         /// <summary>
         /// lista wszystkich populacji
@@ -58,7 +58,7 @@ namespace ProjektBIAI
         /// </summary>
         internal void ArchiveCurrentPopulation()
         {
-            List<Character> lst = new List<Character>(population);
+            List<Character> lst = new List<Character>(currentPopulation);
             AllPopulations.Add(lst);
         }
 
@@ -85,12 +85,12 @@ namespace ProjektBIAI
         {
             get
             {
-                return population;
+                return currentPopulation;
             }
 
             set
             {
-                population = value;
+                currentPopulation = value;
             }
         }
 
@@ -113,9 +113,9 @@ namespace ProjektBIAI
         /// <param name="previousFitness">Tablica do której zapisane zostaną wyniki</param>
         internal void UpdatePreviousFitness(int[] previousFitness)
         {
-            for (int i=0; i<population.Count; i++)
+            for (int i=0; i<currentPopulation.Count; i++)
             {
-                previousFitness[i] = population[i].Fitness;
+                previousFitness[i] = currentPopulation[i].Fitness;
             }
         }
 
@@ -123,12 +123,12 @@ namespace ProjektBIAI
         {
 
             Random rnd = new Random();
-            population = new List<Character>();
+            currentPopulation = new List<Character>();
             allPopulations = new List<List<Character>>();
             statsOfOpponentsForFitness = new byte[9];
             for (int i = 0; i < sizeOfPopulation; i++)
             {
-                population.Add(new Character(rnd));
+                currentPopulation.Add(new Character(rnd));
             }
             numberOfBattlesForCalculateFitness = battlesForFitness;
             stepOfIncrementOpponentsForFitness = stepForFitness;
@@ -144,7 +144,7 @@ namespace ProjektBIAI
             Arena arena;
             int characterIndex = 0;
             Stopwatch stopwatch = new Stopwatch();
-            foreach (Character ch in population)
+            foreach (Character ch in currentPopulation)
             {
                 stopwatch.Start();
                 bool end = false;
@@ -183,34 +183,92 @@ namespace ProjektBIAI
                     }
                 }
                 characterIndex++;
-                calculationStatus.Text = "Calculated " + characterIndex.ToString() + "/" + population.Count.ToString();
+                calculationStatus.Text = "Calculated " + characterIndex.ToString() + "/" + currentPopulation.Count.ToString();
                 calculationStatus.Update();
             }
             stopwatch.Stop();
             calculationStatus.Text += " in " + stopwatch.Elapsed.TotalSeconds + " sec";
         }
 
-        internal void BreedNewGeneration(int mutationRate, int mutationValue, bool linearIndex, MutationType mutationType, Label status)
+        internal void CurrentGenerationCrossing(Label status)
         {
-            status.Text = "INIT";
-            status.Update();
+            Random rnd = new Random();
+            for (int i = 0; i < currentPopulation.Count; i += 2)
+            {
+                status.Text = "CROSSING " + (i / 2).ToString() + '/' + (currentPopulation.Count / 2).ToString();
+                status.Update();
+                currentPopulation[i].swapGenesWith(currentPopulation[i + 1], rnd);
+            }
+        }
+
+        internal void CurrentGenerationMutation(int mutationRate, int mutationValue, MutationType mutationType, Label status)
+        {
+            Random rnd = new Random();
+            switch (mutationType)
+            {
+                case MutationType.RANDOM:
+                    for (int i = 0; i < currentPopulation.Count; i++)
+                    {
+                        status.Text = "RANDOM MUTATION " + (i + 1).ToString() + '/' + currentPopulation.Count.ToString();
+                        status.Update();
+                        if (rnd.Next(1, 100) < mutationRate)
+                        {
+                            currentPopulation[i].Stats[(byte)rnd.Next(0, 9)] += (byte)(rnd.Next(0, 2 * mutationValue + 1) - mutationValue);
+                        }
+                    }
+                    break;
+                case MutationType.CONSTANT:
+                    for (int i = 0; i < currentPopulation.Count; i++)
+                    {
+                        status.Text = "CONSTANT MUTATION " + (i + 1).ToString() + '/' + currentPopulation.Count.ToString();
+                        status.Update();
+                        if (rnd.Next(1, 100) < mutationRate)
+                        {
+                            if (rnd.Next(1, 3) == 1)    //losowanie - dodać czy odjąć?
+                                currentPopulation[i].Stats[(byte)rnd.Next(0, 9)] += (byte)mutationValue;
+                            else
+                                currentPopulation[i].Stats[(byte)rnd.Next(0, 9)] -= (byte)mutationValue;
+                        }
+                    }
+                    break;
+                case MutationType.PERCENT:
+                    for (int i = 0; i < currentPopulation.Count; i++)
+                    {
+                        status.Text = "PERCENT MUTATION " + (i + 1).ToString() + '/' + currentPopulation.Count.ToString();
+                        status.Update();
+                        if (rnd.Next(1, 100) < mutationRate)
+                        {
+                            byte chosenStat = (byte)rnd.Next(0, 9);
+                            if (rnd.Next(1, 3) == 1)    //losowanie - dodać czy odjąć?
+                                currentPopulation[i].Stats[chosenStat] += (byte)((int)currentPopulation[i].Stats[chosenStat] * mutationValue / 100);
+                            else
+                                currentPopulation[i].Stats[chosenStat] -= (byte)((int)currentPopulation[i].Stats[chosenStat] * mutationValue / 100);
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        internal void CurrentGenerationSelection(bool linearIndex, Label status)
+        {
             int randomNum;
             int totalFitness = 0;
             Random rnd = new Random();
             List<Character> nextGen = new List<Character>();
-            List<Character> currentGen = new List<Character>(AllPopulations[AllPopulations.Count - 1]);
-            
+
             //selekcja
             if (linearIndex)    //selekcja rankingiem liniowym
             {
                 status.Text = "LINEAR SELECTION";
                 status.Update();
-                List<Character> sortedList = currentGen.OrderBy(o => o.Fitness).ToList();
-                for (int i = 0; i < currentGen.Count; i++)
+                List<Character> sortedList = currentPopulation.OrderBy(o => o.Fitness).ToList();
+                for (int i = 0; i < currentPopulation.Count; i++)
                 {
-                    totalFitness += i+1;
+                    totalFitness += i + 1;
                 }
-                for (int i = 0; i < currentGen.Count; i++)
+                for (int i = 0; i < currentPopulation.Count; i++)
                 {
                     randomNum = rnd.Next(1, totalFitness);
                     int index = -1;
@@ -226,80 +284,23 @@ namespace ProjektBIAI
             {
                 status.Text = "BIASED SELECTION";
                 status.Update();
-                foreach (Character ch in currentGen)
+                foreach (Character ch in currentPopulation)
                 {
                     totalFitness += ch.Fitness;
                 }
-                for (int i = 0; i < currentGen.Count; i++)
+                for (int i = 0; i < currentPopulation.Count; i++)
                 {
                     randomNum = rnd.Next(1, totalFitness);
                     int index = -1;
                     while (randomNum > 0)
                     {
                         index++;
-                        randomNum -= currentGen[index].Fitness;
+                        randomNum -= currentPopulation[index].Fitness;
                     }
-                    nextGen.Add(new Character(currentGen[index].Stats, 100));
+                    nextGen.Add(new Character(currentPopulation[index].Stats, 100));
                 }
             }
-
-            //krzyżowanie
-            for (int i = 0; i < nextGen.Count; i+=2)
-            {
-                status.Text = "CROSSING " + (i / 2).ToString() + '/' + (nextGen.Count / 2).ToString();
-                status.Update();
-                nextGen[i].swapGenesWith(nextGen[i + 1], rnd);
-            }
-
-            //mutacje
-            switch (mutationType)
-            {
-                case MutationType.RANDOM:
-                    for (int i = 0; i < nextGen.Count; i++)
-                    {
-                        status.Text = "RANDOM MUTATION " + i.ToString() + '/' + nextGen.Count.ToString();
-                        status.Update();
-                        if (rnd.Next(1, 100) < mutationRate)
-                        {
-                            nextGen[i].Stats[(byte)rnd.Next(0, 9)] += (byte)(rnd.Next(0, 2 * mutationValue + 1) - mutationValue);
-                        }
-                    }
-                    break;
-                case MutationType.CONSTANT:
-                    for (int i = 0; i < nextGen.Count; i++)
-                    {
-                        status.Text = "CONSTANT MUTATION " + i.ToString() + '/' + nextGen.Count.ToString();
-                        status.Update();
-                        if (rnd.Next(1, 100) < mutationRate)
-                        {
-                            if (rnd.Next(1, 3) == 1)    //losowanie - dodać czy odjąć?
-                                nextGen[i].Stats[(byte)rnd.Next(0, 9)] += (byte)mutationValue;
-                            else
-                                nextGen[i].Stats[(byte)rnd.Next(0, 9)] -= (byte)mutationValue;
-                        }
-                    }
-                    break;
-                case MutationType.PERCENT:
-                    for (int i = 0; i < nextGen.Count; i++)
-                    {
-                        status.Text = "PERCENT MUTATION " + i.ToString() + '/' + nextGen.Count.ToString();
-                        status.Update();
-                        if (rnd.Next(1, 100) < mutationRate)
-                        {
-                            byte chosenStat = (byte)rnd.Next(0, 9);
-                            if (rnd.Next(1, 3) == 1)    //losowanie - dodać czy odjąć?
-                                nextGen[i].Stats[chosenStat] += (byte)((int)nextGen[i].Stats[chosenStat] * mutationValue / 100);
-                            else
-                                nextGen[i].Stats[chosenStat] -= (byte)((int)nextGen[i].Stats[chosenStat] * mutationValue / 100);
-                        }
-                    }
-                    break;
-                default:
-                    break;
-            }
-            AllPopulations.Add(nextGen);
-            status.Text = "Breeding finished!";
-            status.Update();
+            currentPopulation = nextGen;
         }
     }
 }

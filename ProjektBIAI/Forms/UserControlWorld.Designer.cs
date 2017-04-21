@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ProjektBIAI.Character character1 = new ProjektBIAI.Character();
+            ProjektBIAI.Character character2 = new ProjektBIAI.Character();
             this.groupBoxSettings = new System.Windows.Forms.GroupBox();
             this.labelIsPopulationCreated = new System.Windows.Forms.Label();
             this.buttonCreatePopulation = new System.Windows.Forms.Button();
@@ -68,6 +68,7 @@
             this.nudMutationRate = new System.Windows.Forms.NumericUpDown();
             this.labelMutationRate = new System.Windows.Forms.Label();
             this.groupBoxGenerationControls = new System.Windows.Forms.GroupBox();
+            this.labelCreatingGenerationStatus = new System.Windows.Forms.Label();
             this.nudXGenerations = new System.Windows.Forms.NumericUpDown();
             this.buttonXGenerations = new System.Windows.Forms.Button();
             this.buttonNextGeneration = new System.Windows.Forms.Button();
@@ -76,7 +77,7 @@
             this.columnHeaderMaxFitness = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderMinFitness = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderAvgFitness = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.labelCreatingGenerationStatus = new System.Windows.Forms.Label();
+            this.groupBoxCrossing = new System.Windows.Forms.GroupBox();
             this.groupBoxSettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSizeOfPopulation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStepForFitness)).BeginInit();
@@ -247,6 +248,11 @@
             // nudGenerationNumber
             // 
             this.nudGenerationNumber.Location = new System.Drawing.Point(349, 20);
+            this.nudGenerationNumber.Maximum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             this.nudGenerationNumber.Name = "nudGenerationNumber";
             this.nudGenerationNumber.Size = new System.Drawing.Size(38, 20);
             this.nudGenerationNumber.TabIndex = 12;
@@ -339,8 +345,8 @@
             // 
             // userControlCharacter1
             // 
-            character1.Fitness = 0;
-            character1.Stats = new byte[] {
+            character2.Fitness = 0;
+            character2.Stats = new byte[] {
         ((byte)(1)),
         ((byte)(1)),
         ((byte)(1)),
@@ -350,7 +356,7 @@
         ((byte)(1)),
         ((byte)(1)),
         ((byte)(1))};
-            this.userControlCharacter1.Character = character1;
+            this.userControlCharacter1.Character = character2;
             this.userControlCharacter1.Location = new System.Drawing.Point(6, 188);
             this.userControlCharacter1.Name = "userControlCharacter1";
             this.userControlCharacter1.Size = new System.Drawing.Size(164, 310);
@@ -358,6 +364,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.groupBoxCrossing);
             this.tabPage2.Controls.Add(this.groupBoxMutationMethod);
             this.tabPage2.Controls.Add(this.groupBoxSelectionSettings);
             this.tabPage2.Controls.Add(this.groupBoxMutationSettings);
@@ -379,7 +386,7 @@
             this.groupBoxMutationMethod.Controls.Add(this.radioButtonPercentMutation);
             this.groupBoxMutationMethod.Controls.Add(this.radioButtonConstantMutation);
             this.groupBoxMutationMethod.Controls.Add(this.radioButtonRandomMutation);
-            this.groupBoxMutationMethod.Location = new System.Drawing.Point(6, 294);
+            this.groupBoxMutationMethod.Location = new System.Drawing.Point(6, 266);
             this.groupBoxMutationMethod.Name = "groupBoxMutationMethod";
             this.groupBoxMutationMethod.Size = new System.Drawing.Size(248, 102);
             this.groupBoxMutationMethod.TabIndex = 2;
@@ -461,7 +468,7 @@
             // 
             this.groupBoxSelectionSettings.Controls.Add(this.radioButtonLinearIndex);
             this.groupBoxSelectionSettings.Controls.Add(this.radioButtonBiasedRoulette);
-            this.groupBoxSelectionSettings.Location = new System.Drawing.Point(6, 129);
+            this.groupBoxSelectionSettings.Location = new System.Drawing.Point(6, 116);
             this.groupBoxSelectionSettings.Name = "groupBoxSelectionSettings";
             this.groupBoxSelectionSettings.Size = new System.Drawing.Size(248, 71);
             this.groupBoxSelectionSettings.TabIndex = 12;
@@ -495,9 +502,9 @@
             this.groupBoxMutationSettings.Controls.Add(this.checkBoxDisableMutation);
             this.groupBoxMutationSettings.Controls.Add(this.nudMutationRate);
             this.groupBoxMutationSettings.Controls.Add(this.labelMutationRate);
-            this.groupBoxMutationSettings.Location = new System.Drawing.Point(6, 206);
+            this.groupBoxMutationSettings.Location = new System.Drawing.Point(6, 193);
             this.groupBoxMutationSettings.Name = "groupBoxMutationSettings";
-            this.groupBoxMutationSettings.Size = new System.Drawing.Size(248, 82);
+            this.groupBoxMutationSettings.Size = new System.Drawing.Size(248, 67);
             this.groupBoxMutationSettings.TabIndex = 11;
             this.groupBoxMutationSettings.TabStop = false;
             this.groupBoxMutationSettings.Text = "Mutation settings";
@@ -505,7 +512,7 @@
             // checkBoxDisableMutation
             // 
             this.checkBoxDisableMutation.AutoSize = true;
-            this.checkBoxDisableMutation.Location = new System.Drawing.Point(10, 24);
+            this.checkBoxDisableMutation.Location = new System.Drawing.Point(13, 19);
             this.checkBoxDisableMutation.Name = "checkBoxDisableMutation";
             this.checkBoxDisableMutation.Size = new System.Drawing.Size(147, 17);
             this.checkBoxDisableMutation.TabIndex = 3;
@@ -515,7 +522,7 @@
             // 
             // nudMutationRate
             // 
-            this.nudMutationRate.Location = new System.Drawing.Point(196, 50);
+            this.nudMutationRate.Location = new System.Drawing.Point(196, 37);
             this.nudMutationRate.Name = "nudMutationRate";
             this.nudMutationRate.Size = new System.Drawing.Size(46, 20);
             this.nudMutationRate.TabIndex = 1;
@@ -528,7 +535,7 @@
             // labelMutationRate
             // 
             this.labelMutationRate.AutoSize = true;
-            this.labelMutationRate.Location = new System.Drawing.Point(7, 52);
+            this.labelMutationRate.Location = new System.Drawing.Point(10, 39);
             this.labelMutationRate.Name = "labelMutationRate";
             this.labelMutationRate.Size = new System.Drawing.Size(104, 13);
             this.labelMutationRate.TabIndex = 0;
@@ -540,12 +547,20 @@
             this.groupBoxGenerationControls.Controls.Add(this.nudXGenerations);
             this.groupBoxGenerationControls.Controls.Add(this.buttonXGenerations);
             this.groupBoxGenerationControls.Controls.Add(this.buttonNextGeneration);
-            this.groupBoxGenerationControls.Location = new System.Drawing.Point(6, 20);
+            this.groupBoxGenerationControls.Location = new System.Drawing.Point(6, 7);
             this.groupBoxGenerationControls.Name = "groupBoxGenerationControls";
             this.groupBoxGenerationControls.Size = new System.Drawing.Size(248, 103);
             this.groupBoxGenerationControls.TabIndex = 10;
             this.groupBoxGenerationControls.TabStop = false;
             this.groupBoxGenerationControls.Text = "Generation Control";
+            // 
+            // labelCreatingGenerationStatus
+            // 
+            this.labelCreatingGenerationStatus.AutoSize = true;
+            this.labelCreatingGenerationStatus.Location = new System.Drawing.Point(10, 78);
+            this.labelCreatingGenerationStatus.Name = "labelCreatingGenerationStatus";
+            this.labelCreatingGenerationStatus.Size = new System.Drawing.Size(0, 13);
+            this.labelCreatingGenerationStatus.TabIndex = 3;
             // 
             // nudXGenerations
             // 
@@ -591,10 +606,10 @@
             this.columnHeaderAvgFitness});
             this.listViewGenerations.FullRowSelect = true;
             this.listViewGenerations.GridLines = true;
-            this.listViewGenerations.Location = new System.Drawing.Point(274, 7);
+            this.listViewGenerations.Location = new System.Drawing.Point(260, 6);
             this.listViewGenerations.MultiSelect = false;
             this.listViewGenerations.Name = "listViewGenerations";
-            this.listViewGenerations.Size = new System.Drawing.Size(482, 491);
+            this.listViewGenerations.Size = new System.Drawing.Size(496, 491);
             this.listViewGenerations.TabIndex = 9;
             this.listViewGenerations.UseCompatibleStateImageBehavior = false;
             this.listViewGenerations.View = System.Windows.Forms.View.Details;
@@ -620,13 +635,14 @@
             // 
             this.columnHeaderAvgFitness.Text = "Average";
             // 
-            // labelCreatingGenerationStatus
+            // groupBoxCrossing
             // 
-            this.labelCreatingGenerationStatus.AutoSize = true;
-            this.labelCreatingGenerationStatus.Location = new System.Drawing.Point(10, 78);
-            this.labelCreatingGenerationStatus.Name = "labelCreatingGenerationStatus";
-            this.labelCreatingGenerationStatus.Size = new System.Drawing.Size(0, 13);
-            this.labelCreatingGenerationStatus.TabIndex = 3;
+            this.groupBoxCrossing.Location = new System.Drawing.Point(7, 375);
+            this.groupBoxCrossing.Name = "groupBoxCrossing";
+            this.groupBoxCrossing.Size = new System.Drawing.Size(247, 122);
+            this.groupBoxCrossing.TabIndex = 13;
+            this.groupBoxCrossing.TabStop = false;
+            this.groupBoxCrossing.Text = "Crossing settings";
             // 
             // UserControlWorld
             // 
@@ -714,5 +730,6 @@
         private System.Windows.Forms.NumericUpDown nudRandomMutation;
         private System.Windows.Forms.ColumnHeader columnHeaderGenotype;
         private System.Windows.Forms.Label labelCreatingGenerationStatus;
+        private System.Windows.Forms.GroupBox groupBoxCrossing;
     }
 }

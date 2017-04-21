@@ -24,9 +24,9 @@ namespace ProjektBIAI
             {
                 world = new World((int)nudSizeOfPopulation.Value, (int)nudNumberOfBattlesForCalculateFitness.Value, (byte)nudStepForFitness.Value, userControlCharacter1.Character.Stats);
                 previousFitness = new int[(int)nudSizeOfPopulation.Value];                
-                world.CalculateFitness(labelIsPopulationCreated);
-                UpdateListViewPopulation();
+                world.CalculateFitness(labelIsPopulationCreated);                
                 world.ArchiveCurrentPopulation();
+                UpdateListViewPopulation();
                 UpdateListViewGenerations();
                 listViewGenerations.Items[0].Selected = true;
                 buttonRecalculateFitness.Enabled = true;
@@ -110,12 +110,20 @@ namespace ProjektBIAI
         private void UpdateListViewPopulation()
         {
             listViewPopulation.Items.Clear();
-            for (int i=0; i<world.Population.Count; i++)
+            for (int i=0; i<world.AllPopulations[(int)nudGenerationNumber.Value].Count; i++)
             {
                 ListViewItem lvi = new ListViewItem(i.ToString());
-                lvi.SubItems.Add(world.Population[i].Fitness.ToString());
-                lvi.SubItems.Add(previousFitness[i].ToString());
-                lvi.SubItems.Add(Math.Abs(world.Population[i].Fitness - previousFitness[i]).ToString());
+                lvi.SubItems.Add(world.AllPopulations[(int)nudGenerationNumber.Value][i].Fitness.ToString());
+                if (nudGenerationNumber.Value == world.AllPopulations.Count-1)
+                {
+                    lvi.SubItems.Add(previousFitness[i].ToString());
+                    lvi.SubItems.Add(Math.Abs(world.Population[i].Fitness - previousFitness[i]).ToString());
+                }
+                else
+                {
+                    lvi.SubItems.Add("N/A");
+                    lvi.SubItems.Add("N/A");
+                }                
                 string genotype = String.Empty;
                 byte[] stats = world.Population[i].Stats;
                 foreach (byte st in stats)
@@ -128,7 +136,7 @@ namespace ProjektBIAI
             }
         }
 
-        private void listViewPopulation_ColumnClick(object sender, ColumnClickEventArgs e)
+        private void listViewPopulation_ColumnClick(object sender, ColumnClickEventArgs e) //kliknięcie na kolumnie populacji - sortuj
         {
             // Determine if clicked column is already the column that is being sorted.
             if (e.Column == lvwColumnSorter.SortColumn)
@@ -154,7 +162,7 @@ namespace ProjektBIAI
             this.listViewPopulation.Sort();
         }
 
-        private void listViewPopulation_DoubleClick(object sender, EventArgs e)
+        private void listViewPopulation_DoubleClick(object sender, EventArgs e) //dwuklik na osobniku w populacji - okienko podglądu
         {
             int clickedID = int.Parse(((ListView)sender).SelectedItems[0].Text);
             byte[] stats = new byte[9];
@@ -187,9 +195,13 @@ namespace ProjektBIAI
             }
             for (int i = 0; i < nudXGenerations.Value; i++)
             {
-                world.BreedNewGeneration((int)nudMutationRate.Value, mutationValue, radioButtonLinearIndex.Checked, currentMutationType, labelCreatingGenerationStatus);
-                world.Population = world.AllPopulations[world.AllPopulations.Count - 1];
+                world.CurrentGenerationSelection(radioButtonLinearIndex.Checked, labelCreatingGenerationStatus);
+                world.CurrentGenerationCrossing(labelCreatingGenerationStatus);
+                world.CurrentGenerationMutation((int)nudMutationRate.Value, mutationValue, currentMutationType, labelCreatingGenerationStatus);
                 world.CalculateFitness(labelCreatingGenerationStatus);
+                Array.Clear(previousFitness, 0, previousFitness.Length);
+                world.ArchiveCurrentPopulation();
+                nudGenerationNumber.Maximum = world.AllPopulations.Count - 1;
                 UpdateListViewGenerations();
             }
         }
@@ -224,23 +236,7 @@ namespace ProjektBIAI
 
         private void nudGenerationNumber_ValueChanged(object sender, EventArgs e)
         {
-            if (nudGenerationNumber.Value < world.AllPopulations.Count)
-            {
-                if (nudGenerationNumber.Value >= 0)
-                {
-                    world.Population = world.AllPopulations[(int)nudGenerationNumber.Value];
-                    UpdateListViewPopulation();
-                }
-                else
-                {
-                    nudGenerationNumber.Value = 0;
-                }
-            }
-            else
-            {
-                nudGenerationNumber.Value = world.AllPopulations.Count - 1;
-            }
-
+            UpdateListViewPopulation();
         }
 
         private void checkBoxDisableMutation_CheckedChanged(object sender, EventArgs e)
