@@ -190,14 +190,24 @@ namespace ProjektBIAI
             calculationStatus.Text += " in " + stopwatch.Elapsed.TotalSeconds + " sec";
         }
 
-        internal void CurrentGenerationCrossing(Label status)
+        internal void CurrentGenerationCrossover(int crossoverChance, int singlePointChance, Label status)
         {
             Random rnd = new Random();
             for (int i = 0; i < currentPopulation.Count; i += 2)
             {
                 status.Text = "CROSSING " + (i / 2).ToString() + '/' + (currentPopulation.Count / 2).ToString();
                 status.Update();
-                currentPopulation[i].swapGenesWith(currentPopulation[i + 1], rnd);
+                if (rnd.Next(1,100) < crossoverChance) //krzyżowanie zajdzie
+                {
+                    if (rnd.Next(1,100) < singlePointChance) //krzyżowanie w jednym punkcie
+                    {
+                        currentPopulation[i].SinglePointCrossover(currentPopulation[i + 1], rnd);
+                    }
+                    else
+                    { //krzyżowanie w dwóch punktach
+                        currentPopulation[i].TwoPointCrossover(currentPopulation[i + 1], rnd);
+                    }
+                }                
             }
         }
 

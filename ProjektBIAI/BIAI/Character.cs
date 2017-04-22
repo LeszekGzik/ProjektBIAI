@@ -231,7 +231,27 @@ namespace ProjektBIAI
             this.currentHp = this.maxHp;
         }
 
-        internal void swapGenesWith(Character character, Random rnd)
+        internal void TwoPointCrossover(Character character, Random rnd)
+        {
+            byte temp;
+            int[] crossingPoint = new int[2];
+            crossingPoint[0] = rnd.Next(1, 9);
+            crossingPoint[1] = rnd.Next(1, 9);
+            while (crossingPoint[0] == crossingPoint[1])
+            {
+                crossingPoint[1] = rnd.Next(1, 9);
+            }
+            Array.Sort(crossingPoint);
+            for (int i=crossingPoint[0]; i<crossingPoint[1]; i++)
+            {
+                temp = stats[i];
+                stats[i] = character.stats[i];
+                character.stats[i] = temp;
+            }
+
+        }
+
+        internal void SinglePointCrossover(Character character, Random rnd)
         {
             byte temp;
             int crossingPoint = rnd.Next(1, 9);

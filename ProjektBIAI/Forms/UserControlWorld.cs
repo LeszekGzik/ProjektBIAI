@@ -196,7 +196,7 @@ namespace ProjektBIAI
             for (int i = 0; i < nudXGenerations.Value; i++)
             {
                 world.CurrentGenerationSelection(radioButtonLinearIndex.Checked, labelCreatingGenerationStatus);
-                world.CurrentGenerationCrossing(labelCreatingGenerationStatus);
+                world.CurrentGenerationCrossover((int)nudCrossoverChance.Value, (int)nudSinglePointCrossover.Value, labelCreatingGenerationStatus);
                 world.CurrentGenerationMutation((int)nudMutationRate.Value, mutationValue, currentMutationType, labelCreatingGenerationStatus);
                 world.CalculateFitness(labelCreatingGenerationStatus);
                 Array.Clear(previousFitness, 0, previousFitness.Length);
@@ -293,6 +293,16 @@ namespace ProjektBIAI
         private void radioButtonPercentMutation_CheckedChanged(object sender, EventArgs e)
         {
             UpdateCurrentMutationType();
+        }
+
+        private void nudSinglePointCrossover_ValueChanged(object sender, EventArgs e)
+        {
+            nudTwoPointCrossover.Value = 100 - nudSinglePointCrossover.Value;
+        }
+
+        private void nudTwoPointCrossover_ValueChanged(object sender, EventArgs e)
+        {
+            nudSinglePointCrossover.Value = 100 - nudTwoPointCrossover.Value;
         }
     }
 }
