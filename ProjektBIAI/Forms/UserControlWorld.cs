@@ -193,7 +193,7 @@ namespace ProjektBIAI
                     mutationValue = 0;
                     break;
             }
-            for (int i = 0; i < nudXGenerations.Value; i++)
+            for (int i = 0; i < numberOfGenerations; i++)
             {
                 world.CurrentGenerationSelection(radioButtonLinearIndex.Checked, labelCreatingGenerationStatus);
                 world.CurrentGenerationCrossover((int)nudCrossoverChance.Value, (int)nudSinglePointCrossover.Value, labelCreatingGenerationStatus);
