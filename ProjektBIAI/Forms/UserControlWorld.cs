@@ -27,7 +27,7 @@ namespace ProjektBIAI
                 world.CalculateFitness(labelIsPopulationCreated);                
                 world.ArchiveCurrentPopulation();
                 UpdateListViewPopulation();
-                UpdateListViewGenerations();
+                UpdateCurrentGenerationInfo();
                 listViewGenerations.Items[0].Selected = true;
                 buttonRecalculateFitness.Enabled = true;
                 buttonNextGeneration.Enabled = true;
@@ -77,10 +77,13 @@ namespace ProjektBIAI
             world.UpdatePreviousFitness(previousFitness);
             world.CalculateFitness(labelRecalculateFitness);
             UpdateListViewPopulation();
-            UpdateListViewGenerations();
+            UpdateCurrentGenerationInfo();
         }
 
-        private void UpdateListViewGenerations()
+        /// <summary>
+        /// Aktualizuje wszystkie wpisy na liście pokoleń. Zalecane używanie UpdateCurrentGenerationInfo() zamiast tego.
+        /// </summary>
+        private void UpdateAllGenerationsInfo()
         {
             listViewGenerations.Items.Clear();
             for (int i = 0; i < world.AllPopulations.Count; i++)
@@ -90,6 +93,30 @@ namespace ProjektBIAI
                 lvi.SubItems.Add(calculatePopulationMinFitness(world.AllPopulations[i]).ToString());
                 lvi.SubItems.Add(calculatePopulationAvgFitness(world.AllPopulations[i]).ToString());
                 listViewGenerations.Items.Add(lvi);
+                listViewGenerations.Update();
+            }
+        }
+
+        /// <summary>
+        /// Aktualizuje pojedynczy wpis na liście pokoleń.
+        /// </summary>
+        private void UpdateCurrentGenerationInfo()
+        {
+            int index = world.AllPopulations.Count - 1;
+            if (index >= listViewGenerations.Items.Count)
+            {
+                ListViewItem lvi = new ListViewItem(index.ToString());
+                lvi.SubItems.Add(calculatePopulationMaxFitness(world.AllPopulations[index]).ToString());
+                lvi.SubItems.Add(calculatePopulationMinFitness(world.AllPopulations[index]).ToString());
+                lvi.SubItems.Add(calculatePopulationAvgFitness(world.AllPopulations[index]).ToString());
+                listViewGenerations.Items.Add(lvi);
+                listViewGenerations.Update();
+            }
+            else
+            {
+                listViewGenerations.Items[index].SubItems[1].Text = calculatePopulationMaxFitness(world.AllPopulations[index]).ToString();
+                listViewGenerations.Items[index].SubItems[2].Text = calculatePopulationMinFitness(world.AllPopulations[index]).ToString();
+                listViewGenerations.Items[index].SubItems[3].Text = calculatePopulationAvgFitness(world.AllPopulations[index]).ToString();
                 listViewGenerations.Update();
             }
         }
@@ -202,7 +229,7 @@ namespace ProjektBIAI
                 Array.Clear(previousFitness, 0, previousFitness.Length);
                 world.ArchiveCurrentPopulation();
                 nudGenerationNumber.Maximum = world.AllPopulations.Count - 1;
-                UpdateListViewGenerations();
+                UpdateCurrentGenerationInfo();
             }
         }
         private void buttonNextGeneration_Click(object sender, EventArgs e)
