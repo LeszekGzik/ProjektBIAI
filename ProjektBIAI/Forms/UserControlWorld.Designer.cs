@@ -54,6 +54,12 @@
             this.userControlCharacter1 = new ProjektBIAI.Forms.UserControlCharacter();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBoxCrossover = new System.Windows.Forms.GroupBox();
+            this.labelTwoPointCrossover = new System.Windows.Forms.Label();
+            this.labelSinglePointCrossover = new System.Windows.Forms.Label();
+            this.labelCrossoverChance = new System.Windows.Forms.Label();
+            this.nudTwoPointCrossover = new System.Windows.Forms.NumericUpDown();
+            this.nudSinglePointCrossover = new System.Windows.Forms.NumericUpDown();
+            this.nudCrossoverChance = new System.Windows.Forms.NumericUpDown();
             this.groupBoxMutationMethod = new System.Windows.Forms.GroupBox();
             this.nudPercentMutation = new System.Windows.Forms.NumericUpDown();
             this.nudConstantMutation = new System.Windows.Forms.NumericUpDown();
@@ -78,12 +84,7 @@
             this.columnHeaderMaxFitness = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderMinFitness = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderAvgFitness = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.nudCrossoverChance = new System.Windows.Forms.NumericUpDown();
-            this.nudSinglePointCrossover = new System.Windows.Forms.NumericUpDown();
-            this.nudTwoPointCrossover = new System.Windows.Forms.NumericUpDown();
-            this.labelCrossoverChance = new System.Windows.Forms.Label();
-            this.labelSinglePointCrossover = new System.Windows.Forms.Label();
-            this.labelTwoPointCrossover = new System.Windows.Forms.Label();
+            this.columnHeaderBestGenome = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBoxSettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSizeOfPopulation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStepForFitness)).BeginInit();
@@ -94,6 +95,9 @@
             this.groupBoxCalculateFitness.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBoxCrossover.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTwoPointCrossover)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSinglePointCrossover)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCrossoverChance)).BeginInit();
             this.groupBoxMutationMethod.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudPercentMutation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudConstantMutation)).BeginInit();
@@ -103,9 +107,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudMutationRate)).BeginInit();
             this.groupBoxGenerationControls.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudXGenerations)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudCrossoverChance)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSinglePointCrossover)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudTwoPointCrossover)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBoxSettings
@@ -403,6 +404,71 @@
             this.groupBoxCrossover.TabStop = false;
             this.groupBoxCrossover.Text = "Crossing settings";
             // 
+            // labelTwoPointCrossover
+            // 
+            this.labelTwoPointCrossover.AutoSize = true;
+            this.labelTwoPointCrossover.Location = new System.Drawing.Point(9, 74);
+            this.labelTwoPointCrossover.Name = "labelTwoPointCrossover";
+            this.labelTwoPointCrossover.Size = new System.Drawing.Size(153, 13);
+            this.labelTwoPointCrossover.TabIndex = 5;
+            this.labelTwoPointCrossover.Text = "Two-point crossover probability";
+            // 
+            // labelSinglePointCrossover
+            // 
+            this.labelSinglePointCrossover.AutoSize = true;
+            this.labelSinglePointCrossover.Location = new System.Drawing.Point(9, 48);
+            this.labelSinglePointCrossover.Name = "labelSinglePointCrossover";
+            this.labelSinglePointCrossover.Size = new System.Drawing.Size(161, 13);
+            this.labelSinglePointCrossover.TabIndex = 4;
+            this.labelSinglePointCrossover.Text = "Single-point crossover probability";
+            // 
+            // labelCrossoverChance
+            // 
+            this.labelCrossoverChance.AutoSize = true;
+            this.labelCrossoverChance.Location = new System.Drawing.Point(9, 22);
+            this.labelCrossoverChance.Name = "labelCrossoverChance";
+            this.labelCrossoverChance.Size = new System.Drawing.Size(110, 13);
+            this.labelCrossoverChance.TabIndex = 3;
+            this.labelCrossoverChance.Text = "Crossover chance [%]";
+            // 
+            // nudTwoPointCrossover
+            // 
+            this.nudTwoPointCrossover.Location = new System.Drawing.Point(195, 72);
+            this.nudTwoPointCrossover.Name = "nudTwoPointCrossover";
+            this.nudTwoPointCrossover.Size = new System.Drawing.Size(46, 20);
+            this.nudTwoPointCrossover.TabIndex = 2;
+            this.nudTwoPointCrossover.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.nudTwoPointCrossover.ValueChanged += new System.EventHandler(this.nudTwoPointCrossover_ValueChanged);
+            // 
+            // nudSinglePointCrossover
+            // 
+            this.nudSinglePointCrossover.Location = new System.Drawing.Point(195, 46);
+            this.nudSinglePointCrossover.Name = "nudSinglePointCrossover";
+            this.nudSinglePointCrossover.Size = new System.Drawing.Size(46, 20);
+            this.nudSinglePointCrossover.TabIndex = 1;
+            this.nudSinglePointCrossover.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.nudSinglePointCrossover.ValueChanged += new System.EventHandler(this.nudSinglePointCrossover_ValueChanged);
+            // 
+            // nudCrossoverChance
+            // 
+            this.nudCrossoverChance.Location = new System.Drawing.Point(195, 20);
+            this.nudCrossoverChance.Name = "nudCrossoverChance";
+            this.nudCrossoverChance.Size = new System.Drawing.Size(46, 20);
+            this.nudCrossoverChance.TabIndex = 0;
+            this.nudCrossoverChance.Value = new decimal(new int[] {
+            80,
+            0,
+            0,
+            0});
+            // 
             // groupBoxMutationMethod
             // 
             this.groupBoxMutationMethod.Controls.Add(this.nudPercentMutation);
@@ -628,7 +694,8 @@
             this.columnHeaderGen,
             this.columnHeaderMaxFitness,
             this.columnHeaderMinFitness,
-            this.columnHeaderAvgFitness});
+            this.columnHeaderAvgFitness,
+            this.columnHeaderBestGenome});
             this.listViewGenerations.FullRowSelect = true;
             this.listViewGenerations.GridLines = true;
             this.listViewGenerations.Location = new System.Drawing.Point(260, 6);
@@ -649,81 +716,21 @@
             // columnHeaderMaxFitness
             // 
             this.columnHeaderMaxFitness.Text = "Max. Fitness";
-            this.columnHeaderMaxFitness.Width = 128;
+            this.columnHeaderMaxFitness.Width = 77;
             // 
             // columnHeaderMinFitness
             // 
             this.columnHeaderMinFitness.Text = "Min. Fitness";
-            this.columnHeaderMinFitness.Width = 100;
+            this.columnHeaderMinFitness.Width = 74;
             // 
             // columnHeaderAvgFitness
             // 
             this.columnHeaderAvgFitness.Text = "Average";
             // 
-            // nudCrossoverChance
+            // columnHeaderBestGenome
             // 
-            this.nudCrossoverChance.Location = new System.Drawing.Point(195, 20);
-            this.nudCrossoverChance.Name = "nudCrossoverChance";
-            this.nudCrossoverChance.Size = new System.Drawing.Size(46, 20);
-            this.nudCrossoverChance.TabIndex = 0;
-            this.nudCrossoverChance.Value = new decimal(new int[] {
-            80,
-            0,
-            0,
-            0});
-            // 
-            // nudSinglePointCrossover
-            // 
-            this.nudSinglePointCrossover.Location = new System.Drawing.Point(195, 46);
-            this.nudSinglePointCrossover.Name = "nudSinglePointCrossover";
-            this.nudSinglePointCrossover.Size = new System.Drawing.Size(46, 20);
-            this.nudSinglePointCrossover.TabIndex = 1;
-            this.nudSinglePointCrossover.Value = new decimal(new int[] {
-            50,
-            0,
-            0,
-            0});
-            this.nudSinglePointCrossover.ValueChanged += new System.EventHandler(this.nudSinglePointCrossover_ValueChanged);
-            // 
-            // nudTwoPointCrossover
-            // 
-            this.nudTwoPointCrossover.Location = new System.Drawing.Point(195, 72);
-            this.nudTwoPointCrossover.Name = "nudTwoPointCrossover";
-            this.nudTwoPointCrossover.Size = new System.Drawing.Size(46, 20);
-            this.nudTwoPointCrossover.TabIndex = 2;
-            this.nudTwoPointCrossover.Value = new decimal(new int[] {
-            50,
-            0,
-            0,
-            0});
-            this.nudTwoPointCrossover.ValueChanged += new System.EventHandler(this.nudTwoPointCrossover_ValueChanged);
-            // 
-            // labelCrossoverChance
-            // 
-            this.labelCrossoverChance.AutoSize = true;
-            this.labelCrossoverChance.Location = new System.Drawing.Point(9, 22);
-            this.labelCrossoverChance.Name = "labelCrossoverChance";
-            this.labelCrossoverChance.Size = new System.Drawing.Size(110, 13);
-            this.labelCrossoverChance.TabIndex = 3;
-            this.labelCrossoverChance.Text = "Crossover chance [%]";
-            // 
-            // labelSinglePointCrossover
-            // 
-            this.labelSinglePointCrossover.AutoSize = true;
-            this.labelSinglePointCrossover.Location = new System.Drawing.Point(9, 48);
-            this.labelSinglePointCrossover.Name = "labelSinglePointCrossover";
-            this.labelSinglePointCrossover.Size = new System.Drawing.Size(161, 13);
-            this.labelSinglePointCrossover.TabIndex = 4;
-            this.labelSinglePointCrossover.Text = "Single-point crossover probability";
-            // 
-            // labelTwoPointCrossover
-            // 
-            this.labelTwoPointCrossover.AutoSize = true;
-            this.labelTwoPointCrossover.Location = new System.Drawing.Point(9, 74);
-            this.labelTwoPointCrossover.Name = "labelTwoPointCrossover";
-            this.labelTwoPointCrossover.Size = new System.Drawing.Size(153, 13);
-            this.labelTwoPointCrossover.TabIndex = 5;
-            this.labelTwoPointCrossover.Text = "Two-point crossover probability";
+            this.columnHeaderBestGenome.Text = "Best genotype";
+            this.columnHeaderBestGenome.Width = 180;
             // 
             // UserControlWorld
             // 
@@ -746,6 +753,9 @@
             this.tabPage2.ResumeLayout(false);
             this.groupBoxCrossover.ResumeLayout(false);
             this.groupBoxCrossover.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTwoPointCrossover)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSinglePointCrossover)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCrossoverChance)).EndInit();
             this.groupBoxMutationMethod.ResumeLayout(false);
             this.groupBoxMutationMethod.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudPercentMutation)).EndInit();
@@ -759,9 +769,6 @@
             this.groupBoxGenerationControls.ResumeLayout(false);
             this.groupBoxGenerationControls.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudXGenerations)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudCrossoverChance)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSinglePointCrossover)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudTwoPointCrossover)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -823,5 +830,6 @@
         private System.Windows.Forms.NumericUpDown nudTwoPointCrossover;
         private System.Windows.Forms.NumericUpDown nudSinglePointCrossover;
         private System.Windows.Forms.NumericUpDown nudCrossoverChance;
+        private System.Windows.Forms.ColumnHeader columnHeaderBestGenome;
     }
 }

@@ -72,6 +72,21 @@ namespace ProjektBIAI
             return maxFitness;
         }
 
+        private string findPopulationBestGenome(List<Character> population)
+        {
+            int maxFitness = 0;
+            Character bestChar = population[0];
+            foreach (Character ch in population)
+            {
+                if (ch.Fitness > maxFitness)
+                {
+                    maxFitness = ch.Fitness;
+                    bestChar = ch;
+                }
+            }
+            return getGenotype(bestChar);
+        }
+
         private void buttonRecalculateFitness_Click(object sender, EventArgs e)
         {
             world.UpdatePreviousFitness(previousFitness);
@@ -92,6 +107,7 @@ namespace ProjektBIAI
                 lvi.SubItems.Add(calculatePopulationMaxFitness(world.AllPopulations[i]).ToString());
                 lvi.SubItems.Add(calculatePopulationMinFitness(world.AllPopulations[i]).ToString());
                 lvi.SubItems.Add(calculatePopulationAvgFitness(world.AllPopulations[i]).ToString());
+                lvi.SubItems.Add(findPopulationBestGenome(world.AllPopulations[i]));
                 listViewGenerations.Items.Add(lvi);
                 listViewGenerations.Update();
             }
@@ -109,6 +125,7 @@ namespace ProjektBIAI
                 lvi.SubItems.Add(calculatePopulationMaxFitness(world.AllPopulations[index]).ToString());
                 lvi.SubItems.Add(calculatePopulationMinFitness(world.AllPopulations[index]).ToString());
                 lvi.SubItems.Add(calculatePopulationAvgFitness(world.AllPopulations[index]).ToString());
+                lvi.SubItems.Add(findPopulationBestGenome(world.AllPopulations[index]));
                 listViewGenerations.Items.Add(lvi);
                 listViewGenerations.Update();
             }
@@ -117,6 +134,7 @@ namespace ProjektBIAI
                 listViewGenerations.Items[index].SubItems[1].Text = calculatePopulationMaxFitness(world.AllPopulations[index]).ToString();
                 listViewGenerations.Items[index].SubItems[2].Text = calculatePopulationMinFitness(world.AllPopulations[index]).ToString();
                 listViewGenerations.Items[index].SubItems[3].Text = calculatePopulationAvgFitness(world.AllPopulations[index]).ToString();
+                listViewGenerations.Items[index].SubItems[4].Text = findPopulationBestGenome(world.AllPopulations[index]);
                 listViewGenerations.Update();
             }
         }
@@ -141,7 +159,7 @@ namespace ProjektBIAI
             {
                 ListViewItem lvi = new ListViewItem(i.ToString());
                 lvi.SubItems.Add(world.AllPopulations[(int)nudGenerationNumber.Value][i].Fitness.ToString());
-                if (nudGenerationNumber.Value == world.AllPopulations.Count-1)
+                if (nudGenerationNumber.Value == world.AllPopulations.Count - 1)
                 {
                     lvi.SubItems.Add(previousFitness[i].ToString());
                     lvi.SubItems.Add(Math.Abs(world.Population[i].Fitness - previousFitness[i]).ToString());
@@ -150,17 +168,27 @@ namespace ProjektBIAI
                 {
                     lvi.SubItems.Add("N/A");
                     lvi.SubItems.Add("N/A");
-                }                
-                string genotype = String.Empty;
-                byte[] stats = world.Population[i].Stats;
-                foreach (byte st in stats)
-                {
-                    genotype += st.ToString("X2");
-                    genotype += ' ';
                 }
-                lvi.SubItems.Add(genotype);
+                lvi.SubItems.Add(getGenotype(world.Population[i]));
                 listViewPopulation.Items.Add(lvi);
             }
+        }
+
+        /// <summary>
+        /// Wylicza genotyp osobnika, przedstawiający jego statystyki w postaci hex.
+        /// </summary>
+        /// <param name="ch"> osobnik, którego genotyp ma być wyliczony </param>
+        /// <returns></returns>
+        private string getGenotype(Character ch)
+        {
+            string genotype = String.Empty;
+            byte[] stats = ch.Stats;
+            foreach (byte st in stats)
+            {
+                genotype += st.ToString("X2");
+                genotype += ' ';
+            }
+            return genotype;
         }
 
         private void listViewPopulation_ColumnClick(object sender, ColumnClickEventArgs e) //kliknięcie na kolumnie populacji - sortuj
