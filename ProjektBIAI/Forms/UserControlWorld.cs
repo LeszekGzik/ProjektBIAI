@@ -26,8 +26,9 @@ namespace ProjektBIAI
                 previousFitness = new int[(int)nudSizeOfPopulation.Value];                
                 world.CalculateFitness(labelIsPopulationCreated);                
                 world.ArchiveCurrentPopulation();
+                nudGenerationNumber.Maximum = 0;
                 UpdateListViewPopulation();
-                UpdateCurrentGenerationInfo();
+                UpdateAllGenerationsInfo();
                 listViewGenerations.Items[0].Selected = true;
                 buttonRecalculateFitness.Enabled = true;
                 buttonNextGeneration.Enabled = true;

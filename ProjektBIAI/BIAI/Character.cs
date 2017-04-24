@@ -187,11 +187,11 @@ namespace ProjektBIAI
             this.hpRegen = (int)(5 * (points*stats[1] / sum));
             this.baseDmg = (int)(10 + 20 * (points*stats[2] / sum));
             this.critRate = (int)(2 * (points * stats[3] / sum));
-            this.critDmg = (1.5 + 0.05 * (points * stats[4] / sum));
+            this.critDmg = (1.5 + 0.05 * (points * stats[4] / sum));     //trzeba by coś zrobić z balansem tutaj
             this.hitRate = (int)(50 + 5 * (points * stats[5] / sum));
             this.dodgeRate = (int)(5 * (points * stats[6] / sum));
             this.blockRate = (int)(2 * (points * stats[7] / sum));
-            this.blockPower = (0.5 - 0.05 * (points * stats[8] / sum));
+            this.blockPower = (0.5 - 0.05 * (points * stats[8] / sum));  //trzeba by coś zrobić z balansem tutaj
         }
 
         /// <summary>
@@ -291,9 +291,18 @@ namespace ProjektBIAI
                 if (rnd.Next(0, 100) < this.critRate)                    //czy krytyk?
                 {
                     result += "'s attack hit critically! ";
-                    dmg = (int)(this.baseDmg * this.critDmg);
-                    enemy.currentHp -= dmg;
-                    result += ("Target took " + dmg.ToString() + " damage.\n");
+                    if (rnd.Next(0, 100) < enemy.blockRate)            //czy krytyk został zablokowany?
+                    {
+                        dmg = this.baseDmg;
+                        enemy.currentHp -= dmg;
+                        result += ("Target blocked and took only " + dmg.ToString() + " damage.\n");
+                    }
+                    else
+                    {
+                        dmg = (int)(this.baseDmg * this.critDmg);
+                        enemy.currentHp -= dmg;
+                        result += ("Target took " + dmg.ToString() + " damage.\n");
+                    }
                 }
                 else if (rnd.Next(0, 100) < enemy.blockRate)            //czy atak został zablokowany?
                 {
