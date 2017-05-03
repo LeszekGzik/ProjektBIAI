@@ -119,6 +119,20 @@ namespace ProjektBIAI
             }
         }
 
+        public World(List<Character> importedPopulation, int battlesForFitness, byte stepForFitness, byte[] statsForFitness)
+        {
+            currentPopulation = new List<Character>();
+            allPopulations = new List<List<Character>>();
+            statsOfOpponentsForFitness = new byte[9];
+            for (int i = 0; i < importedPopulation.Count; i++)
+            {
+                currentPopulation.Add(importedPopulation[i]);
+            }
+            numberOfBattlesForCalculateFitness = battlesForFitness;
+            stepOfIncrementOpponentsForFitness = stepForFitness;
+            statsForFitness.CopyTo(statsOfOpponentsForFitness, 0);
+        }
+
         public World(int sizeOfPopulation, int battlesForFitness, byte stepForFitness, byte[] statsForFitness)
         {
 
@@ -148,7 +162,7 @@ namespace ProjektBIAI
             {
                 stopwatch.Start();
                 bool end = false;
-                byte opponentLevel = stepOfIncrementOpponentsForFitness;
+                int opponentLevel = stepOfIncrementOpponentsForFitness;
                 while (!end)
                 {
                     arena = new Arena(ch, new Character(statsOfOpponentsForFitness, opponentLevel));

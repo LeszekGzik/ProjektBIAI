@@ -51,7 +51,6 @@
             this.columnHeaderChange = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderGenotype = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBoxCalculateFitness = new System.Windows.Forms.GroupBox();
-            this.userControlCharacter1 = new ProjektBIAI.Forms.UserControlCharacter();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBoxCrossover = new System.Windows.Forms.GroupBox();
             this.labelTwoPointCrossover = new System.Windows.Forms.Label();
@@ -85,6 +84,9 @@
             this.columnHeaderMinFitness = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderAvgFitness = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderBestGenome = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.userControlCharacter1 = new ProjektBIAI.Forms.UserControlCharacter();
+            this.buttonExportPopulation = new System.Windows.Forms.Button();
+            this.buttonImportPopulation = new System.Windows.Forms.Button();
             this.groupBoxSettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSizeOfPopulation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStepForFitness)).BeginInit();
@@ -240,6 +242,8 @@
             // 
             // tabPopulation
             // 
+            this.tabPopulation.Controls.Add(this.buttonImportPopulation);
+            this.tabPopulation.Controls.Add(this.buttonExportPopulation);
             this.tabPopulation.Controls.Add(this.nudGenerationNumber);
             this.tabPopulation.Controls.Add(this.labelGenerationNumber);
             this.tabPopulation.Controls.Add(this.labelRecalculateFitness);
@@ -353,25 +357,6 @@
             this.groupBoxCalculateFitness.TabIndex = 7;
             this.groupBoxCalculateFitness.TabStop = false;
             this.groupBoxCalculateFitness.Text = "Fitness calculation settings";
-            // 
-            // userControlCharacter1
-            // 
-            character2.Fitness = 0;
-            character2.Stats = new byte[] {
-        ((byte)(1)),
-        ((byte)(1)),
-        ((byte)(1)),
-        ((byte)(1)),
-        ((byte)(1)),
-        ((byte)(1)),
-        ((byte)(1)),
-        ((byte)(1)),
-        ((byte)(1))};
-            this.userControlCharacter1.Character = character2;
-            this.userControlCharacter1.Location = new System.Drawing.Point(6, 188);
-            this.userControlCharacter1.Name = "userControlCharacter1";
-            this.userControlCharacter1.Size = new System.Drawing.Size(164, 310);
-            this.userControlCharacter1.TabIndex = 2;
             // 
             // tabPage2
             // 
@@ -732,6 +717,45 @@
             this.columnHeaderBestGenome.Text = "Best genotype";
             this.columnHeaderBestGenome.Width = 180;
             // 
+            // userControlCharacter1
+            // 
+            character2.Fitness = 0;
+            character2.Stats = new byte[] {
+        ((byte)(1)),
+        ((byte)(1)),
+        ((byte)(1)),
+        ((byte)(1)),
+        ((byte)(1)),
+        ((byte)(1)),
+        ((byte)(1)),
+        ((byte)(1)),
+        ((byte)(1))};
+            this.userControlCharacter1.Character = character2;
+            this.userControlCharacter1.Location = new System.Drawing.Point(6, 188);
+            this.userControlCharacter1.Name = "userControlCharacter1";
+            this.userControlCharacter1.Size = new System.Drawing.Size(164, 310);
+            this.userControlCharacter1.TabIndex = 2;
+            // 
+            // buttonExportPopulation
+            // 
+            this.buttonExportPopulation.Location = new System.Drawing.Point(176, 230);
+            this.buttonExportPopulation.Name = "buttonExportPopulation";
+            this.buttonExportPopulation.Size = new System.Drawing.Size(92, 34);
+            this.buttonExportPopulation.TabIndex = 13;
+            this.buttonExportPopulation.Text = "Export population";
+            this.buttonExportPopulation.UseVisualStyleBackColor = true;
+            this.buttonExportPopulation.Click += new System.EventHandler(this.buttonExportPopulation_Click);
+            // 
+            // buttonImportPopulation
+            // 
+            this.buttonImportPopulation.Location = new System.Drawing.Point(176, 271);
+            this.buttonImportPopulation.Name = "buttonImportPopulation";
+            this.buttonImportPopulation.Size = new System.Drawing.Size(92, 34);
+            this.buttonImportPopulation.TabIndex = 14;
+            this.buttonImportPopulation.Text = "Import population";
+            this.buttonImportPopulation.UseVisualStyleBackColor = true;
+            this.buttonImportPopulation.Click += new System.EventHandler(this.buttonImportPopulation_Click);
+            // 
             // UserControlWorld
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -831,5 +855,7 @@
         private System.Windows.Forms.NumericUpDown nudSinglePointCrossover;
         private System.Windows.Forms.NumericUpDown nudCrossoverChance;
         private System.Windows.Forms.ColumnHeader columnHeaderBestGenome;
+        private System.Windows.Forms.Button buttonImportPopulation;
+        private System.Windows.Forms.Button buttonExportPopulation;
     }
 }

@@ -360,5 +360,52 @@ namespace ProjektBIAI
         {
             nudSinglePointCrossover.Value = 100 - nudTwoPointCrossover.Value;
         }
+
+        private void buttonExportPopulation_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Binary File|*.bin";
+            if (sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                if (sfd.FileName != "")
+                {
+                    System.IO.FileStream fs = (System.IO.FileStream)sfd.OpenFile();
+                    var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+                    bformatter.Serialize(fs, world.Population);
+                    fs.Close();
+                }
+            }
+        }
+        private void buttonImportPopulation_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Binary File|*.bin*";
+            if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                using (System.IO.Stream stream = System.IO.File.Open(ofd.FileName, System.IO.FileMode.Open))
+                {
+                    var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+                    if ((world == null) || (MessageBox.Show("This will destroy existing population!", "Are you sure?", MessageBoxButtons.YesNo) == DialogResult.Yes))
+                    {
+                        world = new World((List<Character>)bformatter.Deserialize(stream), (int)nudNumberOfBattlesForCalculateFitness.Value, (byte)nudStepForFitness.Value, userControlCharacter1.Character.Stats);
+                        previousFitness = new int[(int)nudSizeOfPopulation.Value];
+                        world.CalculateFitness(labelIsPopulationCreated);
+                        world.ArchiveCurrentPopulation();
+                        nudGenerationNumber.Maximum = 0;
+                        UpdateListViewPopulation();
+                        UpdateAllGenerationsInfo();
+                        listViewGenerations.Items[0].Selected = true;
+                        buttonRecalculateFitness.Enabled = true;
+                        buttonNextGeneration.Enabled = true;
+                        buttonXGenerations.Enabled = true;
+                        nudXGenerations.Enabled = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Population not changed");
+                    }
+                }
+            }
+        }
     }
 }
