@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ProjektBIAI.Character character1 = new ProjektBIAI.Character();
+            ProjektBIAI.Character character2 = new ProjektBIAI.Character();
             this.groupBoxSettings = new System.Windows.Forms.GroupBox();
             this.labelIsPopulationCreated = new System.Windows.Forms.Label();
             this.buttonCreatePopulation = new System.Windows.Forms.Button();
@@ -719,8 +719,8 @@
             // 
             // userControlCharacter1
             // 
-            character1.Fitness = 0;
-            character1.Stats = new byte[] {
+            character2.Fitness = 0;
+            character2.Stats = new byte[] {
         ((byte)(1)),
         ((byte)(1)),
         ((byte)(1)),
@@ -730,7 +730,7 @@
         ((byte)(1)),
         ((byte)(1)),
         ((byte)(1))};
-            this.userControlCharacter1.Character = character1;
+            this.userControlCharacter1.Character = character2;
             this.userControlCharacter1.Location = new System.Drawing.Point(6, 188);
             this.userControlCharacter1.Name = "userControlCharacter1";
             this.userControlCharacter1.Size = new System.Drawing.Size(164, 310);
