@@ -84,6 +84,8 @@
             this.columnHeaderMinFitness = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderAvgFitness = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderBestGenome = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.buttonCopyGenerationsToClipboard = new System.Windows.Forms.Button();
+            this.buttonSaveGenerationsToFile = new System.Windows.Forms.Button();
             this.userControlCharacter1 = new ProjektBIAI.Forms.UserControlCharacter();
             this.groupBoxSettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSizeOfPopulation)).BeginInit();
@@ -356,6 +358,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.buttonSaveGenerationsToFile);
+            this.tabPage2.Controls.Add(this.buttonCopyGenerationsToClipboard);
             this.tabPage2.Controls.Add(this.groupBoxCrossover);
             this.tabPage2.Controls.Add(this.groupBoxMutationMethod);
             this.tabPage2.Controls.Add(this.groupBoxSelectionSettings);
@@ -679,10 +683,10 @@
             this.columnHeaderBestGenome});
             this.listViewGenerations.FullRowSelect = true;
             this.listViewGenerations.GridLines = true;
-            this.listViewGenerations.Location = new System.Drawing.Point(260, 6);
+            this.listViewGenerations.Location = new System.Drawing.Point(260, 36);
             this.listViewGenerations.MultiSelect = false;
             this.listViewGenerations.Name = "listViewGenerations";
-            this.listViewGenerations.Size = new System.Drawing.Size(496, 491);
+            this.listViewGenerations.Size = new System.Drawing.Size(496, 461);
             this.listViewGenerations.TabIndex = 9;
             this.listViewGenerations.UseCompatibleStateImageBehavior = false;
             this.listViewGenerations.View = System.Windows.Forms.View.Details;
@@ -712,6 +716,28 @@
             // 
             this.columnHeaderBestGenome.Text = "Best genotype";
             this.columnHeaderBestGenome.Width = 180;
+            // 
+            // buttonCopyGenerationsToClipboard
+            // 
+            this.buttonCopyGenerationsToClipboard.Enabled = false;
+            this.buttonCopyGenerationsToClipboard.Location = new System.Drawing.Point(632, 7);
+            this.buttonCopyGenerationsToClipboard.Name = "buttonCopyGenerationsToClipboard";
+            this.buttonCopyGenerationsToClipboard.Size = new System.Drawing.Size(123, 23);
+            this.buttonCopyGenerationsToClipboard.TabIndex = 14;
+            this.buttonCopyGenerationsToClipboard.Text = "Copy to clipboard";
+            this.buttonCopyGenerationsToClipboard.UseVisualStyleBackColor = true;
+            this.buttonCopyGenerationsToClipboard.Click += new System.EventHandler(this.buttonCopyGenerationsToClipboard_Click);
+            // 
+            // buttonSaveGenerationsToFile
+            // 
+            this.buttonSaveGenerationsToFile.Enabled = false;
+            this.buttonSaveGenerationsToFile.Location = new System.Drawing.Point(551, 7);
+            this.buttonSaveGenerationsToFile.Name = "buttonSaveGenerationsToFile";
+            this.buttonSaveGenerationsToFile.Size = new System.Drawing.Size(75, 23);
+            this.buttonSaveGenerationsToFile.TabIndex = 15;
+            this.buttonSaveGenerationsToFile.Text = "Save to file";
+            this.buttonSaveGenerationsToFile.UseVisualStyleBackColor = true;
+            this.buttonSaveGenerationsToFile.Click += new System.EventHandler(this.buttonSaveGenerationsToFile_Click);
             // 
             // userControlCharacter1
             // 
@@ -831,5 +857,7 @@
         private System.Windows.Forms.NumericUpDown nudSinglePointCrossover;
         private System.Windows.Forms.NumericUpDown nudCrossoverChance;
         private System.Windows.Forms.ColumnHeader columnHeaderBestGenome;
+        private System.Windows.Forms.Button buttonSaveGenerationsToFile;
+        private System.Windows.Forms.Button buttonCopyGenerationsToClipboard;
     }
 }

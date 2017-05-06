@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using ProjektBIAI.Forms;
+using System.IO;
 
 namespace ProjektBIAI
 {
@@ -34,6 +35,8 @@ namespace ProjektBIAI
                 buttonNextGeneration.Enabled = true;
                 buttonXGenerations.Enabled = true;
                 nudXGenerations.Enabled = true;
+                buttonCopyGenerationsToClipboard.Enabled = true;
+                buttonSaveGenerationsToFile.Enabled = true;
             }
             else
             {
@@ -359,6 +362,70 @@ namespace ProjektBIAI
         private void nudTwoPointCrossover_ValueChanged(object sender, EventArgs e)
         {
             nudSinglePointCrossover.Value = 100 - nudTwoPointCrossover.Value;
+        }
+
+        string generatePopulationInformations()
+        {
+            string information = "Generation\tMax Fitness\tMin Fitness\tAvg Fitness\tmaxHp\thpRegen\tbaseDmg\tcritRate\tcritDmg\thitRate\tdodgeRate\tblockRate\tblockPower";
+            information += Environment.NewLine;
+
+            for (int i = 0; i < world.AllPopulations.Count; i++)
+            {
+                information += i.ToString();
+                information += '\t';
+                information += calculatePopulationMaxFitness(world.AllPopulations[i]).ToString();
+                information += '\t';
+                information += calculatePopulationMinFitness(world.AllPopulations[i]).ToString();
+                information += '\t';
+                information += calculatePopulationAvgFitness(world.AllPopulations[i]).ToString();
+                information += '\t';
+                information += findPopulationBestGenomeAsBytes(world.AllPopulations[i]);
+                information += Environment.NewLine;
+
+            }
+
+            return information;
+        }
+
+        private string findPopulationBestGenomeAsBytes(List<Character> list)
+        {
+            int maxFitness = 0;
+            Character bestChar = list[0];
+            foreach (Character ch in list)
+            {
+                if (ch.Fitness > maxFitness)
+                {
+                    maxFitness = ch.Fitness;
+                    bestChar = ch;
+                }
+            }
+            return getGenotypeAsBytes(bestChar);
+        }
+
+        private string getGenotypeAsBytes(Character ch)
+        {
+            string genotype = String.Empty;
+            byte[] stats = ch.Stats;
+            foreach (byte st in stats)
+            {
+                genotype += st.ToString();
+                genotype += '\t';
+            }
+            return genotype;
+        }
+
+        private void buttonCopyGenerationsToClipboard_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(generatePopulationInformations());
+        }
+
+        private void buttonSaveGenerationsToFile_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Text file|*.txt";
+            sfd.FileName = System.DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss");
+            sfd.ShowDialog();
+            File.WriteAllText(Path.GetFullPath(sfd.FileName), generatePopulationInformations());
         }
     }
 }
