@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ProjektBIAI.Character character2 = new ProjektBIAI.Character();
+            ProjektBIAI.Character character1 = new ProjektBIAI.Character();
             this.groupBoxSettings = new System.Windows.Forms.GroupBox();
             this.labelIsPopulationCreated = new System.Windows.Forms.Label();
             this.buttonCreatePopulation = new System.Windows.Forms.Button();
@@ -85,8 +85,6 @@
             this.columnHeaderAvgFitness = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderBestGenome = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.userControlCharacter1 = new ProjektBIAI.Forms.UserControlCharacter();
-            this.buttonExportPopulation = new System.Windows.Forms.Button();
-            this.buttonImportPopulation = new System.Windows.Forms.Button();
             this.groupBoxSettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSizeOfPopulation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStepForFitness)).BeginInit();
@@ -242,8 +240,6 @@
             // 
             // tabPopulation
             // 
-            this.tabPopulation.Controls.Add(this.buttonImportPopulation);
-            this.tabPopulation.Controls.Add(this.buttonExportPopulation);
             this.tabPopulation.Controls.Add(this.nudGenerationNumber);
             this.tabPopulation.Controls.Add(this.labelGenerationNumber);
             this.tabPopulation.Controls.Add(this.labelRecalculateFitness);
@@ -294,7 +290,7 @@
             // buttonRecalculateFitness
             // 
             this.buttonRecalculateFitness.Enabled = false;
-            this.buttonRecalculateFitness.Location = new System.Drawing.Point(177, 189);
+            this.buttonRecalculateFitness.Location = new System.Drawing.Point(177, 230);
             this.buttonRecalculateFitness.Name = "buttonRecalculateFitness";
             this.buttonRecalculateFitness.Size = new System.Drawing.Size(90, 34);
             this.buttonRecalculateFitness.TabIndex = 9;
@@ -719,8 +715,8 @@
             // 
             // userControlCharacter1
             // 
-            character2.Fitness = 0;
-            character2.Stats = new byte[] {
+            character1.Fitness = 0;
+            character1.Stats = new byte[] {
         ((byte)(1)),
         ((byte)(1)),
         ((byte)(1)),
@@ -730,31 +726,11 @@
         ((byte)(1)),
         ((byte)(1)),
         ((byte)(1))};
-            this.userControlCharacter1.Character = character2;
+            this.userControlCharacter1.Character = character1;
             this.userControlCharacter1.Location = new System.Drawing.Point(6, 188);
             this.userControlCharacter1.Name = "userControlCharacter1";
             this.userControlCharacter1.Size = new System.Drawing.Size(164, 310);
             this.userControlCharacter1.TabIndex = 2;
-            // 
-            // buttonExportPopulation
-            // 
-            this.buttonExportPopulation.Location = new System.Drawing.Point(176, 230);
-            this.buttonExportPopulation.Name = "buttonExportPopulation";
-            this.buttonExportPopulation.Size = new System.Drawing.Size(92, 34);
-            this.buttonExportPopulation.TabIndex = 13;
-            this.buttonExportPopulation.Text = "Export population";
-            this.buttonExportPopulation.UseVisualStyleBackColor = true;
-            this.buttonExportPopulation.Click += new System.EventHandler(this.buttonExportPopulation_Click);
-            // 
-            // buttonImportPopulation
-            // 
-            this.buttonImportPopulation.Location = new System.Drawing.Point(176, 271);
-            this.buttonImportPopulation.Name = "buttonImportPopulation";
-            this.buttonImportPopulation.Size = new System.Drawing.Size(92, 34);
-            this.buttonImportPopulation.TabIndex = 14;
-            this.buttonImportPopulation.Text = "Import population";
-            this.buttonImportPopulation.UseVisualStyleBackColor = true;
-            this.buttonImportPopulation.Click += new System.EventHandler(this.buttonImportPopulation_Click);
             // 
             // UserControlWorld
             // 
@@ -855,7 +831,5 @@
         private System.Windows.Forms.NumericUpDown nudSinglePointCrossover;
         private System.Windows.Forms.NumericUpDown nudCrossoverChance;
         private System.Windows.Forms.ColumnHeader columnHeaderBestGenome;
-        private System.Windows.Forms.Button buttonImportPopulation;
-        private System.Windows.Forms.Button buttonExportPopulation;
     }
 }

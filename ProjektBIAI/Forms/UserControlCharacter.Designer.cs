@@ -125,7 +125,7 @@
             // 
             this.nudPts.Location = new System.Drawing.Point(78, 254);
             this.nudPts.Maximum = new decimal(new int[] {
-            999,
+            255,
             0,
             0,
             0});

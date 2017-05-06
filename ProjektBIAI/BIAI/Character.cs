@@ -2,7 +2,6 @@
 
 namespace ProjektBIAI
 {
-    [Serializable]
     /// <summary>
     /// Pojedyncza postać
     /// </summary>
@@ -131,7 +130,7 @@ namespace ProjektBIAI
         /// Tworzy postać z równomiernie rozłożonymi statystykami, suma punktów podana w parametrze
         /// </summary>
         /// <param name="pts">Łączna liczba punktów do rozdysponowania</param>
-        public Character(int pts)
+        public Character(byte pts)
         {
             stats = new byte[] { 1, 1, 1, 1, 1, 1, 1, 1, 1 };
             ComputeValues(pts);
@@ -153,7 +152,7 @@ namespace ProjektBIAI
         /// </summary>
         /// <param name="rnd">Generator liczb pseudolosowych</param>
         /// <param name="pts">Ilość punktów do rozdysponowania</param>
-        public Character(Random rnd, int pts)
+        public Character(Random rnd, byte pts)
         {
             stats = new byte[9];
             rnd.NextBytes(stats);
@@ -165,7 +164,7 @@ namespace ProjektBIAI
         /// </summary>
         /// <param name="sta">Tablica 9 wartości 0-255 ze stosunkiem statystyk</param>
         /// <param name="pts">Łączna liczba punktów do rozdysponowania</param>
-        public Character (byte[]sta, int pts)
+        public Character (byte[]sta, byte pts)
         {
             stats = new byte[9];
             sta.CopyTo(stats, 0);
@@ -176,7 +175,7 @@ namespace ProjektBIAI
         /// Oblicza wartości punktowe parametrów postaci na postawie tablicy ze statystykami i sumy punktów do rozdysponowania
         /// </summary>
         /// <param name="points">Łączna liczba punktów do rozdysponowania</param>
-        void ComputeValues(int points)
+        void ComputeValues(byte points)
         {
             double sum = 0; // suma wszystkich statystyk, double aby wymusić dzielenie rzeczywiste
             foreach (byte value in stats)

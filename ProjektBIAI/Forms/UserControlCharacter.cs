@@ -13,7 +13,7 @@ namespace ProjektBIAI.Forms
     public partial class UserControlCharacter : UserControl
     {
         Character character;
-        int points;
+        byte points;
 
         public Character Character
         {
@@ -71,7 +71,7 @@ namespace ProjektBIAI.Forms
         
         private void refreshCharacter()
         {
-            points = (int)nudPts.Value;
+            points = (byte)nudPts.Value;
             byte [] stats = new byte[9];
             stats[0] = (byte)nudMaxHp.Value;
             stats[1] = (byte)nudHpRegen.Value;
