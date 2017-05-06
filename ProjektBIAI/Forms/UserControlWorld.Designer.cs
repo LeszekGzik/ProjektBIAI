@@ -290,7 +290,7 @@
             // buttonRecalculateFitness
             // 
             this.buttonRecalculateFitness.Enabled = false;
-            this.buttonRecalculateFitness.Location = new System.Drawing.Point(177, 230);
+            this.buttonRecalculateFitness.Location = new System.Drawing.Point(177, 189);
             this.buttonRecalculateFitness.Name = "buttonRecalculateFitness";
             this.buttonRecalculateFitness.Size = new System.Drawing.Size(90, 34);
             this.buttonRecalculateFitness.TabIndex = 9;

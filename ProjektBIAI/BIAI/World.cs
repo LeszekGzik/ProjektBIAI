@@ -148,7 +148,7 @@ namespace ProjektBIAI
             {
                 stopwatch.Start();
                 bool end = false;
-                byte opponentLevel = stepOfIncrementOpponentsForFitness;
+                int opponentLevel = stepOfIncrementOpponentsForFitness;
                 while (!end)
                 {
                     arena = new Arena(ch, new Character(statsOfOpponentsForFitness, opponentLevel));
