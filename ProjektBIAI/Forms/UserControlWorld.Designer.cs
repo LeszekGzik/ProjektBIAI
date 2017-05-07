@@ -51,7 +51,6 @@
             this.columnHeaderChange = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderGenotype = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBoxCalculateFitness = new System.Windows.Forms.GroupBox();
-            this.userControlCharacter1 = new ProjektBIAI.Forms.UserControlCharacter();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.buttonSaveGenerationsToFile = new System.Windows.Forms.Button();
             this.buttonCopyGenerationsToClipboard = new System.Windows.Forms.Button();
@@ -89,6 +88,7 @@
             this.columnHeaderBestGenome = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.buttonImportPopulation = new System.Windows.Forms.Button();
             this.buttonExportPopulation = new System.Windows.Forms.Button();
+            this.userControlCharacter1 = new ProjektBIAI.Forms.UserControlCharacter();
             this.groupBoxSettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSizeOfPopulation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStepForFitness)).BeginInit();
@@ -359,25 +359,6 @@
             this.groupBoxCalculateFitness.TabIndex = 7;
             this.groupBoxCalculateFitness.TabStop = false;
             this.groupBoxCalculateFitness.Text = "Fitness calculation settings";
-            // 
-            // userControlCharacter1
-            // 
-            character1.Fitness = 0;
-            character1.Stats = new byte[] {
-        ((byte)(1)),
-        ((byte)(1)),
-        ((byte)(1)),
-        ((byte)(1)),
-        ((byte)(1)),
-        ((byte)(1)),
-        ((byte)(1)),
-        ((byte)(1)),
-        ((byte)(1))};
-            this.userControlCharacter1.Character = character1;
-            this.userControlCharacter1.Location = new System.Drawing.Point(6, 188);
-            this.userControlCharacter1.Name = "userControlCharacter1";
-            this.userControlCharacter1.Size = new System.Drawing.Size(164, 310);
-            this.userControlCharacter1.TabIndex = 2;
             // 
             // tabPage2
             // 
@@ -770,6 +751,7 @@
             this.buttonImportPopulation.TabIndex = 13;
             this.buttonImportPopulation.Text = "Import population";
             this.buttonImportPopulation.UseVisualStyleBackColor = true;
+            this.buttonImportPopulation.Click += new System.EventHandler(this.buttonImportPopulation_Click);
             // 
             // buttonExportPopulation
             // 
@@ -780,6 +762,25 @@
             this.buttonExportPopulation.Text = "Export population";
             this.buttonExportPopulation.UseVisualStyleBackColor = true;
             this.buttonExportPopulation.Click += new System.EventHandler(this.buttonExportPopulation_Click);
+            // 
+            // userControlCharacter1
+            // 
+            character1.Fitness = 0;
+            character1.Stats = new byte[] {
+        ((byte)(1)),
+        ((byte)(1)),
+        ((byte)(1)),
+        ((byte)(1)),
+        ((byte)(1)),
+        ((byte)(1)),
+        ((byte)(1)),
+        ((byte)(1)),
+        ((byte)(1))};
+            this.userControlCharacter1.Character = character1;
+            this.userControlCharacter1.Location = new System.Drawing.Point(6, 188);
+            this.userControlCharacter1.Name = "userControlCharacter1";
+            this.userControlCharacter1.Size = new System.Drawing.Size(164, 310);
+            this.userControlCharacter1.TabIndex = 2;
             // 
             // UserControlWorld
             // 

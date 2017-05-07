@@ -433,7 +433,6 @@ namespace ProjektBIAI
 
         private void buttonExportPopulation_Click(object sender, EventArgs e)
         {
-            string statString = String.Empty;
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.Filter = "Text file|*.txt";
             sfd.ShowDialog();
@@ -443,15 +442,55 @@ namespace ProjektBIAI
                 tw.WriteLine(world.Population.Count);
                 for (int index = 0; index < world.Population.Count; index++)
                 {
-                    statString = String.Empty;
                     for (int i = 0; i < 9; i++)
                     {
-                        statString += world.Population[index].Stats[i].ToString();
-                        statString += " ";
+                        tw.WriteLine(world.Population[index].Stats[i].ToString());
                     }
-                    tw.WriteLine(statString);
                 }
                 tw.Close();
+            }
+        }
+
+        private void buttonImportPopulation_Click(object sender, EventArgs e)
+        {
+            byte[] tempStats = new byte[9];
+            string statString = String.Empty;
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Text file|*.txt";
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                TextReader tr = new StreamReader(Path.GetFullPath(ofd.FileName));
+                int numOfCharacters = Int32.Parse(tr.ReadLine());
+                List<Character> importedPopulation = new List<Character>();
+                for (int index = 0; index < numOfCharacters; index++)
+                {
+                    for (int i = 0; i < 9; i++)
+                    {
+                        tempStats[i] = (byte)Int32.Parse(tr.ReadLine());
+                    }
+                    importedPopulation.Add(new Character(tempStats, 100));
+                }
+                if ((world == null) || (MessageBox.Show("This will destroy existing population!", "Are you sure?", MessageBoxButtons.YesNo) == DialogResult.Yes))
+                {
+                    world = new World(importedPopulation, (int)nudNumberOfBattlesForCalculateFitness.Value, (byte)nudStepForFitness.Value, userControlCharacter1.Character.Stats);
+                    previousFitness = new int[(int)nudSizeOfPopulation.Value];
+                    world.CalculateFitness(labelIsPopulationCreated);
+                    world.ArchiveCurrentPopulation();
+                    nudGenerationNumber.Maximum = 0;
+                    UpdateListViewPopulation();
+                    UpdateAllGenerationsInfo();
+                    listViewGenerations.Items[0].Selected = true;
+                    buttonRecalculateFitness.Enabled = true;
+                    buttonNextGeneration.Enabled = true;
+                    buttonXGenerations.Enabled = true;
+                    nudXGenerations.Enabled = true;
+                    buttonCopyGenerationsToClipboard.Enabled = true;
+                    buttonSaveGenerationsToFile.Enabled = true;
+                }
+                else
+                {
+                    MessageBox.Show("Population not changed");
+                }
             }
         }
     }

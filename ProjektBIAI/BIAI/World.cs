@@ -135,6 +135,20 @@ namespace ProjektBIAI
             statsForFitness.CopyTo(statsOfOpponentsForFitness, 0);
         }
 
+        public World(List<Character> importedPopulation, int battlesForFitness, byte stepForFitness, byte[] statsForFitness)
+        {
+            currentPopulation = new List<Character>();
+            allPopulations = new List<List<Character>>();
+            statsOfOpponentsForFitness = new byte[9];
+            for (int i = 0; i < importedPopulation.Count; i++)
+            {
+                currentPopulation.Add(importedPopulation[i]);
+            }
+            numberOfBattlesForCalculateFitness = battlesForFitness;
+            stepOfIncrementOpponentsForFitness = stepForFitness;
+            statsForFitness.CopyTo(statsOfOpponentsForFitness, 0);
+        }
+
         /// <summary>
         /// Oblicza współczynnik fitness dla całej populacji zapisanej na świecie
         /// </summary>
