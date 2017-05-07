@@ -425,7 +425,34 @@ namespace ProjektBIAI
             sfd.Filter = "Text file|*.txt";
             sfd.FileName = System.DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss");
             sfd.ShowDialog();
-            File.WriteAllText(Path.GetFullPath(sfd.FileName), generatePopulationInformations());
+            if (sfd.FileName != "")
+            {
+                File.WriteAllText(Path.GetFullPath(sfd.FileName), generatePopulationInformations());
+            }
+        }
+
+        private void buttonExportPopulation_Click(object sender, EventArgs e)
+        {
+            string statString = String.Empty;
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Text file|*.txt";
+            sfd.ShowDialog();
+            if (sfd.FileName != "")
+            {
+                TextWriter tw = new StreamWriter(Path.GetFullPath(sfd.FileName));
+                tw.WriteLine(world.Population.Count);
+                for (int index = 0; index < world.Population.Count; index++)
+                {
+                    statString = String.Empty;
+                    for (int i = 0; i < 9; i++)
+                    {
+                        statString += world.Population[index].Stats[i].ToString();
+                        statString += " ";
+                    }
+                    tw.WriteLine(statString);
+                }
+                tw.Close();
+            }
         }
     }
 }
