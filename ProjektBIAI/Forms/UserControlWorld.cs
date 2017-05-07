@@ -255,6 +255,8 @@ namespace ProjektBIAI
             }
             for (int i = 0; i < numberOfGenerations; i++)
             {
+                labelCurrentGeneration.Text = "Current generation: " + (i+1).ToString() + "/" + numberOfGenerations.ToString();
+                labelCurrentGeneration.Update();
                 world.CurrentGenerationSelection(radioButtonLinearIndex.Checked, labelCreatingGenerationStatus);
                 world.CurrentGenerationCrossover((int)nudCrossoverChance.Value, (int)nudSinglePointCrossover.Value, labelCreatingGenerationStatus);
                 world.CurrentGenerationMutation((int)nudMutationRate.Value, mutationValue, currentMutationType, labelCreatingGenerationStatus);
