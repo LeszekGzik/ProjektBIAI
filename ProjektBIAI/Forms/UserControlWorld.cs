@@ -150,7 +150,8 @@ namespace ProjektBIAI
 
         private void nudNumberOfBattlesForCalculateFitness_ValueChanged(object sender, EventArgs e)
         {
-            world.NumberOfBattlesForCalculateFitness = (int)nudNumberOfBattlesForCalculateFitness.Value;
+            if (world != null)
+                world.NumberOfBattlesForCalculateFitness = (int)nudNumberOfBattlesForCalculateFitness.Value;
         }
 
         /// <summary>
