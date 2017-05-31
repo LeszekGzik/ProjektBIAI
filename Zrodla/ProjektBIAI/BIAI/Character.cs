@@ -187,11 +187,11 @@ namespace ProjektBIAI
             this.hpRegen = (int)(5 * (points*stats[1] / sum));
             this.baseDmg = (int)(10 + 20 * (points*stats[2] / sum));
             this.critRate = (int)(2 * (points * stats[3] / sum));
-            this.critDmg = (1.5 + 0.05 * (points * stats[4] / sum));     //trzeba by coś zrobić z balansem tutaj
+            this.critDmg = (1.5 + 0.05 * (points * stats[4] / sum));
             this.hitRate = (int)(50 + 5 * (points * stats[5] / sum));
             this.dodgeRate = (int)(5 * (points * stats[6] / sum));
             this.blockRate = (int)(2 * (points * stats[7] / sum));
-            this.blockPower = (0.5 - 0.05 * (points * stats[8] / sum));  //trzeba by coś zrobić z balansem tutaj
+            this.blockPower = (0.5 - 0.05 * (points * stats[8] / sum));
         }
 
         /// <summary>
